@@ -1,0 +1,41 @@
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\Ringbuch.exe.config
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\Ringbuch.exe
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\Ringbuch.pdb
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\EntityFramework.dll
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\EntityFramework.SqlServer.dll
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.dll
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.EF6.dll
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.Linq.dll
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\EntityFramework.xml
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\EntityFramework.SqlServer.xml
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.xml
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.Hauptfenster.resources
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.Installer.resources
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.ProfilBearbeiten.resources
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.Properties.Resources.resources
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.csproj.GenerateResource.Cache
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.exe
+j:\eigene dateien\documents\visual studio 2013\Projects\Ringbuch\Ringbuch\obj\Debug\Ringbuch.pdb
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\Ringbuch.exe.config
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\Ringbuch.exe
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\Ringbuch.pdb
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\EntityFramework.dll
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\EntityFramework.SqlServer.dll
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\Logging_APE.DLL
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.dll
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.EF6.dll
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.Linq.dll
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\EntityFramework.xml
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\EntityFramework.SqlServer.xml
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\bin\Debug\System.Data.SQLite.xml
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.ErgebnisBearbeiten.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.Hauptfenster.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.Installer.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.ProfilBearbeiten.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.MyDialog.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.MaterialBearbeiten.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.Properties.Resources.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.StatistikTool.resources
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.csproj.GenerateResource.Cache
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.exe
+J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.pdb

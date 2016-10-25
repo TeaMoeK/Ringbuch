@@ -1,0 +1,2 @@
+[$DATE$] 24.10.2016 15:51:59    [$CLASS$] Ringbuch.Program    [$MESSAGE$] Die XML-Datei konnte nicht gefunden werden. Methode: Void getDatabasePath()
+[$DATE$] 24.10.2016 15:52:19    [$CLASS$] Ringbuch.Program    [$MESSAGE$] Es wurde eine neue XML-Datei angelegt. Pfad: J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\RingbuchDaten.db Methode: Void getDatabasePath()
