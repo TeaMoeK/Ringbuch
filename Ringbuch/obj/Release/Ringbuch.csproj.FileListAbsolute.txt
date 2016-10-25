@@ -62,3 +62,6 @@ J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Release\Ringbu
 J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Release\Ringbuch.csproj.GenerateResource.Cache
 J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Release\Ringbuch.exe
 J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Release\Ringbuch.pdb
+J:\Eigene Dateien\Documents\Visual Studio 2013\Projects\Ringbuch\trunk\Ringbuch\bin\Release\Ringbuch.exe.config
+J:\Eigene Dateien\Documents\Visual Studio 2013\Projects\Ringbuch\trunk\Ringbuch\obj\Release\Ringbuch.exe
+J:\Eigene Dateien\Documents\Visual Studio 2013\Projects\Ringbuch\trunk\Ringbuch\obj\Release\Ringbuch.pdb
