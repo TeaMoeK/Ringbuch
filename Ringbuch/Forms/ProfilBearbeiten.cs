@@ -14,6 +14,7 @@ namespace Ringbuch
     {
         private int _namenID = -1;
         private DataTable _dt;
+        private bool _datenOK = false;
         public ProfilBearbeiten(int namenID)
         {
             _namenID = namenID;
@@ -40,7 +41,7 @@ namespace Ringbuch
             if (_namenID != -1)
             {
                 InvokePersonenDatenRequested();
-                InvokeSetSelectedRequested();                
+                InvokeSetSelectedRequested();
             }
             else
             {
@@ -56,7 +57,7 @@ namespace Ringbuch
             btnDelete.Enabled = false;
         }
 
-        private void TextChanged(object sender, EventArgs e)
+        private new void TextChanged(object sender, EventArgs e)
         {
             if ((sender as TextBox).Text != "")
             {
@@ -221,9 +222,17 @@ namespace Ringbuch
                 if (CreateDataTable())
                 {
                     InvokeDatenSpeichernRequired();
-                    this.Dispose();
+                    if (_datenOK)
+                    {
+                        this.Dispose();
+                    }
                 }
             }
+        }
+
+        public void SetDatenOk(bool datenOK)
+        {
+            _datenOK = datenOK;
         }
 
         private bool EingegebeneDatenOK()

@@ -46,5 +46,7 @@ namespace Ringbuch
         event EventHandler<DataTableEventArgs> ProfilUpdateRequired;
         event EventHandler<DataTableEventArgs> ProfilErstellenRequired;
         event EventHandler<IDEventArgs> ProfilDeleteRequested;
+        void SetDatenOk(bool datenOK);
+
     }
 }

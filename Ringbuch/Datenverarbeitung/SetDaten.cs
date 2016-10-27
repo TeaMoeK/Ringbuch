@@ -317,7 +317,7 @@ namespace Ringbuch
         {
             return _getDaten.getMaterialGruppen();
         }
-        public void SetProfilUpdate(DataTable dt)
+        public bool SetProfilUpdate(DataTable dt)
         {
             if (PasswortAbfrage())
             {
@@ -331,41 +331,45 @@ namespace Ringbuch
                         dt.Rows[0][i] = -1;
                     }
                 }
-                DoConnect();
-                _command = new SQLiteCommand(_con);
-                _command.CommandText = CreateUpdateStatement(
-                    "Personen",
-                    "Vorname = \"" + dt.Rows[0]["Vorname"] + "\", " +
-                    "Zweitname = \"" + dt.Rows[0]["Zweitname"] + "\", " +
-                    "Nachname = \"" + dt.Rows[0]["Nachname"] + "\", " +
-                    "Geburtstag = \"" + dt.Rows[0]["Geburtstag"] + "\", " +
-                    "Geschlecht = \"" + dt.Rows[0]["Geschlecht"] + "\", " +
-                    "DarfKK = \"" + dt.Rows[0]["DarfKK"] + "\", " +
-                    "DarfLG = \"" + dt.Rows[0]["DarfLG"] + "\", " +
-                    "IstKoenig = \"" + dt.Rows[0]["IstKoenig"] + "\", " +
-                    "KleinkaliberID = \"" + dt.Rows[0]["KleinkaliberID"] + "\", " +
-                    "LuftgewehrID = \"" + dt.Rows[0]["LuftgewehrID"] + "\", " +
-                    "HandschuhID = \"" + dt.Rows[0]["HandschuhID"] + "\", " +
-                    "JackeID = \"" + dt.Rows[0]["JackeID"] + "\", " +
-                    "Info = \"" + dt.Rows[0]["Info"] + "\"",
-                    "rowid",
-                    dt.Rows[0]["rowid"].ToString());
-                _dataReader = _command.ExecuteReader();
-
-                if (_dataReader.RecordsAffected <= 0)
+                if (CheckGeburtstag(Convert.ToDateTime(dt.Rows[0]["Geburtstag"].ToString()), MethodInfo.GetCurrentMethod().Name))
                 {
-                    writeLog("Der Eintrag konnte nicht geändert werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
-                    MessageBox.Show("Der Eintrag konnte nicht geändert werden.");
+                    DoConnect();
+                    _command = new SQLiteCommand(_con);
+                    _command.CommandText = CreateUpdateStatement(
+                        "Personen",
+                        "Vorname = \"" + dt.Rows[0]["Vorname"] + "\", " +
+                        "Zweitname = \"" + dt.Rows[0]["Zweitname"] + "\", " +
+                        "Nachname = \"" + dt.Rows[0]["Nachname"] + "\", " +
+                        "Geburtstag = \"" + dt.Rows[0]["Geburtstag"] + "\", " +
+                        "Geschlecht = \"" + dt.Rows[0]["Geschlecht"] + "\", " +
+                        "DarfKK = \"" + dt.Rows[0]["DarfKK"] + "\", " +
+                        "DarfLG = \"" + dt.Rows[0]["DarfLG"] + "\", " +
+                        "IstKoenig = \"" + dt.Rows[0]["IstKoenig"] + "\", " +
+                        "KleinkaliberID = \"" + dt.Rows[0]["KleinkaliberID"] + "\", " +
+                        "LuftgewehrID = \"" + dt.Rows[0]["LuftgewehrID"] + "\", " +
+                        "HandschuhID = \"" + dt.Rows[0]["HandschuhID"] + "\", " +
+                        "JackeID = \"" + dt.Rows[0]["JackeID"] + "\", " +
+                        "Info = \"" + dt.Rows[0]["Info"] + "\"",
+                        "rowid",
+                        dt.Rows[0]["rowid"].ToString());
+                    _dataReader = _command.ExecuteReader();
+                    CloseConnections();
+                    if (!StatementSuccessful(_dataReader, false))
+                    {
+                        writeLog("Der Eintrag konnte nicht geändert werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
+                        return false;
+                    }
+                    return true;
                 }
-                CloseConnections();
             }
+            return false;
         }
 
-        public void SetProfilNeu(DataTable dt)
+        public bool SetProfilNeu(DataTable dt)
         {
             if (PasswortAbfrage())
             {
-                if (CheckGeburtstag(Convert.ToDateTime(dt.Rows[0]["Geburtstag"].ToString())))
+                if (CheckGeburtstag(Convert.ToDateTime(dt.Rows[0]["Geburtstag"].ToString()), MethodInfo.GetCurrentMethod().Name))
                 {
                     DoConnect();
                     _command = new SQLiteCommand(_con);
@@ -389,21 +393,25 @@ namespace Ringbuch
                         "'0'"   //  IstArchiviert
                         );
                     _dataReader = _command.ExecuteReader();
+                    CloseConnections();
                     if (!StatementSuccessful(_dataReader, false))
                     {
                         writeLog("Statement war nicht erfolgreich. Methode: SetProfilNeu(DataTable dt) Statement: " + _command.CommandText.ToString());
+                        return false;
                     }
-                    CloseConnections();
+
+                    return true;
                 }
             }
+            return false;
         }
 
-        private bool CheckGeburtstag(DateTime geburtstag)
+        private bool CheckGeburtstag(DateTime geburtstag, object sender)
         {
             TimeSpan timeSpan = DateTime.Now - geburtstag;
             if (timeSpan.Days < 0)
             {
-                if (MessageBox.Show("Das Datum liegt in der Zukunft.", "Geburtstag", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Cancel)
+                if (MessageBox.Show("Das Datum liegt in der Zukunft.", "Geburtstag", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                 {
 
                     return false;
@@ -414,7 +422,7 @@ namespace Ringbuch
                 int alter = Convert.ToInt16(DateTime.Now.ToString("yyyy")) - geburtstag.Year;
                 if (alter <= 5)
                 {
-                    if (MessageBox.Show("Das Alter ist unter 6 Jahre.", "Alter", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Cancel)
+                    if (MessageBox.Show("Das Alter ist unter 6 Jahre.", "Alter", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     {
                         return false;
                     }

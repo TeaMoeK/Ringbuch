@@ -14,7 +14,7 @@ namespace Ringbuch
     {
         private string _titel;
         private string _message;
-        private string _password = "xm1014";
+        private string _password = string.Empty;
 
         private void MyDialog_Load(object sender, EventArgs e)
         {
@@ -29,6 +29,10 @@ namespace Ringbuch
             if (password != "")
             {
                 _password = password;
+            }
+            else
+            {
+                _password = "xm1014";
             }
             txtInputBox.PasswordChar = '*';
             Init();
@@ -45,23 +49,32 @@ namespace Ringbuch
         }
         private void Init()
         {
-            this.Text = _titel;            
+            this.Text = _titel;
             richtxtAnzeigeText.Text = _message;
             richtxtAnzeigeText.SelectionAlignment = HorizontalAlignment.Center;
         }
 
         private void OK(object sender, EventArgs e)
         {
-            if (txtInputBox.Text == "xm1014")
+            if (_password != string.Empty)
+            {
+                if (txtInputBox.Text == "xm1014")
+                {
+                    this.PasswortOK = true;
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Falsches Passwort.", ";(");
+                    this.PasswortOK = false;
+                }
+            }
+            else
             {
                 this.PasswortOK = true;
                 this.Dispose();
             }
-            else
-            {
-                MessageBox.Show("Falsches Passwort.", ";(");
-                this.PasswortOK = false;
-            }
+
         }
         private void Exit(object sender, EventArgs e)
         {
@@ -86,6 +99,10 @@ namespace Ringbuch
             {
                 txtInputBox.PasswordChar = '*';
             }
+        }
+        public new void Show()
+        {
+            this.ShowDialog();
         }
     }
 }

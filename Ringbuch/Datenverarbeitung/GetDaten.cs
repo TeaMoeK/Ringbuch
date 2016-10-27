@@ -20,6 +20,7 @@ namespace Ringbuch
         private SQLiteConnection _con;
         private SQLiteDataReader _dataReader;
         private SQLiteCommand _command;
+        private MyDialog _mydialog;
 
 
         private void DoConnect()
@@ -34,7 +35,8 @@ namespace Ringbuch
             catch (Exception ex)
             {
                 writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-                throw;
+                MessageBox.Show(ex.Message);
+                Environment.Exit(-1);
             }
         }
 
@@ -257,7 +259,7 @@ namespace Ringbuch
                 i++;
             }
             dt.Rows.Add(new object[]{
-                -1,    
+                -1,
             });
             CloseConections();
             return dt;
@@ -380,9 +382,13 @@ namespace Ringbuch
             DateTime dateTimeSchFest = DateTime.Parse(SchFest);
 
             TimeSpan timeSpan = DateTime.Now - dateTimeGeburtstag;
-
-            listAlter.Add((zeroTime + timeSpan).Year - 1);
-
+            if (timeSpan.Ticks > 0)
+            {
+                listAlter.Add((zeroTime + timeSpan).Year - 1);
+            }else
+            {
+                listAlter.Add(-1);
+            }
 
             timeSpan = dateTimeSchFest - dateTimeGeburtstag;
             TimeSpan timeSpanSchFestZuHeute = DateTime.Now - dateTimeSchFest;

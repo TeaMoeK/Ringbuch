@@ -11,7 +11,7 @@ namespace Ringbuch
     /// <summary>
     /// Vermittelt zwischen GuiInterface und SetDaten und GetDaten
     /// </summary>
-   class Vermittler : IDisposable
+    class Vermittler : IDisposable
     {
         private GuiInterface _guiInterface;
         private ProfilBearbeitenInterface _profilBearbeitenInterface;
@@ -217,12 +217,12 @@ namespace Ringbuch
 
         private void ProfilBearbeitenInterfaceDatenSpeichernRequired(object sender, DataTableEventArgs e)
         {
-            _setDaten.SetProfilUpdate(e.dt);
+            _profilBearbeitenInterface.SetDatenOk(_setDaten.SetProfilUpdate(e.dt));
         }
 
         private void ProfilBearbeitenInterfaceProfilErstellenRequired(object sender, DataTableEventArgs e)
         {
-            _setDaten.SetProfilNeu(e.dt);
+            _profilBearbeitenInterface.SetDatenOk(_setDaten.SetProfilNeu(e.dt));
         }
         private void ProfilBearbeitenInterfacePersonenDatenRequested(object sender, IDEventArgs e)
         {
