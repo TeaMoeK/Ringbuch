@@ -39,6 +39,10 @@
             this.btnNurVom = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.dgvAuswertung = new System.Windows.Forms.DataGridView();
+            this.txtKlartext = new System.Windows.Forms.TextBox();
+            this.txtKey = new System.Windows.Forms.TextBox();
+            this.txtBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuswertung)).BeginInit();
@@ -71,6 +75,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.txtBox);
+            this.groupBox2.Controls.Add(this.txtKey);
+            this.groupBox2.Controls.Add(this.txtKlartext);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.comboSchiessart);
             this.groupBox2.Controls.Add(this.lvlBis);
@@ -156,6 +164,37 @@
             this.dgvAuswertung.Size = new System.Drawing.Size(786, 82);
             this.dgvAuswertung.TabIndex = 6;
             // 
+            // txtKlartext
+            // 
+            this.txtKlartext.Location = new System.Drawing.Point(6, 182);
+            this.txtKlartext.Name = "txtKlartext";
+            this.txtKlartext.Size = new System.Drawing.Size(100, 20);
+            this.txtKlartext.TabIndex = 12;
+            // 
+            // txtKey
+            // 
+            this.txtKey.Location = new System.Drawing.Point(6, 208);
+            this.txtKey.Name = "txtKey";
+            this.txtKey.Size = new System.Drawing.Size(100, 20);
+            this.txtKey.TabIndex = 13;
+            // 
+            // txtBox
+            // 
+            this.txtBox.Location = new System.Drawing.Point(6, 234);
+            this.txtBox.Name = "txtBox";
+            this.txtBox.Size = new System.Drawing.Size(100, 20);
+            this.txtBox.TabIndex = 14;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 261);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Klick";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // StatistikTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,5 +229,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboSchiessart;
         private System.Windows.Forms.DataGridView dgvAuswertung;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtBox;
+        private System.Windows.Forms.TextBox txtKey;
+        private System.Windows.Forms.TextBox txtKlartext;
     }
 }
