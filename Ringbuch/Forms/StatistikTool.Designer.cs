@@ -31,6 +31,10 @@
             this.dgvErgebnisse = new System.Windows.Forms.DataGridView();
             this.dtVon = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtBox = new System.Windows.Forms.TextBox();
+            this.txtKey = new System.Windows.Forms.TextBox();
+            this.txtKlartext = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboSchiessart = new System.Windows.Forms.ComboBox();
             this.lvlBis = new System.Windows.Forms.Label();
@@ -39,10 +43,6 @@
             this.btnNurVom = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.dgvAuswertung = new System.Windows.Forms.DataGridView();
-            this.txtKlartext = new System.Windows.Forms.TextBox();
-            this.txtKey = new System.Windows.Forms.TextBox();
-            this.txtBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuswertung)).BeginInit();
@@ -93,6 +93,37 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ergebnisse anzeigen";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 261);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Klick";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtBox
+            // 
+            this.txtBox.Location = new System.Drawing.Point(6, 234);
+            this.txtBox.Name = "txtBox";
+            this.txtBox.Size = new System.Drawing.Size(100, 20);
+            this.txtBox.TabIndex = 14;
+            // 
+            // txtKey
+            // 
+            this.txtKey.Location = new System.Drawing.Point(6, 208);
+            this.txtKey.Name = "txtKey";
+            this.txtKey.Size = new System.Drawing.Size(100, 20);
+            this.txtKey.TabIndex = 13;
+            // 
+            // txtKlartext
+            // 
+            this.txtKlartext.Location = new System.Drawing.Point(6, 182);
+            this.txtKlartext.Name = "txtKlartext";
+            this.txtKlartext.Size = new System.Drawing.Size(100, 20);
+            this.txtKlartext.TabIndex = 12;
             // 
             // label1
             // 
@@ -163,37 +194,6 @@
             this.dgvAuswertung.Name = "dgvAuswertung";
             this.dgvAuswertung.Size = new System.Drawing.Size(786, 82);
             this.dgvAuswertung.TabIndex = 6;
-            // 
-            // txtKlartext
-            // 
-            this.txtKlartext.Location = new System.Drawing.Point(6, 182);
-            this.txtKlartext.Name = "txtKlartext";
-            this.txtKlartext.Size = new System.Drawing.Size(100, 20);
-            this.txtKlartext.TabIndex = 12;
-            // 
-            // txtKey
-            // 
-            this.txtKey.Location = new System.Drawing.Point(6, 208);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(100, 20);
-            this.txtKey.TabIndex = 13;
-            // 
-            // txtBox
-            // 
-            this.txtBox.Location = new System.Drawing.Point(6, 234);
-            this.txtBox.Name = "txtBox";
-            this.txtBox.Size = new System.Drawing.Size(100, 20);
-            this.txtBox.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 261);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Klick";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // StatistikTool
             // 
