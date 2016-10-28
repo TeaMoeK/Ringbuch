@@ -112,10 +112,5 @@ namespace Ringbuch
             dtVon.Value = DateTime.Now;
             dtBis.Value = DateTime.Now;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

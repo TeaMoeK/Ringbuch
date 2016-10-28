@@ -45,7 +45,8 @@
       <HintPath>.\Logging_APE.DLL</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="PolyABC">
+    <Reference Include="PolyABC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>.\PolyABC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
