@@ -111,9 +111,9 @@ namespace Ringbuch
         /// <returns></returns>
         private Boolean PasswortAbfrage()
         {
-            if (!Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
-                _myDialog = new MyDialog("Password", "Für diese Aktion ist ein Passwort erforderlich", "");
+                _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
                 _myDialog.ShowDialog();
                 if (_myDialog.PasswortOK)
                 {

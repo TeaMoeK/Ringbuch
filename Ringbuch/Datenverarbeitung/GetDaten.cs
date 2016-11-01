@@ -20,8 +20,6 @@ namespace Ringbuch
         private SQLiteConnection _con;
         private SQLiteDataReader _dataReader;
         private SQLiteCommand _command;
-        private MyDialog _mydialog;
-
 
         private void DoConnect()
         {
@@ -69,6 +67,8 @@ namespace Ringbuch
                     openFileDialog.Title = "Select Database";
                     openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
                     openFileDialog.ShowDialog();
+                    MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Password eingeben.",true);
+                    myDialog.Show();
 
                     XmlDocument doc = new XmlDocument();
                     XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
@@ -80,6 +80,10 @@ namespace Ringbuch
                     XmlNode PfadNode = doc.CreateElement("Pfad");
                     PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
                     DatenbankNode.AppendChild(PfadNode);
+
+                    XmlNode PasswordNode = doc.CreateElement("Password");
+                    PasswordNode.AppendChild(doc.CreateTextNode(myDialog.getDecodedText));
+                    DatenbankNode.AppendChild(PasswordNode);
 
                     doc.Save("Ringbuch.xml");
 
@@ -94,6 +98,13 @@ namespace Ringbuch
             }
         }
 
+        public string getMasterPW()
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(Directory.GetCurrentDirectory() + "\\ringbuch.xml");
+            XmlNode node = xml.DocumentElement.SelectSingleNode("/Datenbank/Password");
+            return node.InnerText;
+        }
         private void CloseConections()
         {
             if (_dataReader != null)
@@ -385,7 +396,8 @@ namespace Ringbuch
             if (timeSpan.Ticks > 0)
             {
                 listAlter.Add((zeroTime + timeSpan).Year - 1);
-            }else
+            }
+            else
             {
                 listAlter.Add(-1);
             }

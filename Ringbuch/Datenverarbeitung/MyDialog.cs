@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PolyABC;
 
 namespace Ringbuch
 {
@@ -15,40 +16,50 @@ namespace Ringbuch
         private string _titel;
         private string _message;
         private string _password = string.Empty;
+        private bool _inputBox = false;
+        private bool _passwordBox = false;
+        private bool _setPassword = false;
 
         private void MyDialog_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
         }
-
-        public MyDialog(string titel, string message, string password)
+        private MyDialog(string titel, string message)
         {
-            InitializeComponent();
-            _titel = titel;
-            _message = message;
-            if (password != "")
-            {
-                _password = password;
-            }
-            else
-            {
-                _password = "xm1014";
-            }
-            txtInputBox.PasswordChar = '*';
-            Init();
+            myDialog(titel, message, false, false, false);
         }
-        public MyDialog(string titel, string message)
+        private MyDialog(string titel, string message, bool inputBox)
+        {
+            myDialog(titel, message, inputBox, false, false);
+        }
+        public MyDialog(bool passwordBox, string titel, string message, bool setPassword)
+        {
+            myDialog(titel, message, true, passwordBox, setPassword);
+        }
+        /// <summary>
+        /// Hier landen die Constructors
+        /// </summary>
+        /// <param name="titel"></param>
+        /// <param name="message"></param>
+        /// <param name="inputBox"></param>
+        /// <param name="passwordBox"></param>
+        private void myDialog(string titel, string message, bool inputBox, bool passwordBox, bool setPassword)
         {
             InitializeComponent();
             _titel = titel;
             _message = message;
-            txtInputBox.Visible = false;
-            chkShowPassword.Visible = false;
-            lblPassword.Visible = false;
+            _inputBox = inputBox;
+            _passwordBox = passwordBox;
+            _setPassword = setPassword;
+
+            txtInputBox.Visible = inputBox;
+            chkShowPassword.Visible = passwordBox;
+            lblPassword.Visible = passwordBox;
             Init();
         }
         private void Init()
         {
+            if (_passwordBox) txtInputBox.PasswordChar = '*';
             this.Text = _titel;
             richtxtAnzeigeText.Text = _message;
             richtxtAnzeigeText.SelectionAlignment = HorizontalAlignment.Center;
@@ -56,30 +67,29 @@ namespace Ringbuch
 
         private void OK(object sender, EventArgs e)
         {
-            if (_password != string.Empty)
+            if (_passwordBox)
             {
-                if (txtInputBox.Text == "xm1014")
+                if (!_setPassword)
                 {
-                    this.PasswortOK = true;
-                    this.Dispose();
+                    getText = txtInputBox.Text;
+                    checkPassword();
                 }
                 else
                 {
-                    MessageBox.Show("Falsches Passwort.", ";(");
-                    this.PasswortOK = false;
+                    Crypt.Kodieren(txtInputBox.Text, "akey");
+                    getDecodedText = Crypt.KodierterText;
                 }
+                if (PasswortOK) this.Dispose();
             }
-            else
-            {
-                this.PasswortOK = true;
-                this.Dispose();
-            }
-
         }
         private void Exit(object sender, EventArgs e)
         {
+            PasswortOK = false;
             this.Dispose();
         }
+        public string getText { get; set; }
+        public string getCodedText { get; set; }
+        public string getDecodedText { get; set; }
         public bool PasswortOK { get; set; }
         private void keyDown(object sender, KeyEventArgs e)
         {
@@ -88,7 +98,24 @@ namespace Ringbuch
                 OK(this, new EventArgs());
             }
         }
-
+        private void checkPassword()
+        {
+            GetDaten getDaten = new GetDaten();
+            if (getText.ToUpper() == encryptPW(getDaten.getMasterPW()))
+            {
+                PasswortOK = true;
+            }
+            else
+            {
+                PasswortOK = false;
+                MessageBox.Show("Das Passwort war falsch!", "Falsches Passwort");
+            }
+        }
+        private string encryptPW(string password)
+        {
+            Crypt.Dekodieren(password, "akey");
+            return Crypt.DeKodierterText;
+        }
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (txtInputBox.PasswordChar == '*')
