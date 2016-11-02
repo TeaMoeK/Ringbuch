@@ -74,6 +74,13 @@ namespace Ringbuch
                 MessageBox.Show("Es ist ein Fehler mit der xml-Datei aufgetreten!");
             }
         }
+
+        public void SetPassword()
+        {
+            _myDialog = new MyDialog(true, "Passwort", "Bitte ein Passwort eingeben.", true);
+            _myDialog.ShowDialog();
+            XMLDateiBeschreiben("Datenbank", "Password", _myDialog.getCodedText);
+        }
         public void SetDatabase()
         {
             if (PasswortAbfrage())
@@ -84,25 +91,22 @@ namespace Ringbuch
                 openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    XmlDocument doc = new XmlDocument();
-                    XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-                    doc.AppendChild(docNode);
-
-                    XmlNode DatenbankNode = doc.CreateElement("Datenbank");
-                    doc.AppendChild(DatenbankNode);
-
-                    XmlNode PfadNode = doc.CreateElement("Pfad");
-                    PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
-                    DatenbankNode.AppendChild(PfadNode);
-
-                    doc.Save("Ringbuch.xml");
-                    getDatabasePath();
-                    if (_showMsgBoxes)
-                    {
-                        MessageBox.Show("Die Datenbank wurde geändert.", "Datenbank ändern");
-                    }
-
+                    XMLDateiBeschreiben("Datenbank", "Pfad", openFileDialog.FileName);
                 }
+            }
+        }
+
+        private void XMLDateiBeschreiben(string node1, string node2, string text)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Ringbuch.xml");
+            XmlNode docNode = doc.SelectSingleNode("/" + node1 + "/" + node2);
+            docNode.InnerText = text;
+            doc.Save("Ringbuch.xml");
+            getDatabasePath();
+            if (_showMsgBoxes)
+            {
+                MessageBox.Show("Die Eintrage für '" + node2 + "' wurde geändert.", node2 + " ändern");
             }
         }
         /// <summary>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PolyABC;
+using System.Runtime.InteropServices;
 
 namespace Ringbuch
 {
@@ -56,7 +57,9 @@ namespace Ringbuch
             chkShowPassword.Visible = passwordBox;
             lblPassword.Visible = passwordBox;
             Init();
+            this.TopMost = true;        
         }
+
         private void Init()
         {
             if (_passwordBox) txtInputBox.PasswordChar = '*';
@@ -78,6 +81,7 @@ namespace Ringbuch
                 {
                     Crypt.Kodieren(txtInputBox.Text, "akey");
                     getDecodedText = Crypt.KodierterText;
+                    this.Dispose();
                 }
                 if (PasswortOK) this.Dispose();
             }
@@ -126,10 +130,6 @@ namespace Ringbuch
             {
                 txtInputBox.PasswordChar = '*';
             }
-        }
-        public new void Show()
-        {
-            this.ShowDialog();
         }
     }
 }

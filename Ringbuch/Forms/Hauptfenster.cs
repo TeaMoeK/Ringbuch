@@ -533,6 +533,20 @@ namespace Ringbuch
                 MaterialBearbeitenSetRequired(this, new InterfaceEventHandler(materialBearbeiten));
             }
         }
+
+        private void SetPasswordToXML(object sender, EventArgs e)
+        {
+            InvokeXMLDateiPasswordBearbeitenRequired();
+        }
+        public event EventHandler XMLDateiPasswordBearbeitenRequired;
+        private void InvokeXMLDateiPasswordBearbeitenRequired()
+        {
+            EventHandler handler = XMLDateiPasswordBearbeitenRequired;
+            if (handler != null)
+            {
+                XMLDateiPasswordBearbeitenRequired(this, new EventArgs());
+            }
+        }
         private void SetDatabaseToXML(object sender, EventArgs e)
         {
             InvokeXMLDateiDatenbankBearbeitenRequired();

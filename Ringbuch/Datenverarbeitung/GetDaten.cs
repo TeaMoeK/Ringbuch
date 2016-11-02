@@ -56,48 +56,51 @@ namespace Ringbuch
             }
             else
             {
-                writeLog("Die XML-Datei konnte nicht gefunden werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
-                DialogResult result = MessageBox.Show(
-                     "Es ist ein Fehler mit der xml-Datei aufgetreten." + Environment.NewLine +
-                     "Wollen Sie die Datei neu anlegen?", "XML-Error", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    OpenFileDialog openFileDialog = new OpenFileDialog();
-                    openFileDialog.Filter = "SQLite-Datenbank | *.db";
-                    openFileDialog.Title = "Select Database";
-                    openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-                    openFileDialog.ShowDialog();
-                    MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Password eingeben.",true);
-                    myDialog.Show();
-
-                    XmlDocument doc = new XmlDocument();
-                    XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-                    doc.AppendChild(docNode);
-
-                    XmlNode DatenbankNode = doc.CreateElement("Datenbank");
-                    doc.AppendChild(DatenbankNode);
-
-                    XmlNode PfadNode = doc.CreateElement("Pfad");
-                    PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
-                    DatenbankNode.AppendChild(PfadNode);
-
-                    XmlNode PasswordNode = doc.CreateElement("Password");
-                    PasswordNode.AppendChild(doc.CreateTextNode(myDialog.getDecodedText));
-                    DatenbankNode.AppendChild(PasswordNode);
-
-                    doc.Save("Ringbuch.xml");
-
-                    _sqliteDatabase = openFileDialog.FileName;
-                    writeLog("Es wurde eine neue XML-Datei angelegt. Pfad: " + openFileDialog.FileName.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-                }
-                else
-                {
-                    writeLog("Benutzer hat das Anlegen der XML-Datei abgebrochen. DialogResult: " + result.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-                    Environment.Exit(1);
-                }
+                createXMLFile();
             }
         }
+        private void createXMLFile()
+        {
+            writeLog("Die XML-Datei konnte nicht gefunden werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
+            DialogResult result = MessageBox.Show(
+                 "Es ist ein Fehler mit der xml-Datei aufgetreten." + Environment.NewLine +
+                 "Wollen Sie die Datei neu anlegen?", "XML-Error", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "SQLite-Datenbank | *.db";
+                openFileDialog.Title = "Select Database";
+                openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                openFileDialog.ShowDialog();
+                MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Password eingeben.", true);
+                myDialog.ShowDialog();
 
+                XmlDocument doc = new XmlDocument();
+                XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                doc.AppendChild(docNode);
+                //  Element 'Datenbank' erstellen und dem XmlDocument hinzufügen
+                XmlNode DatenbankNode = doc.CreateElement("Datenbank");
+                doc.AppendChild(DatenbankNode);
+                //  Element 'Pfad' erstellen, mit dem Pfad füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
+                XmlNode PfadNode = doc.CreateElement("Pfad");
+                PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
+                DatenbankNode.AppendChild(PfadNode);
+                //  Element 'Password' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
+                XmlNode PasswordNode = doc.CreateElement("Password");
+                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.getDecodedText));
+                DatenbankNode.AppendChild(PasswordNode);
+                //  Xml-Datei speichern
+                doc.Save("Ringbuch.xml");
+
+                _sqliteDatabase = openFileDialog.FileName;
+                writeLog("Es wurde eine neue XML-Datei angelegt. Pfad: " + openFileDialog.FileName.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+            }
+            else
+            {
+                writeLog("Benutzer hat das Anlegen der XML-Datei abgebrochen. DialogResult: " + result.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+                Environment.Exit(1);
+            }
+        }
         public string getMasterPW()
         {
             XmlDocument xml = new XmlDocument();

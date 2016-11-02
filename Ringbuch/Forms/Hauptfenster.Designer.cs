@@ -62,6 +62,7 @@
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblAlterNachJahrgang = new System.Windows.Forms.Label();
+            this.passwortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -192,7 +193,8 @@
             // einstellungenToolStripMenuItem
             // 
             this.einstellungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serverToolStripMenuItem});
+            this.serverToolStripMenuItem,
+            this.passwortToolStripMenuItem});
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
             this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
@@ -200,7 +202,7 @@
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serverToolStripMenuItem.Text = "Datenbank";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.SetDatabaseToXML);
             // 
@@ -231,7 +233,7 @@
             // erstellenToolStripMenuItem1
             // 
             this.erstellenToolStripMenuItem1.Name = "erstellenToolStripMenuItem1";
-            this.erstellenToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.erstellenToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
             this.erstellenToolStripMenuItem1.Text = "Erstellen";
             this.erstellenToolStripMenuItem1.ToolTipText = "Einen neuen Schützen anlegen";
             this.erstellenToolStripMenuItem1.Click += new System.EventHandler(this.profilErstellen);
@@ -239,7 +241,7 @@
             // bearbeitenToolStripMenuItem2
             // 
             this.bearbeitenToolStripMenuItem2.Name = "bearbeitenToolStripMenuItem2";
-            this.bearbeitenToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.bearbeitenToolStripMenuItem2.Size = new System.Drawing.Size(131, 22);
             this.bearbeitenToolStripMenuItem2.Text = "Bearbeiten";
             this.bearbeitenToolStripMenuItem2.ToolTipText = "Markierten Schützen bearbeiten";
             this.bearbeitenToolStripMenuItem2.Click += new System.EventHandler(this.profilBearbeiten);
@@ -247,7 +249,7 @@
             // löschenToolStripMenuItem1
             // 
             this.löschenToolStripMenuItem1.Name = "löschenToolStripMenuItem1";
-            this.löschenToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.löschenToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
             this.löschenToolStripMenuItem1.Text = "Löschen";
             this.löschenToolStripMenuItem1.ToolTipText = "Markierten Schützen löschen";
             this.löschenToolStripMenuItem1.Click += new System.EventHandler(this.profilDelete);
@@ -255,7 +257,7 @@
             // archivierteToolStripMenuItem
             // 
             this.archivierteToolStripMenuItem.Name = "archivierteToolStripMenuItem";
-            this.archivierteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.archivierteToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.archivierteToolStripMenuItem.Text = "Archivierte";
             // 
             // dateiToolStripMenuItem
@@ -272,13 +274,13 @@
             this.eingebenToolStripMenuItem,
             this.ändernToolStripMenuItem});
             this.ergebnisseToolStripMenuItem.Name = "ergebnisseToolStripMenuItem";
-            this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.ergebnisseToolStripMenuItem.Text = "Ergebnisse";
             // 
             // eingebenToolStripMenuItem
             // 
             this.eingebenToolStripMenuItem.Name = "eingebenToolStripMenuItem";
-            this.eingebenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eingebenToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.eingebenToolStripMenuItem.Text = "Eingeben";
             this.eingebenToolStripMenuItem.ToolTipText = "Für markierten Schützen ein neues Ergebnis eingeben";
             this.eingebenToolStripMenuItem.Click += new System.EventHandler(this.eingebenToolStripMenuItem_Click);
@@ -286,7 +288,7 @@
             // ändernToolStripMenuItem
             // 
             this.ändernToolStripMenuItem.Name = "ändernToolStripMenuItem";
-            this.ändernToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ändernToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.ändernToolStripMenuItem.Text = "Ändern";
             this.ändernToolStripMenuItem.ToolTipText = "Markiertes Ergebnis bearbeiten";
             this.ändernToolStripMenuItem.Click += new System.EventHandler(this.ergebnisBearbeiten);
@@ -302,7 +304,7 @@
             // hinzufügenToolStripMenuItem1
             // 
             this.hinzufügenToolStripMenuItem1.Name = "hinzufügenToolStripMenuItem1";
-            this.hinzufügenToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.hinzufügenToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.hinzufügenToolStripMenuItem1.Text = "Bearbeiten";
             this.hinzufügenToolStripMenuItem1.ToolTipText = "Material ändern, hinzufügen oder löschen";
             this.hinzufügenToolStripMenuItem1.Click += new System.EventHandler(this.materialBearbeitenToolStripMenuItem1_Click);
@@ -409,6 +411,13 @@
             this.lblAlterNachJahrgang.TabIndex = 22;
             this.lblAlterNachJahrgang.Text = "Alter nach Jahrgang:";
             // 
+            // passwortToolStripMenuItem
+            // 
+            this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
+            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.passwortToolStripMenuItem.Text = "Passwort";
+            this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
+            // 
             // Hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,7 +488,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem statistikToolStripMenuItem;
         private System.Windows.Forms.Label lblAlterNachJahrgang;
-
+        private System.Windows.Forms.ToolStripMenuItem passwortToolStripMenuItem;
     }
 }
 

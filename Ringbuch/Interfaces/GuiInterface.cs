@@ -55,6 +55,9 @@ namespace Ringbuch
         /// <param name="alter"></param>
         void SetAlter(List<int> alter);
 
+        event EventHandler DatenbankPathRequested;
+        void SetDatabasePathToTitle(string path);
+
         event EventHandler<IDEventArgs> ProfilDeleteRequested;
 
         event EventHandler<InterfaceEventHandler> ProfilBerarbeitenSetRequired;
@@ -62,8 +65,7 @@ namespace Ringbuch
         event EventHandler<InterfaceEventHandler> MaterialBearbeitenSetRequired;
         event EventHandler<InterfaceEventHandler> StatistikToolSetRequired;
         event EventHandler XMLDateiDatenbankBearbeitenRequired;
+        event EventHandler XMLDateiPasswordBearbeitenRequired;
 
-        event EventHandler DatenbankPathRequested;
-        void SetDatabasePathToTitle(string path);
     }
 }

@@ -120,7 +120,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
