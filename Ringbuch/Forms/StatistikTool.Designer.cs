@@ -31,10 +31,6 @@
             this.dgvErgebnisse = new System.Windows.Forms.DataGridView();
             this.dtVon = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtBox = new System.Windows.Forms.TextBox();
-            this.txtKey = new System.Windows.Forms.TextBox();
-            this.txtKlartext = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboSchiessart = new System.Windows.Forms.ComboBox();
             this.lvlBis = new System.Windows.Forms.Label();
@@ -75,10 +71,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.txtBox);
-            this.groupBox2.Controls.Add(this.txtKey);
-            this.groupBox2.Controls.Add(this.txtKlartext);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.comboSchiessart);
             this.groupBox2.Controls.Add(this.lvlBis);
@@ -93,37 +85,6 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ergebnisse anzeigen";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 261);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Klick";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtBox
-            // 
-            this.txtBox.Location = new System.Drawing.Point(6, 234);
-            this.txtBox.Name = "txtBox";
-            this.txtBox.Size = new System.Drawing.Size(100, 20);
-            this.txtBox.TabIndex = 14;
-            // 
-            // txtKey
-            // 
-            this.txtKey.Location = new System.Drawing.Point(6, 208);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(100, 20);
-            this.txtKey.TabIndex = 13;
-            // 
-            // txtKlartext
-            // 
-            this.txtKlartext.Location = new System.Drawing.Point(6, 182);
-            this.txtKlartext.Name = "txtKlartext";
-            this.txtKlartext.Size = new System.Drawing.Size(100, 20);
-            this.txtKlartext.TabIndex = 12;
             // 
             // label1
             // 
@@ -229,9 +190,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboSchiessart;
         private System.Windows.Forms.DataGridView dgvAuswertung;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtBox;
-        private System.Windows.Forms.TextBox txtKey;
-        private System.Windows.Forms.TextBox txtKlartext;
     }
 }
