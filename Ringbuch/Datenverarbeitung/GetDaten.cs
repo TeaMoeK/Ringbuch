@@ -28,13 +28,49 @@ namespace Ringbuch
                 getDatabasePath();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+                _con.SetPassword("abc");
                 _con.Open();
+                _command = new SQLiteCommand(_con);
+                _command.CommandText = "SELECT * FROM Personen";
+                _command.ExecuteNonQuery();
+                //clearPW();
             }
             catch (Exception ex)
             {
                 writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
                 MessageBox.Show(ex.Message);
                 Environment.Exit(-1);
+            }
+        }
+
+        private void clearPW()
+        {
+            _con.ChangePassword("");
+            Environment.Exit(-1);
+        }
+
+        private bool SetSQLitePassword()
+        {
+            try
+            {
+                _con = new SQLiteConnection();
+                _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+                _con.Open();
+                _command = new SQLiteCommand(_con);
+                _command.CommandText = "";
+                _command.ExecuteNonQuery();
+                _con.ChangePassword("abc");
+                CloseConections();
+                _con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                writeLog(ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+                MessageBox.Show(ex.Message);
+                CloseConections();
+                _con.Close();
+                return false;
             }
         }
 
@@ -57,6 +93,8 @@ namespace Ringbuch
             else
             {
                 createXMLFile();
+                getDatabasePath();
+                SetSQLitePassword();
             }
         }
         private void createXMLFile()
@@ -588,9 +626,10 @@ namespace Ringbuch
 
         public DataTable CreateDataTable(string dbTableName)
         {
-            SQLiteCommand command = new SQLiteCommand(_con);
-            command.CommandText = "PRAGMA table_info(" + dbTableName + ")";
-            _dataReader = command.ExecuteReader();
+            DoConnect();
+            _command = new SQLiteCommand(_con);
+            _command.CommandText = "PRAGMA table_info(" + dbTableName + ")";
+            _dataReader = _command.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Columns.Add("rowid", typeof(Int16));
             int i = 0;
@@ -603,6 +642,7 @@ namespace Ringbuch
                 }
                 i++;
             }
+            CloseConections();
             return dt;
         }
 

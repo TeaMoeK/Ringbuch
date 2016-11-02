@@ -45,6 +45,7 @@ namespace Ringbuch
                 getDatabasePath();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+                //_con.SetPassword("abc");
                 _con.Open();
             }
             catch (Exception ex)
@@ -98,15 +99,18 @@ namespace Ringbuch
 
         private void XMLDateiBeschreiben(string node1, string node2, string text)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("Ringbuch.xml");
-            XmlNode docNode = doc.SelectSingleNode("/" + node1 + "/" + node2);
-            docNode.InnerText = text;
-            doc.Save("Ringbuch.xml");
-            getDatabasePath();
-            if (_showMsgBoxes)
+            if (PasswortAbfrage())
             {
-                MessageBox.Show("Die Eintrage für '" + node2 + "' wurde geändert.", node2 + " ändern");
+                XmlDocument doc = new XmlDocument();
+                doc.Load("Ringbuch.xml");
+                XmlNode docNode = doc.SelectSingleNode("/" + node1 + "/" + node2);
+                docNode.InnerText = text;
+                doc.Save("Ringbuch.xml");
+                getDatabasePath();
+                if (_showMsgBoxes)
+                {
+                    MessageBox.Show("Die Eintrage für '" + node2 + "' wurde geändert.", node2 + " ändern");
+                }
             }
         }
         /// <summary>
