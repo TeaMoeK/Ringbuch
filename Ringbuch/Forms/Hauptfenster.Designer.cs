@@ -39,6 +39,7 @@
             this.dateiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statistikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profilToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,6 @@
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblAlterNachJahrgang = new System.Windows.Forms.Label();
-            this.passwortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -85,7 +85,7 @@
             this.dgvMaterial.RowHeadersVisible = false;
             this.dgvMaterial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMaterial.Size = new System.Drawing.Size(294, 112);
-            this.dgvMaterial.TabIndex = 7;
+            this.dgvMaterial.TabIndex = 4;
             this.dgvMaterial.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvMaterial_MouseDoubleClick);
             // 
             // dgvErgebnisse
@@ -105,7 +105,7 @@
             this.dgvErgebnisse.RowHeadersVisible = false;
             this.dgvErgebnisse.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvErgebnisse.Size = new System.Drawing.Size(606, 313);
-            this.dgvErgebnisse.TabIndex = 11;
+            this.dgvErgebnisse.TabIndex = 1;
             this.dgvErgebnisse.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ergebnisBearbeiten);
             // 
             // dgvAlter
@@ -123,7 +123,7 @@
             this.dgvAlter.RowHeadersVisible = false;
             this.dgvAlter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlter.Size = new System.Drawing.Size(294, 45);
-            this.dgvAlter.TabIndex = 9;
+            this.dgvAlter.TabIndex = 7;
             // 
             // label1
             // 
@@ -132,7 +132,7 @@
             this.label1.Location = new System.Drawing.Point(579, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 14;
+            this.label1.TabIndex = 9;
             this.label1.Text = "Schützenfest:";
             // 
             // dtSchFest
@@ -141,7 +141,7 @@
             this.dtSchFest.Location = new System.Drawing.Point(654, 2);
             this.dtSchFest.Name = "dtSchFest";
             this.dtSchFest.Size = new System.Drawing.Size(200, 20);
-            this.dtSchFest.TabIndex = 12;
+            this.dtSchFest.TabIndex = 3;
             this.dtSchFest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtSchFest_KeyPress);
             // 
             // dgvNamen
@@ -160,7 +160,7 @@
             this.dgvNamen.RowHeadersVisible = false;
             this.dgvNamen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvNamen.Size = new System.Drawing.Size(218, 502);
-            this.dgvNamen.TabIndex = 6;
+            this.dgvNamen.TabIndex = 0;
             this.dgvNamen.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.profilbearbeiten);
             this.dgvNamen.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNamen_RowEnter);
             this.dgvNamen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvNamen_KeyDown);
@@ -177,7 +177,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip1.Size = new System.Drawing.Size(854, 24);
-            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // dateiToolStripMenuItem1
@@ -205,6 +205,13 @@
             this.serverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serverToolStripMenuItem.Text = "Datenbank";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.SetDatabaseToXML);
+            // 
+            // passwortToolStripMenuItem
+            // 
+            this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
+            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.passwortToolStripMenuItem.Text = "Passwort";
+            this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
             // 
             // statistikToolStripMenuItem
             // 
@@ -274,7 +281,7 @@
             this.eingebenToolStripMenuItem,
             this.ändernToolStripMenuItem});
             this.ergebnisseToolStripMenuItem.Name = "ergebnisseToolStripMenuItem";
-            this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ergebnisseToolStripMenuItem.Text = "Ergebnisse";
             // 
             // eingebenToolStripMenuItem
@@ -323,7 +330,7 @@
             this.chkDarfLG.Location = new System.Drawing.Point(6, 19);
             this.chkDarfLG.Name = "chkDarfLG";
             this.chkDarfLG.Size = new System.Drawing.Size(63, 17);
-            this.chkDarfLG.TabIndex = 17;
+            this.chkDarfLG.TabIndex = 0;
             this.chkDarfLG.Text = "Darf LG";
             this.chkDarfLG.UseVisualStyleBackColor = true;
             // 
@@ -334,7 +341,7 @@
             this.chkDarfKK.Location = new System.Drawing.Point(75, 19);
             this.chkDarfKK.Name = "chkDarfKK";
             this.chkDarfKK.Size = new System.Drawing.Size(63, 17);
-            this.chkDarfKK.TabIndex = 18;
+            this.chkDarfKK.TabIndex = 1;
             this.chkDarfKK.Text = "Darf KK";
             this.chkDarfKK.UseVisualStyleBackColor = true;
             // 
@@ -345,7 +352,7 @@
             this.chkIstKoenig.Location = new System.Drawing.Point(144, 20);
             this.chkIstKoenig.Name = "chkIstKoenig";
             this.chkIstKoenig.Size = new System.Drawing.Size(53, 17);
-            this.chkIstKoenig.TabIndex = 19;
+            this.chkIstKoenig.TabIndex = 2;
             this.chkIstKoenig.Text = "König";
             this.chkIstKoenig.UseVisualStyleBackColor = true;
             // 
@@ -360,7 +367,7 @@
             this.groupBox1.Location = new System.Drawing.Point(536, 43);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(272, 112);
-            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Infos";
             // 
@@ -370,7 +377,7 @@
             this.txtJahrgang.Name = "txtJahrgang";
             this.txtJahrgang.ReadOnly = true;
             this.txtJahrgang.Size = new System.Drawing.Size(62, 20);
-            this.txtJahrgang.TabIndex = 22;
+            this.txtJahrgang.TabIndex = 4;
             this.txtJahrgang.Text = "00.00.0000";
             // 
             // label2
@@ -379,7 +386,7 @@
             this.label2.Location = new System.Drawing.Point(203, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 21;
+            this.label2.TabIndex = 3;
             this.label2.Text = "Geburtstag";
             // 
             // txtInfotext
@@ -389,7 +396,7 @@
             this.txtInfotext.Name = "txtInfotext";
             this.txtInfotext.ReadOnly = true;
             this.txtInfotext.Size = new System.Drawing.Size(191, 64);
-            this.txtInfotext.TabIndex = 20;
+            this.txtInfotext.TabIndex = 5;
             // 
             // lblVersion
             // 
@@ -399,7 +406,7 @@
             this.lblVersion.Location = new System.Drawing.Point(12, 548);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(35, 13);
-            this.lblVersion.TabIndex = 21;
+            this.lblVersion.TabIndex = 8;
             this.lblVersion.Text = "label2";
             // 
             // lblAlterNachJahrgang
@@ -408,15 +415,8 @@
             this.lblAlterNachJahrgang.Location = new System.Drawing.Point(536, 181);
             this.lblAlterNachJahrgang.Name = "lblAlterNachJahrgang";
             this.lblAlterNachJahrgang.Size = new System.Drawing.Size(105, 13);
-            this.lblAlterNachJahrgang.TabIndex = 22;
+            this.lblAlterNachJahrgang.TabIndex = 6;
             this.lblAlterNachJahrgang.Text = "Alter nach Jahrgang:";
-            // 
-            // passwortToolStripMenuItem
-            // 
-            this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
-            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.passwortToolStripMenuItem.Text = "Passwort";
-            this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
             // 
             // Hauptfenster
             // 

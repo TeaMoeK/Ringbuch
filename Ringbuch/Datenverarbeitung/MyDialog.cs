@@ -57,7 +57,7 @@ namespace Ringbuch
             chkShowPassword.Visible = passwordBox;
             lblPassword.Visible = passwordBox;
             Init();
-            this.TopMost = true;        
+            this.TopMost = true;
         }
 
         private void Init()
@@ -66,46 +66,60 @@ namespace Ringbuch
             this.Text = _titel;
             richtxtAnzeigeText.Text = _message;
             richtxtAnzeigeText.SelectionAlignment = HorizontalAlignment.Center;
+            OK = false;
         }
 
-        private void OK(object sender, EventArgs e)
+        private void OK_Klick(object sender, EventArgs e)
         {
             if (_passwordBox)
             {
-                if (!_setPassword)
+                if (_setPassword)
                 {
-                    getText = txtInputBox.Text;
-                    checkPassword();
+                    Crypt.Kodieren(txtInputBox.Text, "akey");
+                    DecodedText = Crypt.KodierterText;
+                    
+                    OK = true;
+                    this.Dispose();
                 }
                 else
                 {
-                    Crypt.Kodieren(txtInputBox.Text, "akey");
-                    getDecodedText = Crypt.KodierterText;
+                    Text = txtInputBox.Text;
+                    checkPassword();
+                }
+                if (PasswortOK)
+                {
+                    OK = true;
                     this.Dispose();
                 }
-                if (PasswortOK) this.Dispose();
             }
+            else
+            {
+                OK = true;
+                this.Dispose();
+            }
+
         }
         private void Exit(object sender, EventArgs e)
         {
             PasswortOK = false;
             this.Dispose();
         }
-        public string getText { get; set; }
-        public string getCodedText { get; set; }
-        public string getDecodedText { get; set; }
+        public string Text { get; set; }
+        public string CodedText { get; set; }
+        public string DecodedText { get; set; }
         public bool PasswortOK { get; set; }
+        public bool OK { get; set; }
         private void keyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                OK(this, new EventArgs());
+                OK_Klick(this, new EventArgs());
             }
         }
         private void checkPassword()
         {
             GetDaten getDaten = new GetDaten();
-            if (getText.ToUpper() == encryptPW(getDaten.getMasterPW()))
+            if (Text.ToUpper() == encryptPW(getDaten.getMasterPW()))
             {
                 PasswortOK = true;
             }

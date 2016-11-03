@@ -78,10 +78,18 @@ namespace Ringbuch
 
         public void SetPassword()
         {
-            _myDialog = new MyDialog(true, "Passwort", "Bitte ein Passwort eingeben.", true);
-            _myDialog.ShowDialog();
-            XMLDateiBeschreiben("Datenbank", "Password", _myDialog.getCodedText);
+            if (PasswortAbfrage())
+            {
+                _myDialog = new MyDialog(true, "Passwort", "Bitte ein Passwort eingeben.", true);
+                _myDialog.ShowDialog();
+                if (_myDialog.OK)
+                {
+                    XMLDateiBeschreiben("Datenbank", "Password", _myDialog.CodedText);
+                    writeLog("Das Passwort wurde geändert.");
+                }
+            }
         }
+
         public void SetDatabase()
         {
             if (PasswortAbfrage())
@@ -99,8 +107,8 @@ namespace Ringbuch
 
         private void XMLDateiBeschreiben(string node1, string node2, string text)
         {
-            if (PasswortAbfrage())
-            {
+            //if (PasswortAbfrage())
+            //{
                 XmlDocument doc = new XmlDocument();
                 doc.Load("Ringbuch.xml");
                 XmlNode docNode = doc.SelectSingleNode("/" + node1 + "/" + node2);
@@ -111,7 +119,7 @@ namespace Ringbuch
                 {
                     MessageBox.Show("Die Eintrage für '" + node2 + "' wurde geändert.", node2 + " ändern");
                 }
-            }
+            //}
         }
         /// <summary>
         /// Passwortabfrage. Im Debuggerbetrieb abgeschaltet

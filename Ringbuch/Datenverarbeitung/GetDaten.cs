@@ -31,7 +31,7 @@ namespace Ringbuch
                 _con.SetPassword("abc");
                 _con.Open();
                 _command = new SQLiteCommand(_con);
-                _command.CommandText = "SELECT * FROM Personen";
+                _command.CommandText = "";
                 _command.ExecuteNonQuery();
                 //clearPW();
             }
@@ -125,7 +125,7 @@ namespace Ringbuch
                 DatenbankNode.AppendChild(PfadNode);
                 //  Element 'Password' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
                 XmlNode PasswordNode = doc.CreateElement("Password");
-                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.getDecodedText));
+                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.DecodedText));
                 DatenbankNode.AppendChild(PasswordNode);
                 //  Xml-Datei speichern
                 doc.Save("Ringbuch.xml");
