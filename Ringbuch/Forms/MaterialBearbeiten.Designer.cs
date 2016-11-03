@@ -64,6 +64,8 @@
             this.txtKleinkaliberGroesse = new System.Windows.Forms.TextBox();
             this.txtLuftgewehrGroesse = new System.Windows.Forms.TextBox();
             this.txtLuftgewehrLangtext = new System.Windows.Forms.TextBox();
+            this.groupTextBoxes = new System.Windows.Forms.GroupBox();
+            this.groupTextBoxes.SuspendLayout();
             this.SuspendLayout();
             // 
             // label9
@@ -152,7 +154,7 @@
             // 
             // btnHandschuhInsert
             // 
-            this.btnHandschuhInsert.Location = new System.Drawing.Point(478, 35);
+            this.btnHandschuhInsert.Location = new System.Drawing.Point(478, 34);
             this.btnHandschuhInsert.Name = "btnHandschuhInsert";
             this.btnHandschuhInsert.Size = new System.Drawing.Size(75, 23);
             this.btnHandschuhInsert.TabIndex = 4;
@@ -163,7 +165,7 @@
             // 
             // btnHandschuhDelete
             // 
-            this.btnHandschuhDelete.Location = new System.Drawing.Point(640, 35);
+            this.btnHandschuhDelete.Location = new System.Drawing.Point(640, 34);
             this.btnHandschuhDelete.Name = "btnHandschuhDelete";
             this.btnHandschuhDelete.Size = new System.Drawing.Size(75, 23);
             this.btnHandschuhDelete.TabIndex = 6;
@@ -174,7 +176,7 @@
             // 
             // btnJackeDelete
             // 
-            this.btnJackeDelete.Location = new System.Drawing.Point(640, 74);
+            this.btnJackeDelete.Location = new System.Drawing.Point(640, 72);
             this.btnJackeDelete.Name = "btnJackeDelete";
             this.btnJackeDelete.Size = new System.Drawing.Size(75, 23);
             this.btnJackeDelete.TabIndex = 13;
@@ -185,7 +187,7 @@
             // 
             // btnJackeInsert
             // 
-            this.btnJackeInsert.Location = new System.Drawing.Point(478, 75);
+            this.btnJackeInsert.Location = new System.Drawing.Point(478, 72);
             this.btnJackeInsert.Name = "btnJackeInsert";
             this.btnJackeInsert.Size = new System.Drawing.Size(75, 23);
             this.btnJackeInsert.TabIndex = 11;
@@ -196,7 +198,7 @@
             // 
             // btnKKDelete
             // 
-            this.btnKKDelete.Location = new System.Drawing.Point(640, 114);
+            this.btnKKDelete.Location = new System.Drawing.Point(640, 111);
             this.btnKKDelete.Name = "btnKKDelete";
             this.btnKKDelete.Size = new System.Drawing.Size(75, 23);
             this.btnKKDelete.TabIndex = 20;
@@ -207,7 +209,7 @@
             // 
             // btnKKInsert
             // 
-            this.btnKKInsert.Location = new System.Drawing.Point(478, 115);
+            this.btnKKInsert.Location = new System.Drawing.Point(478, 111);
             this.btnKKInsert.Name = "btnKKInsert";
             this.btnKKInsert.Size = new System.Drawing.Size(75, 23);
             this.btnKKInsert.TabIndex = 18;
@@ -229,7 +231,7 @@
             // 
             // btnLGInsert
             // 
-            this.btnLGInsert.Location = new System.Drawing.Point(478, 152);
+            this.btnLGInsert.Location = new System.Drawing.Point(478, 151);
             this.btnLGInsert.Name = "btnLGInsert";
             this.btnLGInsert.Size = new System.Drawing.Size(75, 23);
             this.btnLGInsert.TabIndex = 25;
@@ -250,7 +252,7 @@
             // 
             // btnHandschuhUpdate
             // 
-            this.btnHandschuhUpdate.Location = new System.Drawing.Point(559, 35);
+            this.btnHandschuhUpdate.Location = new System.Drawing.Point(559, 34);
             this.btnHandschuhUpdate.Name = "btnHandschuhUpdate";
             this.btnHandschuhUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnHandschuhUpdate.TabIndex = 5;
@@ -261,7 +263,7 @@
             // 
             // btnJackeUpdate
             // 
-            this.btnJackeUpdate.Location = new System.Drawing.Point(559, 75);
+            this.btnJackeUpdate.Location = new System.Drawing.Point(559, 72);
             this.btnJackeUpdate.Name = "btnJackeUpdate";
             this.btnJackeUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnJackeUpdate.TabIndex = 12;
@@ -272,7 +274,7 @@
             // 
             // btnKKUpdate
             // 
-            this.btnKKUpdate.Location = new System.Drawing.Point(559, 115);
+            this.btnKKUpdate.Location = new System.Drawing.Point(559, 111);
             this.btnKKUpdate.Name = "btnKKUpdate";
             this.btnKKUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnKKUpdate.TabIndex = 19;
@@ -295,7 +297,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(141, 18);
+            this.label1.Location = new System.Drawing.Point(10, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 33;
@@ -303,7 +305,7 @@
             // 
             // txtHandschuhBezeichnung
             // 
-            this.txtHandschuhBezeichnung.Location = new System.Drawing.Point(140, 34);
+            this.txtHandschuhBezeichnung.Location = new System.Drawing.Point(9, 34);
             this.txtHandschuhBezeichnung.Name = "txtHandschuhBezeichnung";
             this.txtHandschuhBezeichnung.Size = new System.Drawing.Size(100, 20);
             this.txtHandschuhBezeichnung.TabIndex = 1;
@@ -311,21 +313,21 @@
             // 
             // txtJackeBezeichnung
             // 
-            this.txtJackeBezeichnung.Location = new System.Drawing.Point(140, 73);
+            this.txtJackeBezeichnung.Location = new System.Drawing.Point(9, 72);
             this.txtJackeBezeichnung.Name = "txtJackeBezeichnung";
             this.txtJackeBezeichnung.Size = new System.Drawing.Size(100, 20);
             this.txtJackeBezeichnung.TabIndex = 8;
             // 
             // txtKleinkaliberBezeichnung
             // 
-            this.txtKleinkaliberBezeichnung.Location = new System.Drawing.Point(140, 112);
+            this.txtKleinkaliberBezeichnung.Location = new System.Drawing.Point(9, 111);
             this.txtKleinkaliberBezeichnung.Name = "txtKleinkaliberBezeichnung";
             this.txtKleinkaliberBezeichnung.Size = new System.Drawing.Size(100, 20);
             this.txtKleinkaliberBezeichnung.TabIndex = 15;
             // 
             // txtHandschuhLangtext
             // 
-            this.txtHandschuhLangtext.Location = new System.Drawing.Point(246, 34);
+            this.txtHandschuhLangtext.Location = new System.Drawing.Point(115, 34);
             this.txtHandschuhLangtext.Name = "txtHandschuhLangtext";
             this.txtHandschuhLangtext.Size = new System.Drawing.Size(100, 20);
             this.txtHandschuhLangtext.TabIndex = 2;
@@ -333,7 +335,7 @@
             // 
             // txtLuftgewehrBezeichnung
             // 
-            this.txtLuftgewehrBezeichnung.Location = new System.Drawing.Point(141, 151);
+            this.txtLuftgewehrBezeichnung.Location = new System.Drawing.Point(10, 151);
             this.txtLuftgewehrBezeichnung.Name = "txtLuftgewehrBezeichnung";
             this.txtLuftgewehrBezeichnung.Size = new System.Drawing.Size(100, 20);
             this.txtLuftgewehrBezeichnung.TabIndex = 22;
@@ -341,7 +343,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 18);
+            this.label3.Location = new System.Drawing.Point(223, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 35;
@@ -349,14 +351,14 @@
             // 
             // txtJackeLangtext
             // 
-            this.txtJackeLangtext.Location = new System.Drawing.Point(247, 73);
+            this.txtJackeLangtext.Location = new System.Drawing.Point(116, 72);
             this.txtJackeLangtext.Name = "txtJackeLangtext";
             this.txtJackeLangtext.Size = new System.Drawing.Size(100, 20);
             this.txtJackeLangtext.TabIndex = 9;
             // 
             // txtHandschuhGroesse
             // 
-            this.txtHandschuhGroesse.Location = new System.Drawing.Point(352, 34);
+            this.txtHandschuhGroesse.Location = new System.Drawing.Point(221, 34);
             this.txtHandschuhGroesse.Name = "txtHandschuhGroesse";
             this.txtHandschuhGroesse.Size = new System.Drawing.Size(100, 20);
             this.txtHandschuhGroesse.TabIndex = 3;
@@ -364,7 +366,7 @@
             // 
             // txtJackeGroesse
             // 
-            this.txtJackeGroesse.Location = new System.Drawing.Point(353, 73);
+            this.txtJackeGroesse.Location = new System.Drawing.Point(222, 72);
             this.txtJackeGroesse.Name = "txtJackeGroesse";
             this.txtJackeGroesse.Size = new System.Drawing.Size(100, 20);
             this.txtJackeGroesse.TabIndex = 10;
@@ -372,7 +374,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(248, 18);
+            this.label2.Location = new System.Drawing.Point(117, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 34;
@@ -380,52 +382,61 @@
             // 
             // txtKleinkaliberLangtext
             // 
-            this.txtKleinkaliberLangtext.Location = new System.Drawing.Point(247, 112);
+            this.txtKleinkaliberLangtext.Location = new System.Drawing.Point(116, 111);
             this.txtKleinkaliberLangtext.Name = "txtKleinkaliberLangtext";
             this.txtKleinkaliberLangtext.Size = new System.Drawing.Size(100, 20);
             this.txtKleinkaliberLangtext.TabIndex = 16;
             // 
             // txtKleinkaliberGroesse
             // 
-            this.txtKleinkaliberGroesse.Location = new System.Drawing.Point(353, 112);
+            this.txtKleinkaliberGroesse.Location = new System.Drawing.Point(222, 111);
             this.txtKleinkaliberGroesse.Name = "txtKleinkaliberGroesse";
             this.txtKleinkaliberGroesse.Size = new System.Drawing.Size(100, 20);
             this.txtKleinkaliberGroesse.TabIndex = 17;
             // 
             // txtLuftgewehrGroesse
             // 
-            this.txtLuftgewehrGroesse.Location = new System.Drawing.Point(353, 152);
+            this.txtLuftgewehrGroesse.Location = new System.Drawing.Point(222, 151);
             this.txtLuftgewehrGroesse.Name = "txtLuftgewehrGroesse";
             this.txtLuftgewehrGroesse.Size = new System.Drawing.Size(100, 20);
             this.txtLuftgewehrGroesse.TabIndex = 24;
             // 
             // txtLuftgewehrLangtext
             // 
-            this.txtLuftgewehrLangtext.Location = new System.Drawing.Point(247, 152);
+            this.txtLuftgewehrLangtext.Location = new System.Drawing.Point(116, 151);
             this.txtLuftgewehrLangtext.Name = "txtLuftgewehrLangtext";
             this.txtLuftgewehrLangtext.Size = new System.Drawing.Size(100, 20);
             this.txtLuftgewehrLangtext.TabIndex = 23;
+            // 
+            // groupTextBoxes
+            // 
+            this.groupTextBoxes.Controls.Add(this.label1);
+            this.groupTextBoxes.Controls.Add(this.txtLuftgewehrLangtext);
+            this.groupTextBoxes.Controls.Add(this.txtHandschuhBezeichnung);
+            this.groupTextBoxes.Controls.Add(this.txtLuftgewehrGroesse);
+            this.groupTextBoxes.Controls.Add(this.txtJackeBezeichnung);
+            this.groupTextBoxes.Controls.Add(this.txtKleinkaliberGroesse);
+            this.groupTextBoxes.Controls.Add(this.txtKleinkaliberBezeichnung);
+            this.groupTextBoxes.Controls.Add(this.txtKleinkaliberLangtext);
+            this.groupTextBoxes.Controls.Add(this.txtHandschuhLangtext);
+            this.groupTextBoxes.Controls.Add(this.label2);
+            this.groupTextBoxes.Controls.Add(this.txtLuftgewehrBezeichnung);
+            this.groupTextBoxes.Controls.Add(this.txtJackeGroesse);
+            this.groupTextBoxes.Controls.Add(this.label3);
+            this.groupTextBoxes.Controls.Add(this.txtHandschuhGroesse);
+            this.groupTextBoxes.Controls.Add(this.txtJackeLangtext);
+            this.groupTextBoxes.Location = new System.Drawing.Point(141, 3);
+            this.groupTextBoxes.Name = "groupTextBoxes";
+            this.groupTextBoxes.Size = new System.Drawing.Size(331, 179);
+            this.groupTextBoxes.TabIndex = 36;
+            this.groupTextBoxes.TabStop = false;
             // 
             // MaterialBearbeiten
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 223);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtHandschuhBezeichnung);
-            this.Controls.Add(this.txtJackeBezeichnung);
-            this.Controls.Add(this.txtKleinkaliberBezeichnung);
-            this.Controls.Add(this.txtHandschuhLangtext);
-            this.Controls.Add(this.txtLuftgewehrBezeichnung);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtJackeLangtext);
-            this.Controls.Add(this.txtHandschuhGroesse);
-            this.Controls.Add(this.txtJackeGroesse);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtKleinkaliberLangtext);
-            this.Controls.Add(this.txtKleinkaliberGroesse);
-            this.Controls.Add(this.txtLuftgewehrGroesse);
-            this.Controls.Add(this.txtLuftgewehrLangtext);
+            this.ClientSize = new System.Drawing.Size(729, 227);
+            this.Controls.Add(this.groupTextBoxes);
             this.Controls.Add(this.comboHandschuhe);
             this.Controls.Add(this.btnLGUpdate);
             this.Controls.Add(this.btnKKUpdate);
@@ -454,6 +465,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Material";
             this.Load += new System.EventHandler(this.MaterialBearbeiten_Load);
+            this.groupTextBoxes.ResumeLayout(false);
+            this.groupTextBoxes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,5 +510,6 @@
         private System.Windows.Forms.TextBox txtKleinkaliberGroesse;
         private System.Windows.Forms.TextBox txtLuftgewehrGroesse;
         private System.Windows.Forms.TextBox txtLuftgewehrLangtext;
+        private System.Windows.Forms.GroupBox groupTextBoxes;
     }
 }

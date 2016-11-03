@@ -96,7 +96,7 @@
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 21;
             this.label1.Text = "Vorname";
             // 
             // label2
@@ -105,7 +105,7 @@
             this.label2.Location = new System.Drawing.Point(12, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 20;
             this.label2.Text = "Zweitname";
             // 
             // label3
@@ -114,7 +114,7 @@
             this.label3.Location = new System.Drawing.Point(12, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 19;
             this.label3.Text = "Nachname";
             // 
             // label4
@@ -123,7 +123,7 @@
             this.label4.Location = new System.Drawing.Point(12, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 18;
             this.label4.Text = "Geburtstag";
             // 
             // comboGeschlecht
@@ -136,7 +136,7 @@
             this.comboGeschlecht.Location = new System.Drawing.Point(121, 25);
             this.comboGeschlecht.Name = "comboGeschlecht";
             this.comboGeschlecht.Size = new System.Drawing.Size(39, 21);
-            this.comboGeschlecht.TabIndex = 8;
+            this.comboGeschlecht.TabIndex = 5;
             // 
             // label5
             // 
@@ -144,7 +144,7 @@
             this.label5.Location = new System.Drawing.Point(118, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 9;
+            this.label5.TabIndex = 22;
             this.label5.Text = "Geschl.";
             // 
             // comboHandschuhe
@@ -154,7 +154,7 @@
             this.comboHandschuhe.Location = new System.Drawing.Point(285, 25);
             this.comboHandschuhe.Name = "comboHandschuhe";
             this.comboHandschuhe.Size = new System.Drawing.Size(121, 21);
-            this.comboHandschuhe.TabIndex = 10;
+            this.comboHandschuhe.TabIndex = 6;
             // 
             // comboJacken
             // 
@@ -163,7 +163,7 @@
             this.comboJacken.Location = new System.Drawing.Point(284, 63);
             this.comboJacken.Name = "comboJacken";
             this.comboJacken.Size = new System.Drawing.Size(121, 21);
-            this.comboJacken.TabIndex = 11;
+            this.comboJacken.TabIndex = 7;
             // 
             // comboKK
             // 
@@ -172,7 +172,7 @@
             this.comboKK.Location = new System.Drawing.Point(284, 102);
             this.comboKK.Name = "comboKK";
             this.comboKK.Size = new System.Drawing.Size(121, 21);
-            this.comboKK.TabIndex = 12;
+            this.comboKK.TabIndex = 8;
             // 
             // comboLG
             // 
@@ -181,7 +181,7 @@
             this.comboLG.Location = new System.Drawing.Point(284, 142);
             this.comboLG.Name = "comboLG";
             this.comboLG.Size = new System.Drawing.Size(121, 21);
-            this.comboLG.TabIndex = 13;
+            this.comboLG.TabIndex = 9;
             // 
             // label6
             // 
@@ -189,7 +189,7 @@
             this.label6.Location = new System.Drawing.Point(282, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 13);
-            this.label6.TabIndex = 14;
+            this.label6.TabIndex = 23;
             this.label6.Text = "Handschuh";
             // 
             // label7
@@ -198,7 +198,7 @@
             this.label7.Location = new System.Drawing.Point(282, 49);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 13);
-            this.label7.TabIndex = 15;
+            this.label7.TabIndex = 24;
             this.label7.Text = "Jacke";
             // 
             // label8
@@ -207,7 +207,7 @@
             this.label8.Location = new System.Drawing.Point(282, 87);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 13);
-            this.label8.TabIndex = 16;
+            this.label8.TabIndex = 25;
             this.label8.Text = "Kleinkaliber";
             // 
             // label9
@@ -216,7 +216,7 @@
             this.label9.Location = new System.Drawing.Point(282, 127);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 13);
-            this.label9.TabIndex = 17;
+            this.label9.TabIndex = 26;
             this.label9.Text = "Luftgewehr";
             // 
             // btnOK
@@ -224,7 +224,7 @@
             this.btnOK.Location = new System.Drawing.Point(12, 322);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 18;
+            this.btnOK.TabIndex = 14;
             this.btnOK.Text = "Speichern";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.SpeichernButton);
@@ -234,7 +234,7 @@
             this.btnCancel.Location = new System.Drawing.Point(93, 322);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 19;
+            this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Abbrechen";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.beenden);
@@ -244,7 +244,7 @@
             this.btnDelete.Location = new System.Drawing.Point(174, 322);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 20;
+            this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Löschen";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.delete);
@@ -255,7 +255,7 @@
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.Size = new System.Drawing.Size(234, 49);
-            this.txtInfo.TabIndex = 22;
+            this.txtInfo.TabIndex = 4;
             // 
             // label10
             // 
@@ -263,7 +263,7 @@
             this.label10.Location = new System.Drawing.Point(12, 166);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(25, 13);
-            this.label10.TabIndex = 23;
+            this.label10.TabIndex = 17;
             this.label10.Text = "Info";
             // 
             // chkDarfLG
@@ -272,7 +272,7 @@
             this.chkDarfLG.Location = new System.Drawing.Point(285, 170);
             this.chkDarfLG.Name = "chkDarfLG";
             this.chkDarfLG.Size = new System.Drawing.Size(63, 17);
-            this.chkDarfLG.TabIndex = 24;
+            this.chkDarfLG.TabIndex = 10;
             this.chkDarfLG.Text = "Darf LG";
             this.chkDarfLG.UseVisualStyleBackColor = true;
             // 
@@ -282,7 +282,7 @@
             this.chkDarfKK.Location = new System.Drawing.Point(285, 194);
             this.chkDarfKK.Name = "chkDarfKK";
             this.chkDarfKK.Size = new System.Drawing.Size(63, 17);
-            this.chkDarfKK.TabIndex = 25;
+            this.chkDarfKK.TabIndex = 11;
             this.chkDarfKK.Text = "Darf KK";
             this.chkDarfKK.UseVisualStyleBackColor = true;
             // 
@@ -292,7 +292,7 @@
             this.chkIstKoenig.Location = new System.Drawing.Point(285, 217);
             this.chkIstKoenig.Name = "chkIstKoenig";
             this.chkIstKoenig.Size = new System.Drawing.Size(53, 17);
-            this.chkIstKoenig.TabIndex = 26;
+            this.chkIstKoenig.TabIndex = 12;
             this.chkIstKoenig.Text = "König";
             this.chkIstKoenig.UseVisualStyleBackColor = true;
             // 
@@ -309,7 +309,7 @@
             this.btnAdresseBearbeiten.Location = new System.Drawing.Point(6, 45);
             this.btnAdresseBearbeiten.Name = "btnAdresseBearbeiten";
             this.btnAdresseBearbeiten.Size = new System.Drawing.Size(75, 23);
-            this.btnAdresseBearbeiten.TabIndex = 28;
+            this.btnAdresseBearbeiten.TabIndex = 1;
             this.btnAdresseBearbeiten.Text = "Bearbeiten";
             this.btnAdresseBearbeiten.UseVisualStyleBackColor = true;
             // 
@@ -320,7 +320,7 @@
             this.groupAdresse.Location = new System.Drawing.Point(15, 237);
             this.groupAdresse.Name = "groupAdresse";
             this.groupAdresse.Size = new System.Drawing.Size(390, 79);
-            this.groupAdresse.TabIndex = 29;
+            this.groupAdresse.TabIndex = 13;
             this.groupAdresse.TabStop = false;
             this.groupAdresse.Text = "Adresse";
             // 

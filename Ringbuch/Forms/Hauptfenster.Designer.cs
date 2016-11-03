@@ -63,6 +63,7 @@
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblAlterNachJahrgang = new System.Windows.Forms.Label();
+            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -194,7 +195,8 @@
             // 
             this.einstellungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serverToolStripMenuItem,
-            this.passwortToolStripMenuItem});
+            this.passwortToolStripMenuItem,
+            this.logToolStripMenuItem});
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
             this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
@@ -281,7 +283,7 @@
             this.eingebenToolStripMenuItem,
             this.ändernToolStripMenuItem});
             this.ergebnisseToolStripMenuItem.Name = "ergebnisseToolStripMenuItem";
-            this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.ergebnisseToolStripMenuItem.Text = "Ergebnisse";
             // 
             // eingebenToolStripMenuItem
@@ -418,6 +420,13 @@
             this.lblAlterNachJahrgang.TabIndex = 6;
             this.lblAlterNachJahrgang.Text = "Alter nach Jahrgang:";
             // 
+            // logToolStripMenuItem
+            // 
+            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logToolStripMenuItem.Text = "Log";
+            this.logToolStripMenuItem.Click += new System.EventHandler(this.LogAnzeigen);
+            // 
             // Hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +498,7 @@
         private System.Windows.Forms.ToolStripMenuItem statistikToolStripMenuItem;
         private System.Windows.Forms.Label lblAlterNachJahrgang;
         private System.Windows.Forms.ToolStripMenuItem passwortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
     }
 }
 

@@ -45,13 +45,18 @@ namespace Ringbuch
                 getDatabasePath();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-                //_con.SetPassword("abc");
+                _con.SetPassword("abc");
                 _con.Open();
+                _command = new SQLiteCommand(_con);
+                _command.CommandText = "";
+                _command.ExecuteNonQuery();
+                //clearPW();
             }
             catch (Exception ex)
             {
                 writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-                throw;
+                MessageBox.Show(ex.Message);
+                Environment.Exit(-1);
             }
         }
 
@@ -84,8 +89,8 @@ namespace Ringbuch
                 _myDialog.ShowDialog();
                 if (_myDialog.OK)
                 {
-                    XMLDateiBeschreiben("Datenbank", "Password", _myDialog.CodedText);
-                    writeLog("Das Passwort wurde geändert.");
+                    XMLDateiBeschreiben("Datenbank", "Password", _myDialog.codedText);
+                    writeLog("Das Passwort wurde geändert." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
                 }
             }
         }

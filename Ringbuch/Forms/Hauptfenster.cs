@@ -583,5 +583,10 @@ namespace Ringbuch
         {
             materialBearbeiten();
         }
+
+        private void LogAnzeigen(object sender, EventArgs e)
+        {
+            Log.Instance.ShowLogViewer();
+        }
     }
 }

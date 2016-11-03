@@ -125,7 +125,7 @@ namespace Ringbuch
                 DatenbankNode.AppendChild(PfadNode);
                 //  Element 'Password' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
                 XmlNode PasswordNode = doc.CreateElement("Password");
-                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.DecodedText));
+                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.decodedText));
                 DatenbankNode.AppendChild(PasswordNode);
                 //  Xml-Datei speichern
                 doc.Save("Ringbuch.xml");

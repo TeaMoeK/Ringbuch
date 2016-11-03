@@ -17,6 +17,7 @@ namespace Ringbuch
         private string _titel;
         private string _message;
         private string _password = string.Empty;
+
         private bool _inputBox = false;
         private bool _passwordBox = false;
         private bool _setPassword = false;
@@ -63,7 +64,7 @@ namespace Ringbuch
         private void Init()
         {
             if (_passwordBox) txtInputBox.PasswordChar = '*';
-            this.Text = _titel;
+            this.text = _titel;
             richtxtAnzeigeText.Text = _message;
             richtxtAnzeigeText.SelectionAlignment = HorizontalAlignment.Center;
             OK = false;
@@ -76,14 +77,14 @@ namespace Ringbuch
                 if (_setPassword)
                 {
                     Crypt.Kodieren(txtInputBox.Text, "akey");
-                    DecodedText = Crypt.KodierterText;
+                    decodedText = Crypt.KodierterText;
                     
                     OK = true;
                     this.Dispose();
                 }
                 else
                 {
-                    Text = txtInputBox.Text;
+                    text = txtInputBox.Text;
                     checkPassword();
                 }
                 if (PasswortOK)
@@ -104,9 +105,9 @@ namespace Ringbuch
             PasswortOK = false;
             this.Dispose();
         }
-        public string Text { get; set; }
-        public string CodedText { get; set; }
-        public string DecodedText { get; set; }
+        public string text { get; set; }
+        public string codedText { get; set; }
+        public string decodedText { get; set; }
         public bool PasswortOK { get; set; }
         public bool OK { get; set; }
         private void keyDown(object sender, KeyEventArgs e)
@@ -119,7 +120,7 @@ namespace Ringbuch
         private void checkPassword()
         {
             GetDaten getDaten = new GetDaten();
-            if (Text.ToUpper() == encryptPW(getDaten.getMasterPW()))
+            if (text.ToUpper() == encryptPW(getDaten.getMasterPW()))
             {
                 PasswortOK = true;
             }
