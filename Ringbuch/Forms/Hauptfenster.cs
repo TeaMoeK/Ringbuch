@@ -116,9 +116,11 @@ namespace Ringbuch
 
                 //  ID der Person aus dem DGV auslesen und in rowid speichern
                 int rowid = Convert.ToInt16(selectedNamenRow.Cells[0].Value);
+
                 InvokeErgebnisseRequested(rowid);
                 InvokeAlterHeuteRequested(rowid);
                 InvokeSchiessKlasseRequested(rowid);
+
                 MaterialRequest(selectedNamenRow);
                 chkDarfLG.Checked = Convert.ToBoolean(selectedNamenRow.Cells["DarfLG"].Value);
                 chkDarfKK.Checked = Convert.ToBoolean(selectedNamenRow.Cells["DarfKK"].Value);
@@ -150,7 +152,6 @@ namespace Ringbuch
                     "und dem aktuellen Jahr berechnet." + Environment.NewLine +
                     "Alter: " + alter;
             }
-
         }
 
         private void MaterialRequest(DataGridViewRow selectedRow)

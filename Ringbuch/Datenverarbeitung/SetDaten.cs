@@ -32,7 +32,7 @@ namespace Ringbuch
         }
         public SetDaten()
         {
-            if (Debugger.IsAttached)
+            if (!Debugger.IsAttached)
             {
                 _showMsgBoxes = false;
             }
@@ -89,12 +89,21 @@ namespace Ringbuch
                 _myDialog.ShowDialog();
                 if (_myDialog.OK)
                 {
-                    XMLDateiBeschreiben("Datenbank", "Password", _myDialog.codedText);
+                    SetPasswordToDatabase(_myDialog.codedText);
                     writeLog("Das Passwort wurde geändert." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
                 }
             }
         }
 
+        private void SetPasswordToDatabase(string password)
+        {
+            DoConnect();
+            _command = new SQLiteCommand(_con);
+            _command.CommandText = CreateUpdateStatement("Verschiedenes", "Password", password);
+            _dataReader = _command.ExecuteReader();
+            StatementSuccessful(_dataReader, false);
+            CloseConnections();
+        }
         public void SetDatabase()
         {
             if (PasswortAbfrage())
@@ -132,7 +141,7 @@ namespace Ringbuch
         /// <returns></returns>
         private Boolean PasswortAbfrage()
         {
-            if (Debugger.IsAttached)
+            if (!Debugger.IsAttached)
             {
                 _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
                 _myDialog.ShowDialog();
@@ -316,7 +325,8 @@ namespace Ringbuch
             string errorMessage = "";
             foreach (string satz in liste)
             {
-                if (Convert.ToDouble(dt.Rows[0][satz]) > 109 && Convert.ToDouble(dt.Rows[0][satz]) < 0)
+                string test = dt.Rows[0][satz].ToString();
+                if (Convert.ToDouble(dt.Rows[0][satz]) > 109 || Convert.ToDouble(dt.Rows[0][satz]) < 0)
                 {
                     errorMessage += "Der Eintrage in " + satz + " macht mit dem Wert " + Convert.ToDouble(dt.Rows[0][satz]) + " keinen Sinn." +
                         Environment.NewLine;
@@ -325,6 +335,7 @@ namespace Ringbuch
             if (errorMessage != "")
             {
                 errorMessage += "Es sind nur Werte zwischen 0.0 und 109 erlaubt.";
+                writeLog(errorMessage);
                 MessageBox.Show(errorMessage, "Fehler");
                 return false;
             }

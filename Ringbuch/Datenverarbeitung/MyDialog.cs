@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using PolyABC;
-using System.Runtime.InteropServices;
 
 namespace Ringbuch
 {
@@ -22,10 +13,14 @@ namespace Ringbuch
         private bool _passwordBox = false;
         private bool _setPassword = false;
 
+        private const string aes_key = "TimoistDerCoolsteDerCoolenDigger";  //32
+        private const string aes_iv = "EineKetteVonkeys";   //16
+
         private void MyDialog_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
         }
+        // Constructors
         private MyDialog(string titel, string message)
         {
             myDialog(titel, message, false, false, false);
@@ -38,13 +33,7 @@ namespace Ringbuch
         {
             myDialog(titel, message, true, passwordBox, setPassword);
         }
-        /// <summary>
-        /// Hier landen die Constructors
-        /// </summary>
-        /// <param name="titel"></param>
-        /// <param name="message"></param>
-        /// <param name="inputBox"></param>
-        /// <param name="passwordBox"></param>
+        // Hier landen die Constructors
         private void myDialog(string titel, string message, bool inputBox, bool passwordBox, bool setPassword)
         {
             InitializeComponent();
@@ -60,7 +49,6 @@ namespace Ringbuch
             Init();
             this.TopMost = true;
         }
-
         private void Init()
         {
             if (_passwordBox) txtInputBox.PasswordChar = '*';
@@ -69,16 +57,14 @@ namespace Ringbuch
             richtxtAnzeigeText.SelectionAlignment = HorizontalAlignment.Center;
             OK = false;
         }
-
         private void OK_Klick(object sender, EventArgs e)
         {
             if (_passwordBox)
             {
                 if (_setPassword)
                 {
-                    Crypt.Kodieren(txtInputBox.Text, "akey");
-                    decodedText = Crypt.KodierterText;
-                    
+                    codedText = encryptPW_AES(txtInputBox.Text);
+
                     OK = true;
                     this.Dispose();
                 }
@@ -98,18 +84,12 @@ namespace Ringbuch
                 OK = true;
                 this.Dispose();
             }
-
         }
         private void Exit(object sender, EventArgs e)
         {
             PasswortOK = false;
             this.Dispose();
         }
-        public string text { get; set; }
-        public string codedText { get; set; }
-        public string decodedText { get; set; }
-        public bool PasswortOK { get; set; }
-        public bool OK { get; set; }
         private void keyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -120,7 +100,7 @@ namespace Ringbuch
         private void checkPassword()
         {
             GetDaten getDaten = new GetDaten();
-            if (text.ToUpper() == encryptPW(getDaten.getMasterPW()))
+            if (text == decryptPW_AES(getDaten.getPassword()))
             {
                 PasswortOK = true;
             }
@@ -130,10 +110,13 @@ namespace Ringbuch
                 MessageBox.Show("Das Passwort war falsch!", "Falsches Passwort");
             }
         }
-        private string encryptPW(string password)
+        private string encryptPW_AES(string password)
         {
-            Crypt.Dekodieren(password, "akey");
-            return Crypt.DeKodierterText;
+            return AES.AES.EncrytStringToBytes_Aes(password, aes_key, aes_iv);
+        }
+        private string decryptPW_AES(string password)
+        {
+            return AES.AES.DecryptStringFromBytes_Aes(password, aes_key, aes_iv);
         }
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
@@ -146,5 +129,11 @@ namespace Ringbuch
                 txtInputBox.PasswordChar = '*';
             }
         }
+        // Getter und Setter
+        public string text { get; set; }
+        public string codedText { get; set; }
+        public string decodedText { get; set; }
+        public bool PasswortOK { get; set; }
+        public bool OK { get; set; }
     }
 }

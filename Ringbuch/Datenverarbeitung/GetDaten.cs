@@ -139,12 +139,19 @@ namespace Ringbuch
                 Environment.Exit(1);
             }
         }
-        public string getMasterPW()
+        public string getPassword()
         {
-            XmlDocument xml = new XmlDocument();
-            xml.Load(Directory.GetCurrentDirectory() + "\\ringbuch.xml");
-            XmlNode node = xml.DocumentElement.SelectSingleNode("/Datenbank/Password");
-            return node.InnerText;
+
+            DoConnect();
+            string password = string.Empty;
+            _command = new SQLiteCommand(_con);
+            _dataReader = CreateSelectStatement("Password","Verschiedenes");
+            while (_dataReader.Read())
+            {
+                password = _dataReader.GetValue(0).ToString();
+            }
+            CloseConections();
+            return password;
         }
         private void CloseConections()
         {
@@ -498,7 +505,6 @@ namespace Ringbuch
             _command = new SQLiteCommand(_con);
             DataTable dt = CreateDataTable("Verschiedenes");
             _dataReader = CreateSelectStatement("Schuetzenfest", "Verschiedenes");
-            int count = _dataReader.FieldCount;
             string DatumSchFest = "";
             while (_dataReader.Read())
             {
