@@ -40,6 +40,7 @@
             this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statistikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profilToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,6 @@
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblAlterNachJahrgang = new System.Windows.Forms.Label();
-            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -108,6 +108,7 @@
             this.dgvErgebnisse.Size = new System.Drawing.Size(606, 313);
             this.dgvErgebnisse.TabIndex = 1;
             this.dgvErgebnisse.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ergebnisBearbeiten);
+            this.dgvErgebnisse.Click += new System.EventHandler(this.dgvErgebnisse_Click);
             // 
             // dgvAlter
             // 
@@ -198,34 +199,41 @@
             this.passwortToolStripMenuItem,
             this.logToolStripMenuItem});
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
             // 
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.serverToolStripMenuItem.Text = "Datenbank";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.SetDatabaseToXML);
             // 
             // passwortToolStripMenuItem
             // 
             this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
-            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.passwortToolStripMenuItem.Text = "Passwort";
             this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
+            // 
+            // logToolStripMenuItem
+            // 
+            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.logToolStripMenuItem.Text = "Log";
+            this.logToolStripMenuItem.Click += new System.EventHandler(this.LogAnzeigen);
             // 
             // statistikToolStripMenuItem
             // 
             this.statistikToolStripMenuItem.Name = "statistikToolStripMenuItem";
-            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.statistikToolStripMenuItem.Text = "Statistik";
             this.statistikToolStripMenuItem.Click += new System.EventHandler(this.StatistikAufrufen);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             // 
             // profilToolStripMenuItem1
@@ -419,13 +427,6 @@
             this.lblAlterNachJahrgang.Size = new System.Drawing.Size(105, 13);
             this.lblAlterNachJahrgang.TabIndex = 6;
             this.lblAlterNachJahrgang.Text = "Alter nach Jahrgang:";
-            // 
-            // logToolStripMenuItem
-            // 
-            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.logToolStripMenuItem.Text = "Log";
-            this.logToolStripMenuItem.Click += new System.EventHandler(this.LogAnzeigen);
             // 
             // Hauptfenster
             // 
