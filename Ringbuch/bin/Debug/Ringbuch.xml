@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Datenbank>
-  <Pfad>J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\RingbuchDaten.db</Pfad>
+  <Pfad>J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\RingbuchDaten.db</Pfad>
+  <Password> TOWR</Password>
 </Datenbank>

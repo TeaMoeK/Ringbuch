@@ -39,3 +39,28 @@ J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch
 J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.csproj.GenerateResource.Cache
 J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.exe
 J:\Drive\Arbeit\Programmierung\VisualStudio\Ringbuch\Ringbuch\obj\Debug\Ringbuch.pdb
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\Ringbuch.exe.config
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\Ringbuch.exe
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\Ringbuch.pdb
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\AES.dll
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\EntityFramework.dll
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\EntityFramework.SqlServer.dll
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\Logging_APE.DLL
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\System.Data.SQLite.dll
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\System.Data.SQLite.EF6.dll
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\System.Data.SQLite.Linq.dll
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\EntityFramework.xml
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\EntityFramework.SqlServer.xml
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\System.Data.SQLite.xml
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.csprojResolveAssemblyReference.cache
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.ErgebnisBearbeiten.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.Hauptfenster.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.Installer.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.ProfilBearbeiten.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.MyDialog.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.MaterialBearbeiten.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.Properties.Resources.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.StatistikTool.resources
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.csproj.GenerateResource.Cache
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.exe
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.pdb
