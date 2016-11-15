@@ -63,7 +63,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.lblAlterNachJahrgang = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -123,7 +122,7 @@
             this.dgvAlter.ReadOnly = true;
             this.dgvAlter.RowHeadersVisible = false;
             this.dgvAlter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAlter.Size = new System.Drawing.Size(294, 45);
+            this.dgvAlter.Size = new System.Drawing.Size(369, 45);
             this.dgvAlter.TabIndex = 7;
             // 
             // label1
@@ -418,21 +417,11 @@
             this.lblVersion.TabIndex = 8;
             this.lblVersion.Text = "label2";
             // 
-            // lblAlterNachJahrgang
-            // 
-            this.lblAlterNachJahrgang.AutoSize = true;
-            this.lblAlterNachJahrgang.Location = new System.Drawing.Point(536, 181);
-            this.lblAlterNachJahrgang.Name = "lblAlterNachJahrgang";
-            this.lblAlterNachJahrgang.Size = new System.Drawing.Size(105, 13);
-            this.lblAlterNachJahrgang.TabIndex = 6;
-            this.lblAlterNachJahrgang.Text = "Alter nach Jahrgang:";
-            // 
             // Hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 561);
-            this.Controls.Add(this.lblAlterNachJahrgang);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvMaterial);
@@ -496,7 +485,6 @@
         private System.Windows.Forms.TextBox txtJahrgang;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem statistikToolStripMenuItem;
-        private System.Windows.Forms.Label lblAlterNachJahrgang;
         private System.Windows.Forms.ToolStripMenuItem passwortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
     }

@@ -55,6 +55,10 @@ namespace Ringbuch
             txtNachname.BackColor = Color.Red;
             comboGeschlecht.SelectedIndex = 0;
             btnDelete.Enabled = false;
+            comboHandschuhe.SelectedIndex = comboHandschuhe.Items.Count - 1;
+            comboJacken.SelectedIndex = comboJacken.Items.Count - 1;
+            comboKK.SelectedIndex = comboKK.Items.Count - 1;
+            comboLG.SelectedIndex = comboLG.Items.Count - 1;
         }
 
         private new void TextChanged(object sender, EventArgs e)

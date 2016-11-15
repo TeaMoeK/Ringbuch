@@ -203,6 +203,72 @@ namespace Ringbuch
             }
             return ret;
         }
+
+        internal string getSchiessArt(string SchiessKlasse)
+        {
+            switch (SchiessKlasse)
+            {
+                case "Schüler B":
+                    return "Auflage";
+
+                case "Schüler A":
+                    return "Freihand";
+
+                case "Jugend":
+                    return "Freihand";
+
+                case "Junioren B":
+                    return "Freihand";
+
+                case "Junioren A":
+                    return "Freihand";
+
+                case "Herren":
+                    return "Freihand";
+
+                case "Damen":
+                    return "Freihand";
+
+                case "Herren/Damen":
+                    return "Freihand";
+
+                default:
+                    return "";
+            }
+        }
+
+        public int getSchuss(string SchiessKlasse)
+        {
+            switch (SchiessKlasse)
+            {
+                case "Schüler B":
+                    return 30;                    
+
+                case "Schüler A":
+                    return 30;
+
+                case "Jugend":
+                    return 40;
+
+                case "Junioren B":
+                    return 40;
+
+                case "Junioren A":
+                    return 40;
+
+                case "Herren":
+                    return 40;
+
+                case "Damen":
+                    return 40;
+
+                case "Herren/Damen":
+                    return 40;
+
+                default:
+                    return -1;
+            }
+        }
         public string getPathDatabase()
         {
             return _sqliteDatabase;

@@ -151,7 +151,8 @@ namespace Ringbuch
 
         private void GuiInterfaceSchiessKlasseRequested(object sender, IDEventArgs e)
         {
-            _guiInterface.SetSchiessKlasse(_getDaten.getSchiessKlasse(e.NamenID));
+            string schiessKlasse = _getDaten.getSchiessKlasse(e.NamenID);
+            _guiInterface.SetSchiessKlasse(schiessKlasse, _getDaten.getSchuss(schiessKlasse), _getDaten.getSchiessArt(schiessKlasse));
         }
         private void GuiInterfaceProfilDeleteRequested(object sender, IDEventArgs e)
         {

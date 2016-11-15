@@ -25,7 +25,7 @@ namespace Ringbuch
         /// <summary>
         /// Reaktion auf'SchiessKlasseRequested'
         /// </summary>
-        void SetSchiessKlasse(string schiessKlasse);
+        void SetSchiessKlasse(string schiessKlasse, int Schuss, string schiessart);
 
         event EventHandler SchFestRequested;
         /// <summary>

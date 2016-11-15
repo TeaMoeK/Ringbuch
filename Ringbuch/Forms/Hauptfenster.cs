@@ -54,6 +54,8 @@ namespace Ringbuch
             dgvAlter.Columns.Add("AlterHeute", "Alter(Heute)");
             dgvAlter.Columns.Add("AlterSchFest", "Alter(SchFest)");
             dgvAlter.Columns.Add("Wettkampfklasse", "Wettkampfklasse");
+            dgvAlter.Columns.Add("Schuss", "Schuss");
+            dgvAlter.Columns.Add("Schiessart", "Schiessart");
             dgvAlter.Rows.Add();
             dgvAlter.ClearSelection();
             dgvAlter.Columns[2].ToolTipText =
@@ -63,6 +65,17 @@ namespace Ringbuch
                 "Juniorenklasse B: 17 bis 18" + Environment.NewLine +
                 "Juniorenklasse A: 19 bis 20" + Environment.NewLine +
                 "Herren/Damen: > 20";
+            dgvAlter.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+
+            int breite = 0;
+            for (int i = 0; i < dgvAlter.Columns.Count; i++)
+            {
+                dgvAlter.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                breite += dgvAlter.Columns[i].Width;
+            }
+            dgvAlter.Width = breite - 8;
+
+
         }
 
         private void Debug()
@@ -71,7 +84,6 @@ namespace Ringbuch
             debugToolStripMenuItem.Visible = true;
             archivierteToolStripMenuItem.Visible = true;
             statistikToolStripMenuItem.Visible = true;
-            lblAlterNachJahrgang.Visible = true;
         }
 
         private void noDebug()
@@ -80,7 +92,6 @@ namespace Ringbuch
             debugToolStripMenuItem.Visible = false;
             archivierteToolStripMenuItem.Visible = false;
             statistikToolStripMenuItem.Visible = false;
-            lblAlterNachJahrgang.Visible = false;
         }
         public event EventHandler DatenbankPathRequested;
         private void InvokeDatenbankPathRequested()
@@ -127,7 +138,6 @@ namespace Ringbuch
                 chkIstKoenig.Checked = Convert.ToBoolean(selectedNamenRow.Cells["IstKoenig"].Value);
                 txtInfotext.Text = selectedNamenRow.Cells["Info"].Value.ToString();
                 txtJahrgang.Text = Convert.ToDateTime(selectedNamenRow.Cells["Geburtstag"].Value).ToString("dd.MM.yyyy");
-                AlterNachJahrgang(Convert.ToDateTime(selectedNamenRow.Cells["Geburtstag"].Value).ToString("yyyy"));
             }
         }
         public event EventHandler<IDEventArgs> SchiessKlasseRequested;
@@ -139,21 +149,12 @@ namespace Ringbuch
                 SchiessKlasseRequested(this, new IDEventArgs(namenID, "name"));
             }
         }
-        public void SetSchiessKlasse(string schiessKlasse)
+        public void SetSchiessKlasse(string schiessKlasse, int Schuss, string schiessart)
         {
+            dgvAlter.Rows[0].Cells[4].Value = schiessart;
+            dgvAlter.Rows[0].Cells[3].Value = Schuss;
             dgvAlter.Rows[0].Cells[2].Value = schiessKlasse;
         }
-        private void AlterNachJahrgang(string jahrgang)
-        {
-            if (_debug)
-            {
-                int alter = Convert.ToInt16(DateTime.Now.ToString("yyyy")) - Convert.ToInt16(jahrgang);
-                lblAlterNachJahrgang.Text = "Die Wettkampfklasse wird mit Hilfe des Jahrganges" + Environment.NewLine +
-                    "und dem aktuellen Jahr berechnet." + Environment.NewLine +
-                    "Alter: " + alter;
-            }
-        }
-
         private void MaterialRequest(DataGridViewRow selectedRow)
         {
             List<int> MaterialIDListe = new List<int>();
@@ -377,6 +378,7 @@ namespace Ringbuch
             if (dgvNamen.Rows.Count >= rowCount)
             {
                 dgvNamen.Rows[index].Selected = true;   //  zuvor markierte Zeile wieder markieren
+                NameSelected();
             }
         }
         private void profilErstellen(object sender, EventArgs e)
@@ -392,10 +394,12 @@ namespace Ringbuch
             if (dgvNamen.Rows.Count > rowCount)
             {
                 dgvNamen.Rows[dgvNamen.Rows.Count - 1].Selected = true;
+                NameSelected();
             }
             else if (dgvNamen.Rows.Count == rowCount)
             {
                 dgvNamen.Rows[index].Selected = true;
+                NameSelected();
             }
         }
 
