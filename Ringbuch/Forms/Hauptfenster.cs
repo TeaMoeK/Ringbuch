@@ -603,10 +603,5 @@ namespace Ringbuch
                 context.ItemClicked += new ToolStripItemClickedEventHandler(context_ItemClicked);
             }
         }
-        void context_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            ToolStripItem item = e.ClickedItem;
-
-        }
     }
 }
