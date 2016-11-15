@@ -108,7 +108,6 @@
             this.dgvErgebnisse.Size = new System.Drawing.Size(606, 313);
             this.dgvErgebnisse.TabIndex = 1;
             this.dgvErgebnisse.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ergebnisBearbeiten);
-            this.dgvErgebnisse.Click += new System.EventHandler(this.dgvErgebnisse_Click);
             // 
             // dgvAlter
             // 

@@ -589,19 +589,5 @@ namespace Ringbuch
         {
             Log.Instance.ShowLogViewer();
         }
-
-        private void dgvErgebnisse_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs mouse = (MouseEventArgs)e;
-            if (mouse.Button == MouseButtons.Right)
-            {
-                ContextMenuStrip context = new ContextMenuStrip();
-                context.Items.Add("Neu");
-                context.Items.Add("Löschen");
-                context.Items.Add("Bearbeiten");
-                context.Show(Cursor.Position.X, Cursor.Position.Y);
-                context.ItemClicked += new ToolStripItemClickedEventHandler(context_ItemClicked);
-            }
-        }
     }
 }
