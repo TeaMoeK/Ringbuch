@@ -18,8 +18,7 @@ namespace Ringbuch
             Application.SetCompatibleTextRenderingDefault(false);
             Hauptfenster hauptfenster = new Hauptfenster();
             Vermittler datenbearbeiten = new Vermittler(hauptfenster);
-            Application.Run(hauptfenster);
-            
+            Application.Run(hauptfenster);            
         }
     }
 }

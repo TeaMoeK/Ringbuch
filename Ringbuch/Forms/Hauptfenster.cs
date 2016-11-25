@@ -505,9 +505,7 @@ namespace Ringbuch
             MessageBox.Show(
                 "Bugs: " + Environment.NewLine +
                 "Features: " + Environment.NewLine +
-                "-Archivierte Profile anzeigen lassen" + Environment.NewLine +
-                "-ProfilBearbeiten: Geburtstag prüfen ob Alter logisch"
-                );
+                "-Archivierte Profile anzeigen lassen");
         }
 
         private void dgvNamen_KeyDown(object sender, KeyEventArgs e)
