@@ -378,7 +378,12 @@ namespace Ringbuch
         private void profilErstellen(object sender, EventArgs e)
         {
             ProfilBearbeiten profilBearbeiten = new ProfilBearbeiten();
-            int index = dgvNamen.SelectedCells[0].RowIndex;
+            int index = 0;
+            if (dgvNamen.SelectedCells.Count > 0)
+            {
+                index = dgvNamen.SelectedCells[0].RowIndex;
+            }
+
             int rowCount = dgvNamen.Rows.Count;
             InvokeProfilBerarbeitenSetRequired(profilBearbeiten);
             profilBearbeiten.Anzeigen();
@@ -390,7 +395,7 @@ namespace Ringbuch
                 dgvNamen.Rows[dgvNamen.Rows.Count - 1].Selected = true;
                 NameSelected();
             }
-            else if (dgvNamen.Rows.Count == rowCount)
+            else if (dgvNamen.Rows.Count == rowCount && dgvNamen.Rows.Count > 0)
             {
                 dgvNamen.Rows[index].Selected = true;
                 NameSelected();
