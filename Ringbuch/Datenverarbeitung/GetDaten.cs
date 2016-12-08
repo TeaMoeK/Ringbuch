@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Logging_APE;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
-using System.Windows.Forms;
 using System.Data;
+using System.Data.SQLite;
 using System.IO;
-using System.Xml;
-using Microsoft.VisualBasic;
-using Logging_APE;
+using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
+using System.Xml;
 // Kommentar
 namespace Ringbuch
 {

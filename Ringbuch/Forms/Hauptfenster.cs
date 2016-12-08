@@ -1,16 +1,10 @@
-﻿using System;
+﻿using Logging_APE;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using System.Diagnostics;
-using System.IO;
-using Logging_APE;
+using System.Windows.Forms;
 
 
 namespace Ringbuch
