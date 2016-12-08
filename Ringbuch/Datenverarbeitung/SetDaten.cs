@@ -95,7 +95,7 @@ namespace Ringbuch
             }
         }
 
-        private void SetPasswordToDatabase(string password)
+        public void SetPasswordToDatabase(string password)
         {
             DoConnect();
             _command = new SQLiteCommand(_con);

@@ -94,7 +94,7 @@ namespace Ringbuch
             {
                 createXMLFile();
                 getDatabasePath();
-                SetSQLitePassword();
+                //SetSQLitePassword();
             }
         }
         private void createXMLFile()
@@ -125,11 +125,13 @@ namespace Ringbuch
                 DatenbankNode.AppendChild(PfadNode);
                 //  Element 'Password' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
                 XmlNode PasswordNode = doc.CreateElement("Password");
-                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.decodedText));
+                PasswordNode.AppendChild(doc.CreateTextNode(myDialog.codedText));
                 DatenbankNode.AppendChild(PasswordNode);
                 //  Xml-Datei speichern
                 doc.Save("Ringbuch.xml");
-
+                SetDaten setDaten = new SetDaten();
+                setDaten.SetPasswordToDatabase(myDialog.codedText);
+                
                 _sqliteDatabase = openFileDialog.FileName;
                 writeLog("Es wurde eine neue XML-Datei angelegt. Pfad: " + openFileDialog.FileName.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
             }
@@ -145,7 +147,7 @@ namespace Ringbuch
             DoConnect();
             string password = string.Empty;
             _command = new SQLiteCommand(_con);
-            _dataReader = CreateSelectStatement("Password","Verschiedenes");
+            _dataReader = CreateSelectStatement("Password", "Verschiedenes");
             while (_dataReader.Read())
             {
                 password = _dataReader.GetValue(0).ToString();
@@ -242,7 +244,7 @@ namespace Ringbuch
             switch (SchiessKlasse)
             {
                 case "Schüler B":
-                    return 30;                    
+                    return 30;
 
                 case "Schüler A":
                     return 30;

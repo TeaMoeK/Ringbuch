@@ -115,7 +115,7 @@
             this.MinimizeBox = false;
             this.Name = "MyDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.text = "MyDialog";
+            //this.text = "MyDialog";
             this.Load += new System.EventHandler(this.MyDialog_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             this.ResumeLayout(false);
