@@ -21,6 +21,7 @@ namespace Ringbuch
         private GetDaten _getDaten = new GetDaten();
         private MyDialog _myDialog;
         private bool _showMsgBoxes = true;
+        private bool _isAdmin = false;
 
         public SetDaten(bool showMsgBoxes)
         {
@@ -119,16 +120,16 @@ namespace Ringbuch
         {
             //if (PasswortAbfrage())
             //{
-                XmlDocument doc = new XmlDocument();
-                doc.Load("Ringbuch.xml");
-                XmlNode docNode = doc.SelectSingleNode("/" + node1 + "/" + node2);
-                docNode.InnerText = text;
-                doc.Save("Ringbuch.xml");
-                getDatabasePath();
-                if (_showMsgBoxes)
-                {
-                    MessageBox.Show("Die Eintrage für '" + node2 + "' wurde geändert.", node2 + " ändern");
-                }
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Ringbuch.xml");
+            XmlNode docNode = doc.SelectSingleNode("/" + node1 + "/" + node2);
+            docNode.InnerText = text;
+            doc.Save("Ringbuch.xml");
+            getDatabasePath();
+            if (_showMsgBoxes)
+            {
+                MessageBox.Show("Die Eintrage für '" + node2 + "' wurde geändert.", node2 + " ändern");
+            }
             //}
         }
         /// <summary>
@@ -137,7 +138,9 @@ namespace Ringbuch
         /// <returns></returns>
         private Boolean PasswortAbfrage()
         {
-            if (!Debugger.IsAttached)
+            if (Debugger.IsAttached && !_isAdmin) MessageBox.Show("Ist Admin: " + _isAdmin);
+
+            if (!_isAdmin)
             {
                 _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
                 _myDialog.ShowDialog();
@@ -154,6 +157,23 @@ namespace Ringbuch
             else
             {
                 return true;
+            }
+        }
+
+        public void adminPW()
+        {
+            _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
+            _myDialog.ShowDialog();
+            if (_myDialog.PasswortOK)
+            {
+                if (!_isAdmin)
+                {
+                    _isAdmin = true;
+                }
+                else
+                {
+                    _isAdmin = false;
+                }
             }
         }
 

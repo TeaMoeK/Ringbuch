@@ -38,7 +38,13 @@ namespace Ringbuch
             _guiInterface.XMLDateiDatenbankBearbeitenRequired += GuiInterfaceXMLDateiDatenbankBearbeitenRequired;
             _guiInterface.DatenbankPathRequested += GuiInterfaceDatenbankPathRequested;
             _guiInterface.XMLDateiPasswordBearbeitenRequired += GuiInterfaceXMLDateiPasswordBearbeitenRequired;
+            _guiInterface.AdminPassword += GuiInterfaceAdminPassword;
 
+        }
+
+        private void GuiInterfaceAdminPassword(object sender, EventArgs e)
+        {
+            _setDaten.adminPW();
         }
 
         public ProfilBearbeitenInterface profilBearbeiten
@@ -360,6 +366,7 @@ namespace Ringbuch
             _guiInterface.XMLDateiDatenbankBearbeitenRequired -= GuiInterfaceXMLDateiDatenbankBearbeitenRequired;
             _guiInterface.DatenbankPathRequested -= GuiInterfaceDatenbankPathRequested;
             _guiInterface.XMLDateiPasswordBearbeitenRequired -= GuiInterfaceXMLDateiPasswordBearbeitenRequired;
+            _guiInterface.AdminPassword -= GuiInterfaceAdminPassword;
 
             //  ProfilBearbeitenInterface
             _profilBearbeitenInterface.PersonenDatenRequested -= ProfilBearbeitenInterfacePersonenDatenRequested;

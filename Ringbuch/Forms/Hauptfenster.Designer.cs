@@ -63,6 +63,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -195,43 +196,44 @@
             this.einstellungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serverToolStripMenuItem,
             this.passwortToolStripMenuItem,
-            this.logToolStripMenuItem});
+            this.logToolStripMenuItem,
+            this.adminToolStripMenuItem});
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
             // 
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.serverToolStripMenuItem.Text = "Datenbank";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.SetDatabaseToXML);
             // 
             // passwortToolStripMenuItem
             // 
             this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
-            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.passwortToolStripMenuItem.Text = "Passwort";
             this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
             // 
             // logToolStripMenuItem
             // 
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-            this.logToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.logToolStripMenuItem.Text = "Log";
             this.logToolStripMenuItem.Click += new System.EventHandler(this.LogAnzeigen);
             // 
             // statistikToolStripMenuItem
             // 
             this.statistikToolStripMenuItem.Name = "statistikToolStripMenuItem";
-            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.statistikToolStripMenuItem.Text = "Statistik";
             this.statistikToolStripMenuItem.Click += new System.EventHandler(this.StatistikAufrufen);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             // 
             // profilToolStripMenuItem1
@@ -417,6 +419,13 @@
             this.lblVersion.TabIndex = 8;
             this.lblVersion.Text = "label2";
             // 
+            // adminToolStripMenuItem
+            // 
+            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.adminToolStripMenuItem.Text = "Admin";
+            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
+            // 
             // Hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -458,7 +467,6 @@
         private System.Windows.Forms.DataGridView dgvAlter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtSchFest;
-        private System.Windows.Forms.DataGridView dgvNamen;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem1;
@@ -487,6 +495,8 @@
         private System.Windows.Forms.ToolStripMenuItem statistikToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem passwortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
+        protected System.Windows.Forms.DataGridView dgvNamen;
+        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
     }
 }
 

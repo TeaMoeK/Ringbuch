@@ -1,4 +1,5 @@
 ﻿using Logging_APE;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,8 +69,6 @@ namespace Ringbuch
                 breite += dgvAlter.Columns[i].Width;
             }
             dgvAlter.Width = breite - 8;
-
-
         }
 
         private void Debug()
@@ -311,7 +310,6 @@ namespace Ringbuch
             }
         }
 
-
         public event EventHandler<IDEventArgs> AlterRequested;
         private void InvokeAlterHeuteRequested(int namenID)
         {
@@ -338,7 +336,7 @@ namespace Ringbuch
             DataGridViewRow row = dgvAlter.Rows[0];
 
         }
-
+        #region Profil
         public event EventHandler<InterfaceEventHandler> ProfilBerarbeitenSetRequired;
         private void InvokeProfilBerarbeitenSetRequired(ProfilBearbeiten profilBearbeiten)
         {
@@ -359,20 +357,23 @@ namespace Ringbuch
         }
         private void profilBearbeiten()
         {
-            int index = dgvNamen.SelectedCells[0].RowIndex;
-            int rowCount = dgvNamen.Rows.Count;
-            DataGridViewRow selectedRow = dgvNamen.Rows[index];
-
-            ProfilBearbeiten profilBearbeiten = new ProfilBearbeiten(Convert.ToInt16(selectedRow.Cells[0].Value));
-            InvokeProfilBerarbeitenSetRequired(profilBearbeiten);
-            profilBearbeiten.Anzeigen();
-
-            InvokeNamesRequested();                 //  Daten neu laden            
-            NameSelected();                         //  Anzeige refresh
-            if (dgvNamen.Rows.Count >= rowCount)
+            if (dgvNamen.Rows.Count > 0)
             {
-                dgvNamen.Rows[index].Selected = true;   //  zuvor markierte Zeile wieder markieren
-                NameSelected();
+                int index = dgvNamen.SelectedCells[0].RowIndex;
+                int rowCount = dgvNamen.Rows.Count;
+                DataGridViewRow selectedRow = dgvNamen.Rows[index];
+
+                ProfilBearbeiten profilBearbeiten = new ProfilBearbeiten(Convert.ToInt16(selectedRow.Cells[0].Value));
+                InvokeProfilBerarbeitenSetRequired(profilBearbeiten);
+                profilBearbeiten.Anzeigen();
+
+                InvokeNamesRequested();                 //  Daten neu laden            
+                NameSelected();                         //  Anzeige refresh
+                if (dgvNamen.Rows.Count >= rowCount)
+                {
+                    dgvNamen.Rows[index].Selected = true;   //  zuvor markierte Zeile wieder markieren
+                    NameSelected();
+                }
             }
         }
         private void profilErstellen(object sender, EventArgs e)
@@ -409,17 +410,20 @@ namespace Ringbuch
 
         private void profilDelete()
         {
-            int indexName = dgvNamen.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = dgvNamen.Rows[indexName];
-            int rowCount = dgvNamen.RowCount;
-
-            InvokeProfilDeleteRequested(Convert.ToInt16(selectedRow.Cells[0].Value));
-            InvokeNamesRequested();
-            if (dgvNamen.RowCount == rowCount)
+            if (dgvNamen.Rows.Count > 0)
             {
-                dgvNamen.Rows[indexName].Selected = true;
+                int indexName = dgvNamen.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvNamen.Rows[indexName];
+                int rowCount = dgvNamen.RowCount;
+
+                InvokeProfilDeleteRequested(Convert.ToInt16(selectedRow.Cells[0].Value));
+                InvokeNamesRequested();
+                if (dgvNamen.RowCount == rowCount)
+                {
+                    dgvNamen.Rows[indexName].Selected = true;
+                }
+                NameSelected();
             }
-            NameSelected();
         }
         public event EventHandler<IDEventArgs> ProfilDeleteRequested;
         private void InvokeProfilDeleteRequested(int ID)
@@ -430,7 +434,16 @@ namespace Ringbuch
                 ProfilDeleteRequested(this, new IDEventArgs(ID, "name"));
             }
         }
+        private void dgvNamen_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                profilDelete();
+            }
+        }
+        #endregion Profil
 
+        #region Ergebnisse
         public event EventHandler<InterfaceEventHandler> ErgebnisBearbeitenSetRequired;
         private void InvokeErgebnisBearbeitenSetRequired(ErgebnisBearbeiten ergebnisBearbeiten)
         {
@@ -487,18 +500,21 @@ namespace Ringbuch
 
         private void ergebnisEingeben()
         {
-            int indexName = dgvNamen.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRowName = dgvNamen.Rows[indexName];
+            if (dgvNamen.Rows.Count > 0)
+            {
+                int indexName = dgvNamen.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRowName = dgvNamen.Rows[indexName];
 
-            ErgebnisBearbeiten ergebnisEingeben = new ErgebnisBearbeiten(Convert.ToInt16(selectedRowName.Cells[0].Value));
-            InvokeErgebnisBearbeitenSetRequired(ergebnisEingeben);
-            ergebnisEingeben.Anzeigen();
+                ErgebnisBearbeiten ergebnisEingeben = new ErgebnisBearbeiten(Convert.ToInt16(selectedRowName.Cells[0].Value));
+                InvokeErgebnisBearbeitenSetRequired(ergebnisEingeben);
+                ergebnisEingeben.Anzeigen();
 
-            InvokeNamesRequested();                 //  Daten neu laden
-            dgvNamen.Rows[indexName].Selected = true;   //  zuvor markierte Zeile wieder markieren
-            NameSelected();                         //  Anzeige refresh
+                InvokeNamesRequested();                 //  Daten neu laden
+                dgvNamen.Rows[indexName].Selected = true;   //  zuvor markierte Zeile wieder markieren
+                NameSelected();                         //  Anzeige refresh
+            }
         }
-
+        #endregion Ergebnisse
         private void debugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -506,15 +522,7 @@ namespace Ringbuch
                 "Features: " + Environment.NewLine +
                 "-Archivierte Profile anzeigen lassen");
         }
-
-        private void dgvNamen_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                profilDelete();
-            }
-        }
-
+        #region Material
         private void materialBearbeitenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             materialBearbeiten();
@@ -535,7 +543,7 @@ namespace Ringbuch
                 MaterialBearbeitenSetRequired(this, new InterfaceEventHandler(materialBearbeiten));
             }
         }
-
+        #endregion Material
         private void SetPasswordToXML(object sender, EventArgs e)
         {
             InvokeXMLDateiPasswordBearbeitenRequired();
@@ -562,6 +570,7 @@ namespace Ringbuch
                 XMLDateiDatenbankBearbeitenRequired(this, new EventArgs());
             }
         }
+        #region Statistik
         private void StatistikAufrufen(object sender, EventArgs e)
         {
             int indexName = dgvNamen.SelectedCells[0].RowIndex;
@@ -572,6 +581,7 @@ namespace Ringbuch
         }
 
         public event EventHandler<InterfaceEventHandler> StatistikToolSetRequired;
+
         private void InvokeStatistikToolSetRequired(StatistikTool statistikTool)
         {
             EventHandler<InterfaceEventHandler> handler = StatistikToolSetRequired;
@@ -580,7 +590,7 @@ namespace Ringbuch
                 StatistikToolSetRequired(this, new InterfaceEventHandler(statistikTool));
             }
         }
-
+        #endregion Statistik
         private void dgvMaterial_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             materialBearbeiten();
@@ -589,6 +599,21 @@ namespace Ringbuch
         private void LogAnzeigen(object sender, EventArgs e)
         {
             Log.Instance.ShowLogViewer();
+        }
+
+        public event EventHandler AdminPassword;
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeAdminPassword();
+            
+        }
+        private void InvokeAdminPassword()
+        {
+            EventHandler handler = AdminPassword;
+            if (handler != null)
+            {
+                AdminPassword(this, new EventArgs());
+            }
         }
     }
 }

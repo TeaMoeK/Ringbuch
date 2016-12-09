@@ -91,7 +91,7 @@ namespace Ringbuch
             this.Dispose();
         }
         private void keyDown(object sender, KeyEventArgs e)
-        {
+       {
             if (e.KeyCode == Keys.Enter)
             {
                 OK_Klick(this, new EventArgs());

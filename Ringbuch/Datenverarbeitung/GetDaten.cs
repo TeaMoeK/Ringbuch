@@ -25,6 +25,7 @@ namespace Ringbuch
                 getDatabasePath();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+                //setPW();
                 _con.SetPassword("abc");
                 _con.Open();
                 _command = new SQLiteCommand(_con);
@@ -43,6 +44,20 @@ namespace Ringbuch
         private void clearPW()
         {
             _con.ChangePassword("");
+            Environment.Exit(-1);
+        }
+
+        private void setPW()
+        {
+            _con = new SQLiteConnection();
+            _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+            _con.Open();
+            _command = new SQLiteCommand(_con);
+            _command.CommandText = "";
+            _command.ExecuteNonQuery();
+            _con.ChangePassword("abc");
+            CloseConections();
+            _con.Close();
             Environment.Exit(-1);
         }
 
@@ -128,7 +143,7 @@ namespace Ringbuch
                 doc.Save("Ringbuch.xml");
                 SetDaten setDaten = new SetDaten();
                 setDaten.SetPasswordToDatabase(myDialog.codedText);
-                
+
                 _sqliteDatabase = openFileDialog.FileName;
                 writeLog("Es wurde eine neue XML-Datei angelegt. Pfad: " + openFileDialog.FileName.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
             }
@@ -140,11 +155,23 @@ namespace Ringbuch
         }
         public string getPassword()
         {
-
             DoConnect();
             string password = string.Empty;
             _command = new SQLiteCommand(_con);
             _dataReader = CreateSelectStatement("Password", "Verschiedenes");
+            while (_dataReader.Read())
+            {
+                password = _dataReader.GetValue(0).ToString();
+            }
+            CloseConections();
+            return password;
+        }
+        public string getAdminPW()
+        {
+            DoConnect();
+            string password = string.Empty;
+            _command = new SQLiteCommand(_con);
+            _dataReader = CreateSelectStatement("AdminPW", "Verschiedenes");
             while (_dataReader.Read())
             {
                 password = _dataReader.GetValue(0).ToString();

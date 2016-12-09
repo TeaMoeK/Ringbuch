@@ -57,6 +57,8 @@ namespace Ringbuch
 
         event EventHandler<IDEventArgs> ProfilDeleteRequested;
 
+        event EventHandler AdminPassword;
+
         event EventHandler<InterfaceEventHandler> ProfilBerarbeitenSetRequired;
         event EventHandler<InterfaceEventHandler> ErgebnisBearbeitenSetRequired;
         event EventHandler<InterfaceEventHandler> MaterialBearbeitenSetRequired;
