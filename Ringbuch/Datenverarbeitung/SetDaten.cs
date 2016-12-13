@@ -34,7 +34,6 @@ namespace Ringbuch
                 _showMsgBoxes = false;
             }
         }
-
         private void DoConnect()
         {
             try
@@ -56,7 +55,6 @@ namespace Ringbuch
                 Environment.Exit(-1);
             }
         }
-
         private void writeLog(string logText)
         {
             Log.Instance.FILENAME_SUFFIX = "Ringbuch";
@@ -77,7 +75,6 @@ namespace Ringbuch
                 MessageBox.Show("Es ist ein Fehler mit der xml-Datei aufgetreten!");
             }
         }
-
         public void SetPassword()
         {
             if (PasswortAbfrage())
@@ -91,7 +88,6 @@ namespace Ringbuch
                 }
             }
         }
-
         public void SetPasswordToDatabase(string password)
         {
             DoConnect();
@@ -115,7 +111,6 @@ namespace Ringbuch
                 }
             }
         }
-
         private void XMLDateiBeschreiben(string node1, string node2, string text)
         {
             //if (PasswortAbfrage())
@@ -159,7 +154,6 @@ namespace Ringbuch
                 return true;
             }
         }
-
         public void adminPW()
         {
             if (!_isAdmin)
@@ -176,7 +170,6 @@ namespace Ringbuch
                 _isAdmin = false;
             }
         }
-
         private void CloseConnections()
         {
             if (_dataReader != null)
@@ -261,7 +254,6 @@ namespace Ringbuch
                 CloseConnections();
             }
         }
-
         public void DeleteErgebnis(int id)
         {
             if (PasswortAbfrage())
@@ -277,7 +269,6 @@ namespace Ringbuch
                 }
             }
         }
-
         public bool UpdateErgebnis(DataTable dt)
         {
             if (CheckErgebnis(dt))
@@ -360,7 +351,6 @@ namespace Ringbuch
                 return true;
             }
         }
-
         private List<string> getMaterialGruppen()
         {
             return _getDaten.getMaterialGruppen();
@@ -412,7 +402,6 @@ namespace Ringbuch
             }
             return false;
         }
-
         public bool SetProfilNeu(DataTable dt)
         {
             if (PasswortAbfrage())
@@ -453,7 +442,6 @@ namespace Ringbuch
             }
             return false;
         }
-
         private bool CheckGeburtstag(DateTime geburtstag, object sender)
         {
             TimeSpan timeSpan = DateTime.Now - geburtstag;
@@ -478,7 +466,6 @@ namespace Ringbuch
             }
             return true;
         }
-
         public void SetProfilDelete(int ID)
         {
             if (PasswortAbfrage())
@@ -497,7 +484,6 @@ namespace Ringbuch
                 }
             }
         }
-
         private bool DeleteProfilRequested(string titelText)
         {
             DialogResult result = MessageBox.Show("Soll der Eintrag wirklich gelöscht werden?" + Environment.NewLine + "(" + Convert.ToInt16(Debugger.IsAttached) + ")", titelText, MessageBoxButtons.YesNo);
@@ -511,7 +497,6 @@ namespace Ringbuch
                 return false;
             }
         }
-
         private bool StatementSuccessful(SQLiteDataReader dataReader, bool delete)
         {
             if (dataReader.RecordsAffected > 0)
@@ -550,7 +535,6 @@ namespace Ringbuch
                 }
             }
         }
-
         public void SetMaterialInsert(DataTable dt)
         {
             if (dt != null)
