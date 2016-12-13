@@ -56,6 +56,7 @@ namespace Ringbuch
         void SetDatabasePathToTitle(string path);
 
         event EventHandler<IDEventArgs> ProfilDeleteRequested;
+        event EventHandler<IDEventArgs> ErgebnisDeleteRequested;
 
         event EventHandler AdminPassword;
 

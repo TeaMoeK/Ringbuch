@@ -29,10 +29,10 @@ namespace Ringbuch
         }
         public SetDaten()
         {
-            if (!Debugger.IsAttached)
-            {
-                _showMsgBoxes = false;
-            }
+            //if (!Debugger.IsAttached)
+            //{
+            //    _showMsgBoxes = false;
+            //}
         }
         private void DoConnect()
         {
@@ -133,7 +133,10 @@ namespace Ringbuch
         /// <returns></returns>
         private Boolean PasswortAbfrage()
         {
-            if (Debugger.IsAttached && !_isAdmin) MessageBox.Show("Ist Admin: " + _isAdmin);
+            //if (Debugger.IsAttached && !_isAdmin)
+            //{
+            //    MessageBox.Show("Ist Admin: " + _isAdmin);
+            //}
 
             if (!_isAdmin)
             {

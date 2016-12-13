@@ -424,6 +424,10 @@ namespace Ringbuch
                 }
                 NameSelected();
             }
+            else
+            {
+                MessageBox.Show("Es stehen keine Profile zum löschen bereit.");
+            }
         }
         public event EventHandler<IDEventArgs> ProfilDeleteRequested;
         private void InvokeProfilDeleteRequested(int ID)
@@ -512,6 +516,31 @@ namespace Ringbuch
                 InvokeNamesRequested();                 //  Daten neu laden
                 dgvNamen.Rows[indexName].Selected = true;   //  zuvor markierte Zeile wieder markieren
                 NameSelected();                         //  Anzeige refresh
+            }
+            else
+            {
+                MessageBox.Show("Es existieren keine Profile.");
+            }
+        }
+        public event EventHandler<IDEventArgs> ErgebnisDeleteRequested;
+        private void ErgebnisDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeErgebnisDeleteRequested();
+
+        }
+        private void dgvErgebnisse_KeyDown(object sender, KeyEventArgs e)
+        {
+            InvokeErgebnisDeleteRequested();
+        }
+        private void InvokeErgebnisDeleteRequested()
+        {
+            EventHandler<IDEventArgs> handler = ErgebnisDeleteRequested;
+            if (handler != null)
+            {
+                int indexErgebnis = dgvErgebnisse.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRowErgebnis = dgvErgebnisse.Rows[indexErgebnis];
+                ErgebnisDeleteRequested(this, new IDEventArgs(Convert.ToInt16(selectedRowErgebnis.Cells[0].Value), "ergebnis"));
+                NameSelected();
             }
         }
         #endregion Ergebnisse
@@ -602,10 +631,12 @@ namespace Ringbuch
         }
 
         public event EventHandler AdminPassword;
+
+
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InvokeAdminPassword();
-            
+
         }
         private void InvokeAdminPassword()
         {

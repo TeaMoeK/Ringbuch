@@ -218,8 +218,6 @@ namespace Ringbuch
                 }
             }
         }
-
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             InvokeErgebnisDeleteRequested();
@@ -234,7 +232,6 @@ namespace Ringbuch
                 ErgebnisDeleteRequested(this, new IDEventArgs(_ergebnisID, "ergebnis"));
             }
         }
-
         private void NumbersOnly(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
@@ -251,7 +248,6 @@ namespace Ringbuch
                 }
             }
         }
-
         private void InsertZero(object sender, EventArgs e)
         {
             if ((sender as TextBox).Name.ToLower().Contains("txtsatz") && (sender as TextBox).Text == "")

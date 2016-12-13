@@ -39,7 +39,13 @@ namespace Ringbuch
             _guiInterface.DatenbankPathRequested += GuiInterfaceDatenbankPathRequested;
             _guiInterface.XMLDateiPasswordBearbeitenRequired += GuiInterfaceXMLDateiPasswordBearbeitenRequired;
             _guiInterface.AdminPassword += GuiInterfaceAdminPassword;
+            _guiInterface.ErgebnisDeleteRequested += GuiInterfaceErgebnisDeleteRequested;
 
+        }
+
+        private void GuiInterfaceErgebnisDeleteRequested(object sender, IDEventArgs e)
+        {
+            _setDaten.DeleteErgebnis(e.ErgebnisID);
         }
 
         private void GuiInterfaceAdminPassword(object sender, EventArgs e)
@@ -367,6 +373,7 @@ namespace Ringbuch
             _guiInterface.DatenbankPathRequested -= GuiInterfaceDatenbankPathRequested;
             _guiInterface.XMLDateiPasswordBearbeitenRequired -= GuiInterfaceXMLDateiPasswordBearbeitenRequired;
             _guiInterface.AdminPassword -= GuiInterfaceAdminPassword;
+            _guiInterface.ErgebnisDeleteRequested += GuiInterfaceErgebnisDeleteRequested;
 
             //  ProfilBearbeitenInterface
             _profilBearbeitenInterface.PersonenDatenRequested -= ProfilBearbeitenInterfacePersonenDatenRequested;

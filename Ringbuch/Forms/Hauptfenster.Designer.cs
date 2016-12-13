@@ -41,6 +41,7 @@
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statistikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profilToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +53,7 @@
             this.ergebnisseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eingebenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ändernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.löschenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hinzufügenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +65,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -108,6 +109,7 @@
             this.dgvErgebnisse.Size = new System.Drawing.Size(606, 313);
             this.dgvErgebnisse.TabIndex = 1;
             this.dgvErgebnisse.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ergebnisBearbeiten);
+            this.dgvErgebnisse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvErgebnisse_KeyDown);
             // 
             // dgvAlter
             // 
@@ -199,41 +201,48 @@
             this.logToolStripMenuItem,
             this.adminToolStripMenuItem});
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
             // 
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.serverToolStripMenuItem.Text = "Datenbank";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.SetDatabaseToXML);
             // 
             // passwortToolStripMenuItem
             // 
             this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
-            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.passwortToolStripMenuItem.Text = "Passwort";
             this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
             // 
             // logToolStripMenuItem
             // 
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.logToolStripMenuItem.Text = "Log";
             this.logToolStripMenuItem.Click += new System.EventHandler(this.LogAnzeigen);
+            // 
+            // adminToolStripMenuItem
+            // 
+            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.adminToolStripMenuItem.Text = "Admin";
+            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // statistikToolStripMenuItem
             // 
             this.statistikToolStripMenuItem.Name = "statistikToolStripMenuItem";
-            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.statistikToolStripMenuItem.Text = "Statistik";
             this.statistikToolStripMenuItem.Click += new System.EventHandler(this.StatistikAufrufen);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             // 
             // profilToolStripMenuItem1
@@ -289,7 +298,8 @@
             // 
             this.ergebnisseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eingebenToolStripMenuItem,
-            this.ändernToolStripMenuItem});
+            this.ändernToolStripMenuItem,
+            this.löschenToolStripMenuItem});
             this.ergebnisseToolStripMenuItem.Name = "ergebnisseToolStripMenuItem";
             this.ergebnisseToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.ergebnisseToolStripMenuItem.Text = "Ergebnisse";
@@ -309,6 +319,13 @@
             this.ändernToolStripMenuItem.Text = "Ändern";
             this.ändernToolStripMenuItem.ToolTipText = "Markiertes Ergebnis bearbeiten";
             this.ändernToolStripMenuItem.Click += new System.EventHandler(this.ergebnisBearbeiten);
+            // 
+            // löschenToolStripMenuItem
+            // 
+            this.löschenToolStripMenuItem.Name = "löschenToolStripMenuItem";
+            this.löschenToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.löschenToolStripMenuItem.Text = "Löschen";
+            this.löschenToolStripMenuItem.Click += new System.EventHandler(this.ErgebnisDeleteToolStripMenuItem_Click);
             // 
             // materialToolStripMenuItem1
             // 
@@ -419,13 +436,6 @@
             this.lblVersion.TabIndex = 8;
             this.lblVersion.Text = "label2";
             // 
-            // adminToolStripMenuItem
-            // 
-            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.adminToolStripMenuItem.Text = "Admin";
-            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
-            // 
             // Hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,6 +507,7 @@
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         protected System.Windows.Forms.DataGridView dgvNamen;
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem löschenToolStripMenuItem;
     }
 }
 
