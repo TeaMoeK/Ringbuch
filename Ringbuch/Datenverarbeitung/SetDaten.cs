@@ -162,18 +162,18 @@ namespace Ringbuch
 
         public void adminPW()
         {
-            _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
-            _myDialog.ShowDialog();
-            if (_myDialog.PasswortOK)
+            if (!_isAdmin)
             {
-                if (!_isAdmin)
+                _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
+                _myDialog.ShowDialog();
+                if (_myDialog.PasswortOK)
                 {
                     _isAdmin = true;
                 }
-                else
-                {
-                    _isAdmin = false;
-                }
+            }
+            else
+            {
+                _isAdmin = false;
             }
         }
 

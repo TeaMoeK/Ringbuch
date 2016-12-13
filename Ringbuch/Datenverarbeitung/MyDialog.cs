@@ -51,7 +51,20 @@ namespace Ringbuch
         }
         private void Init()
         {
-            if (_passwordBox) txtInputBox.PasswordChar = '*';
+            if (_passwordBox)
+            {
+                txtInputBox.PasswordChar = '*';                
+            }
+            if (_setPassword)
+            {
+                txtConfirmPW.Visible = true;
+                lblConfirm.Visible = true;
+                txtConfirmPW.PasswordChar = '*';
+            }else
+            {
+                txtConfirmPW.Visible = false;
+                lblConfirm.Visible = false;
+            }
             this.text = _titel;
             richtxtAnzeigeText.Text = _message;
             richtxtAnzeigeText.SelectionAlignment = HorizontalAlignment.Center;
@@ -63,10 +76,16 @@ namespace Ringbuch
             {
                 if (_setPassword)
                 {
-                    codedText = encryptPW_AES(txtInputBox.Text);
-
-                    OK = true;
-                    this.Dispose();
+                    if (txtInputBox.Text == txtConfirmPW.Text)
+                    {
+                        codedText = encryptPW_AES(txtInputBox.Text);
+                        OK = true;
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        richtxtAnzeigeText.Text = "Die Passwörter stimmen nicht überein.";
+                    }
                 }
                 else
                 {
@@ -91,7 +110,7 @@ namespace Ringbuch
             this.Dispose();
         }
         private void keyDown(object sender, KeyEventArgs e)
-       {
+        {
             if (e.KeyCode == Keys.Enter)
             {
                 OK_Klick(this, new EventArgs());
@@ -123,10 +142,12 @@ namespace Ringbuch
             if (txtInputBox.PasswordChar == '*')
             {
                 txtInputBox.PasswordChar = '\0';
+                txtConfirmPW.PasswordChar = '\0';
             }
             else
             {
                 txtInputBox.PasswordChar = '*';
+                txtConfirmPW.PasswordChar = '*';
             }
         }
         // Getter und Setter

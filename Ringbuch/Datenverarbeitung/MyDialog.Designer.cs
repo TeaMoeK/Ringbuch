@@ -34,6 +34,8 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.richtxtAnzeigeText = new System.Windows.Forms.RichTextBox();
+            this.txtConfirmPW = new System.Windows.Forms.TextBox();
+            this.lblConfirm = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOK
@@ -61,7 +63,7 @@
             // txtInputBox
             // 
             this.txtInputBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInputBox.Location = new System.Drawing.Point(68, 117);
+            this.txtInputBox.Location = new System.Drawing.Point(67, 90);
             this.txtInputBox.Name = "txtInputBox";
             this.txtInputBox.Size = new System.Drawing.Size(102, 20);
             this.txtInputBox.TabIndex = 0;
@@ -71,7 +73,7 @@
             // 
             this.lblPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(12, 121);
+            this.lblPassword.Location = new System.Drawing.Point(9, 94);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(50, 13);
             this.lblPassword.TabIndex = 4;
@@ -81,7 +83,7 @@
             // 
             this.chkShowPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Location = new System.Drawing.Point(177, 119);
+            this.chkShowPassword.Location = new System.Drawing.Point(175, 92);
             this.chkShowPassword.Name = "chkShowPassword";
             this.chkShowPassword.Size = new System.Drawing.Size(53, 17);
             this.chkShowPassword.TabIndex = 5;
@@ -95,9 +97,27 @@
             this.richtxtAnzeigeText.Location = new System.Drawing.Point(12, 12);
             this.richtxtAnzeigeText.Name = "richtxtAnzeigeText";
             this.richtxtAnzeigeText.ReadOnly = true;
-            this.richtxtAnzeigeText.Size = new System.Drawing.Size(233, 99);
+            this.richtxtAnzeigeText.Size = new System.Drawing.Size(233, 68);
             this.richtxtAnzeigeText.TabIndex = 3;
             this.richtxtAnzeigeText.Text = "";
+            // 
+            // txtConfirmPW
+            // 
+            this.txtConfirmPW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtConfirmPW.Location = new System.Drawing.Point(67, 116);
+            this.txtConfirmPW.Name = "txtConfirmPW";
+            this.txtConfirmPW.Size = new System.Drawing.Size(102, 20);
+            this.txtConfirmPW.TabIndex = 6;
+            // 
+            // lblConfirm
+            // 
+            this.lblConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblConfirm.AutoSize = true;
+            this.lblConfirm.Location = new System.Drawing.Point(9, 119);
+            this.lblConfirm.Name = "lblConfirm";
+            this.lblConfirm.Size = new System.Drawing.Size(57, 13);
+            this.lblConfirm.TabIndex = 7;
+            this.lblConfirm.Text = "Bestätigen";
             // 
             // MyDialog
             // 
@@ -105,6 +125,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(257, 178);
             this.ControlBox = false;
+            this.Controls.Add(this.lblConfirm);
+            this.Controls.Add(this.txtConfirmPW);
             this.Controls.Add(this.richtxtAnzeigeText);
             this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.lblPassword);
@@ -115,7 +137,6 @@
             this.MinimizeBox = false;
             this.Name = "MyDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            //this.text = "MyDialog";
             this.Load += new System.EventHandler(this.MyDialog_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             this.ResumeLayout(false);
@@ -131,5 +152,7 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.CheckBox chkShowPassword;
         private System.Windows.Forms.RichTextBox richtxtAnzeigeText;
+        private System.Windows.Forms.TextBox txtConfirmPW;
+        private System.Windows.Forms.Label lblConfirm;
     }
 }
