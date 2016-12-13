@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datenverarbeitung\DBErstellen.cs" />
     <Compile Include="Forms\ErgebnisBearbeiten.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,7 +101,6 @@
     <Compile Include="Forms\Installer.Designer.cs">
       <DependentUpon>Installer.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstallerMethoden.cs" />
     <Compile Include="Forms\ProfilBearbeiten.cs">
       <SubType>Form</SubType>
     </Compile>

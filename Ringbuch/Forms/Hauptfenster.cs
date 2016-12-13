@@ -549,7 +549,8 @@ namespace Ringbuch
             MessageBox.Show(
                 "Bugs: " + Environment.NewLine +
                 "Features: " + Environment.NewLine +
-                "-Archivierte Profile anzeigen lassen");
+                "-Archivierte Profile anzeigen lassen" + Environment.NewLine +
+                "-Installer");
         }
         #region Material
         private void materialBearbeitenToolStripMenuItem1_Click(object sender, EventArgs e)
