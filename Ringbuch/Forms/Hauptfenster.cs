@@ -647,5 +647,18 @@ namespace Ringbuch
                 AdminPassword(this, new EventArgs());
             }
         }
+
+        public void SetAdminMode(bool isAdmin)
+        {
+            string adminMode = " - Admin";
+            if (isAdmin)
+            {                
+                this.Text += adminMode;
+            }
+            else
+            {
+                this.Text = this.Text.Replace(adminMode, "");
+            }
+        }
     }
 }

@@ -157,7 +157,7 @@ namespace Ringbuch
                 return true;
             }
         }
-        public void adminPW()
+        public bool adminPW()
         {
             if (!_isAdmin)
             {
@@ -166,11 +166,14 @@ namespace Ringbuch
                 if (_myDialog.PasswortOK)
                 {
                     _isAdmin = true;
+                    return _isAdmin;
                 }
+                return _isAdmin;
             }
             else
             {
                 _isAdmin = false;
+                return _isAdmin;
             }
         }
         private void CloseConnections()
@@ -253,7 +256,13 @@ namespace Ringbuch
                 _command = new SQLiteCommand(_con);
                 _command.CommandText = CreateUpdateStatement("Verschiedenes", "Schuetzenfest", dt.ToString("yyyy-MM-dd"));
                 _dataReader = _command.ExecuteReader();
-                //StatementSuccessful(dataReader, false);
+                if(! StatementSuccessful(_dataReader, false))
+                {
+                    writeLog("Der Versuch, das Datum des Schützenfestes zu ändern, ist fehlgeschlagen. " + _command.CommandText);
+                }else
+                {
+                    writeLog("Das Datum des Schützenfestes wurde auf den " + dt.ToString("yyy-MM-dd") + " gesetzt.");
+                }
                 CloseConnections();
             }
         }
@@ -400,6 +409,7 @@ namespace Ringbuch
                         writeLog("Der Eintrag konnte nicht geändert werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
                         return false;
                     }
+                    writeLog("Das Profil mit der ID" + dt.Rows[0]["rowid"] + " wurde bearbeitet");
                     return true;
                 }
             }
@@ -439,7 +449,7 @@ namespace Ringbuch
                         writeLog("Statement war nicht erfolgreich. Methode: SetProfilNeu(DataTable dt) Statement: " + _command.CommandText.ToString());
                         return false;
                     }
-
+                    writeLog("Ein Neues Profil unter dem Namen " + dt.Rows[0]["Vorname"] + " " + dt.Rows[0]["Nachname"] + " wurde angelegt");
                     return true;
                 }
             }

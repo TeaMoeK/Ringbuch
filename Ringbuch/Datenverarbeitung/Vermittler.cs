@@ -50,7 +50,7 @@ namespace Ringbuch
 
         private void GuiInterfaceAdminPassword(object sender, EventArgs e)
         {
-            _setDaten.adminPW();
+            _guiInterface.SetAdminMode(_setDaten.adminPW());
         }
 
         public ProfilBearbeitenInterface profilBearbeiten

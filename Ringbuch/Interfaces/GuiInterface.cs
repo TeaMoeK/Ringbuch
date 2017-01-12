@@ -59,6 +59,7 @@ namespace Ringbuch
         event EventHandler<IDEventArgs> ErgebnisDeleteRequested;
 
         event EventHandler AdminPassword;
+        void SetAdminMode(bool isAdmin);
 
         event EventHandler<InterfaceEventHandler> ProfilBerarbeitenSetRequired;
         event EventHandler<InterfaceEventHandler> ErgebnisBearbeitenSetRequired;
