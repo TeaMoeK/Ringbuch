@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -187,7 +186,7 @@ namespace Ringbuch
         {
             if (PasswortAbfrage())
             {
-                if (MessageBox.Show("Soll der Eintrag '" + schiessart + "' wirklich gelöscht werden?" + Environment.NewLine + "(" + Convert.ToInt16(Debugger.IsAttached) + ")", "Schiessart löschen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Soll der Eintrag '" + schiessart + "' wirklich gelöscht werden?", "Schiessart löschen", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     List<string> alteScheissarten = _getDaten.getSchiessArten();
                     alteScheissarten.Remove(schiessart);
@@ -200,6 +199,7 @@ namespace Ringbuch
                     }
                     schiessarten = schiessarten.Remove(schiessarten.Length - 1, 1);
                     schiessartenUpdate(schiessarten, true);
+                    writeLog("Die Schießart " + schiessart + " wurde gelöscht.");
                 }
             }
         }
@@ -256,10 +256,11 @@ namespace Ringbuch
                 _command = new SQLiteCommand(_con);
                 _command.CommandText = CreateUpdateStatement("Verschiedenes", "Schuetzenfest", dt.ToString("yyyy-MM-dd"));
                 _dataReader = _command.ExecuteReader();
-                if(! StatementSuccessful(_dataReader, false))
+                if (!StatementSuccessful(_dataReader, false))
                 {
                     writeLog("Der Versuch, das Datum des Schützenfestes zu ändern, ist fehlgeschlagen. " + _command.CommandText);
-                }else
+                }
+                else
                 {
                     writeLog("Das Datum des Schützenfestes wurde auf den " + dt.ToString("yyy-MM-dd") + " gesetzt.");
                 }
@@ -270,13 +271,21 @@ namespace Ringbuch
         {
             if (PasswortAbfrage())
             {
-                DialogResult result = MessageBox.Show("Ergebnis löschen?" + Environment.NewLine + "(" + Convert.ToInt16(Debugger.IsAttached) + ")", "Löschen", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Ergebnis löschen?", "Löschen", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     DoConnect();
                     _command = new SQLiteCommand(_con);
                     _command.CommandText = CreateDeleteStatement("Ergebnisse", id);
-                    _command.ExecuteNonQuery();
+                    _dataReader = _command.ExecuteReader();
+                    if (!StatementSuccessful(_dataReader, true))
+                    {
+                        writeLog("Das Löschen des Ergebnisses mit der ID: " + id + " war nicht erfolgreicht.");
+                    }
+                    else
+                    {
+                        writeLog("Das Ergebnisses mit der ID: " + id + " wurde gelöscht.");
+                    }
                     CloseConnections();
                 }
             }
@@ -493,13 +502,17 @@ namespace Ringbuch
                     {
                         writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
                     }
+                    else
+                    {
+                        writeLog("Das Profil mit der ID:" + ID + " wurde archiviert");
+                    }
                     CloseConnections();
                 }
             }
         }
         private bool DeleteProfilRequested(string titelText)
         {
-            DialogResult result = MessageBox.Show("Soll der Eintrag wirklich gelöscht werden?" + Environment.NewLine + "(" + Convert.ToInt16(Debugger.IsAttached) + ")", titelText, MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Soll der Eintrag wirklich gelöscht werden?", titelText, MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -617,11 +630,15 @@ namespace Ringbuch
                         {
                             writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
                         }
+                        else
+                        {
+                            writeLog("Es wurde ein Materialeintrag gelöscht." + Environment.NewLine + "Statement: " + _command.CommandText.ToString());
+                        }
                         CloseConnections();
                     }
                     else
                     {
-                        writeLog("Es wurde versucht einen festen Material-Eintrag zu löschen. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+                        writeLog("Es wurde versucht einen festen Material-Eintrag zu löschen. Statement: " + _command.CommandText.ToString());
                         MessageBox.Show("Dieser Eintrag darf nicht gelöscht werden!", "Material");
                     }
                 }
