@@ -83,7 +83,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Datenverarbeitung\DBErstellen.cs" />
     <Compile Include="Forms\ErgebnisBearbeiten.cs">
       <SubType>Form</SubType>
     </Compile>
