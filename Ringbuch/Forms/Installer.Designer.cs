@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Installer));
             this.label1 = new System.Windows.Forms.Label();
             this.txtPfad = new System.Windows.Forms.TextBox();
-            this.btnConCheck = new System.Windows.Forms.Button();
-            this.lblConCheck = new System.Windows.Forms.Label();
             this.btnInstall = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOpenFileDialog = new System.Windows.Forms.Button();
@@ -54,32 +52,15 @@
             this.txtPfad.Size = new System.Drawing.Size(261, 20);
             this.txtPfad.TabIndex = 3;
             // 
-            // btnConCheck
-            // 
-            this.btnConCheck.Location = new System.Drawing.Point(16, 55);
-            this.btnConCheck.Name = "btnConCheck";
-            this.btnConCheck.Size = new System.Drawing.Size(75, 23);
-            this.btnConCheck.TabIndex = 8;
-            this.btnConCheck.Text = "Prüfen";
-            this.btnConCheck.UseVisualStyleBackColor = true;
-            // 
-            // lblConCheck
-            // 
-            this.lblConCheck.AutoSize = true;
-            this.lblConCheck.Location = new System.Drawing.Point(43, 81);
-            this.lblConCheck.Name = "lblConCheck";
-            this.lblConCheck.Size = new System.Drawing.Size(16, 13);
-            this.lblConCheck.TabIndex = 9;
-            this.lblConCheck.Text = "...";
-            // 
             // btnInstall
             // 
-            this.btnInstall.Location = new System.Drawing.Point(121, 55);
+            this.btnInstall.Location = new System.Drawing.Point(16, 55);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(75, 23);
             this.btnInstall.TabIndex = 6;
             this.btnInstall.Text = "Installieren";
             this.btnInstall.UseVisualStyleBackColor = true;
+            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
             // 
             // btnCancel
             // 
@@ -105,17 +86,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 106);
+            this.ClientSize = new System.Drawing.Size(315, 90);
             this.ControlBox = false;
             this.Controls.Add(this.btnOpenFileDialog);
-            this.Controls.Add(this.lblConCheck);
-            this.Controls.Add(this.btnConCheck);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnInstall);
             this.Controls.Add(this.txtPfad);
             this.Controls.Add(this.label1);
             this.HelpButton = true;
             this.Name = "Installer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Installer";
             this.Load += new System.EventHandler(this.Installer_Load);
             this.ResumeLayout(false);
@@ -127,8 +107,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPfad;
-        private System.Windows.Forms.Button btnConCheck;
-        private System.Windows.Forms.Label lblConCheck;
         private System.Windows.Forms.Button btnInstall;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOpenFileDialog;

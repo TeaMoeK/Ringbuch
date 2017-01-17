@@ -64,6 +64,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.installerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -199,41 +200,41 @@
             this.logToolStripMenuItem,
             this.adminToolStripMenuItem});
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
             // 
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.serverToolStripMenuItem.Text = "Datenbank";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.SetDatabaseToXML);
             // 
             // passwortToolStripMenuItem
             // 
             this.passwortToolStripMenuItem.Name = "passwortToolStripMenuItem";
-            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.passwortToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.passwortToolStripMenuItem.Text = "Passwort";
             this.passwortToolStripMenuItem.Click += new System.EventHandler(this.SetPasswordToXML);
             // 
             // logToolStripMenuItem
             // 
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.logToolStripMenuItem.Text = "Log";
             this.logToolStripMenuItem.Click += new System.EventHandler(this.LogAnzeigen);
             // 
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.adminToolStripMenuItem.Text = "Admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // statistikToolStripMenuItem
             // 
             this.statistikToolStripMenuItem.Name = "statistikToolStripMenuItem";
-            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statistikToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.statistikToolStripMenuItem.Text = "Statistik";
             this.statistikToolStripMenuItem.Click += new System.EventHandler(this.StatistikAufrufen);
             // 
@@ -337,6 +338,8 @@
             // 
             // debugToolStripMenuItem
             // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.installerToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
             this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.debugToolStripMenuItem.Text = "Debug";
@@ -428,6 +431,13 @@
             this.lblVersion.TabIndex = 8;
             this.lblVersion.Text = "label2";
             // 
+            // installerToolStripMenuItem
+            // 
+            this.installerToolStripMenuItem.Name = "installerToolStripMenuItem";
+            this.installerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.installerToolStripMenuItem.Text = "Installer";
+            this.installerToolStripMenuItem.Click += new System.EventHandler(this.installerToolStripMenuItem_Click);
+            // 
             // Hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,6 +509,7 @@
         protected System.Windows.Forms.DataGridView dgvNamen;
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem löschenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem installerToolStripMenuItem;
     }
 }
 

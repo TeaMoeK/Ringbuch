@@ -660,5 +660,11 @@ namespace Ringbuch
                 this.Text = this.Text.Replace(adminMode, "");
             }
         }
+
+        private void installerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Installer install = new Installer();
+            install.ShowDialog();
+        }
     }
 }

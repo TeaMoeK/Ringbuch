@@ -3,31 +3,24 @@ using System.Data.SQLite;
 using System;
 using System.Windows.Forms;
 
-namespace Ringbuch.Datenverarbeitung
+namespace Ringbuch
 {
     class CreateDatabase
     {
-
         private string _sqliteDatabase;
         private SQLiteConnection _con;
         private SQLiteCommand _command;
         private SQLiteDataReader _dataReader;
-        private string _dbName;
         private string _pfad;
+        private MyDialog _dialog;
 
         private string[] TabellenNamen = { "Personen", "Ergebnisse", "Material", "Verschiedenes", "Adressen" };
 
-        public void DBErstellen(string dbName)
+        public void DBErstellen(string pfad)
         {
-            _dbName = dbName;
-            _pfad = Directory.GetCurrentDirectory();
-        }
-        public void DBErstellen(string dbName, string pfad)
-        {
-            _dbName = dbName;
             _pfad = pfad;
-            SQLiteConnection.CreateFile(dbName + ".db");
-            _sqliteDatabase = Path.Combine(_pfad, "RingbuchBETA.db");
+            _sqliteDatabase = Path.Combine(_pfad, "Ringbuch.db");
+            SQLiteConnection.CreateFile(_sqliteDatabase);
             if (File.Exists(_sqliteDatabase))
             {
                 PersonenTabelle();
@@ -37,15 +30,18 @@ namespace Ringbuch.Datenverarbeitung
                 AdressenTable();
                 if (CheckIfTablesExists())
                 {
+                    _dialog = new MyDialog(false, "Datenbank angelegt", "Die Datenbank wurde angelegt.", false);
                     MessageBox.Show("Die Datenbank würde angelegt." + Environment.NewLine + "Pfad: " + _sqliteDatabase, "Datenbak angelegt", MessageBoxButtons.OK);
                 }
                 else
                 {
                     File.Delete(_sqliteDatabase);
-                    DialogResult result = MessageBox.Show("Beim Erstellen der Datenbank ist ein Fehler aufgetreten." + Environment.NewLine + "Pfad: " + _sqliteDatabase, "Fehler", MessageBoxButtons.RetryCancel);
+                    DialogResult result = MessageBox.Show(
+                        "Beim Erstellen der Datenbank ist ein Fehler aufgetreten." + Environment.NewLine +
+                        "Pfad: " + _sqliteDatabase, "Fehler", MessageBoxButtons.RetryCancel);
                     if (result == DialogResult.Retry)
                     {
-                        DBErstellen();
+                        DBErstellen(_pfad);
                     }
                     else
                     {
@@ -53,9 +49,7 @@ namespace Ringbuch.Datenverarbeitung
                     }
                 }
             }
-
         }
-
         private void DoConnect()
         {
             try
