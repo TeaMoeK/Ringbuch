@@ -56,6 +56,7 @@
             this.materialToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hinzufügenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.installerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkDarfLG = new System.Windows.Forms.CheckBox();
             this.chkDarfKK = new System.Windows.Forms.CheckBox();
             this.chkIstKoenig = new System.Windows.Forms.CheckBox();
@@ -64,7 +65,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtInfotext = new System.Windows.Forms.TextBox();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.installerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -345,6 +345,13 @@
             this.debugToolStripMenuItem.Text = "Debug";
             this.debugToolStripMenuItem.Click += new System.EventHandler(this.debugToolStripMenuItem_Click);
             // 
+            // installerToolStripMenuItem
+            // 
+            this.installerToolStripMenuItem.Name = "installerToolStripMenuItem";
+            this.installerToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.installerToolStripMenuItem.Text = "Installer";
+            this.installerToolStripMenuItem.Click += new System.EventHandler(this.installerToolStripMenuItem_Click);
+            // 
             // chkDarfLG
             // 
             this.chkDarfLG.AutoSize = true;
@@ -430,13 +437,6 @@
             this.lblVersion.Size = new System.Drawing.Size(35, 13);
             this.lblVersion.TabIndex = 8;
             this.lblVersion.Text = "label2";
-            // 
-            // installerToolStripMenuItem
-            // 
-            this.installerToolStripMenuItem.Name = "installerToolStripMenuItem";
-            this.installerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.installerToolStripMenuItem.Text = "Installer";
-            this.installerToolStripMenuItem.Click += new System.EventHandler(this.installerToolStripMenuItem_Click);
             // 
             // Hauptfenster
             // 
