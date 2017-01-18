@@ -343,12 +343,12 @@
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
             this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.debugToolStripMenuItem.Text = "Debug";
-            this.debugToolStripMenuItem.Click += new System.EventHandler(this.debugToolStripMenuItem_Click);
+            this.debugToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.debugToolStripMenuItem_Click);
             // 
             // installerToolStripMenuItem
             // 
             this.installerToolStripMenuItem.Name = "installerToolStripMenuItem";
-            this.installerToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.installerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.installerToolStripMenuItem.Text = "Installer";
             this.installerToolStripMenuItem.Click += new System.EventHandler(this.installerToolStripMenuItem_Click);
             // 

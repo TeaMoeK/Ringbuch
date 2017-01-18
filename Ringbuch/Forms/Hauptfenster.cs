@@ -1,5 +1,4 @@
 ﻿using Logging_APE;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -544,13 +543,16 @@ namespace Ringbuch
             }
         }
         #endregion Ergebnisse
-        private void debugToolStripMenuItem_Click(object sender, EventArgs e)
+        private void debugToolStripMenuItem_Click(object sender, MouseEventArgs e)
         {
-            MessageBox.Show(
-                "Bugs: " + Environment.NewLine +
-                "Features: " + Environment.NewLine +
-                "-Archivierte Profile anzeigen lassen" + Environment.NewLine +
-                "-Installer");
+            if (e.Button == MouseButtons.Right)
+            {
+                MessageBox.Show(
+                    "Bugs: " + Environment.NewLine +
+                    "Features: " + Environment.NewLine +
+                    "-Archivierte Profile anzeigen lassen" + Environment.NewLine +
+                    "-Installer");
+            }
         }
         #region Material
         private void materialBearbeitenToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -652,7 +654,7 @@ namespace Ringbuch
         {
             string adminMode = " - Admin";
             if (isAdmin)
-            {                
+            {
                 this.Text += adminMode;
             }
             else
