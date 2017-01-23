@@ -237,21 +237,21 @@ namespace Ringbuch
                 password = _dataReader.GetValue(0).ToString();
             }
             CloseConections();
-            return password;
+            return AES.AES.DecryptStringFromBytes_Aes(password, ArgsData.Aes_key, ArgsData.Aes_iv);
         }
-        public string getAdminPW()
-        {
-            DoConnect();
-            string password = string.Empty;
-            _command = new SQLiteCommand(_con);
-            _dataReader = CreateSelectStatement("AdminPW", "Verschiedenes");
-            while (_dataReader.Read())
-            {
-                password = _dataReader.GetValue(0).ToString();
-            }
-            CloseConections();
-            return password;
-        }
+        //public string getAdminPW()
+        //{
+        //    DoConnect();
+        //    string password = string.Empty;
+        //    _command = new SQLiteCommand(_con);
+        //    _dataReader = CreateSelectStatement("AdminPW", "Verschiedenes");
+        //    while (_dataReader.Read())
+        //    {
+        //        password = _dataReader.GetValue(0).ToString();
+        //    }
+        //    CloseConections();
+        //    return password;
+        //}
         private void CloseConections()
         {
             if (_dataReader != null)

@@ -85,6 +85,7 @@ namespace Ringbuch
                 if (_myDialog.OK)
                 {
                     SetAdminPasswordToDatabase(_myDialog.codedText);
+                    MessageBox.Show("Das Passwort wurde geändert.", "Passwort");
                     writeLog("Das Passwort wurde geändert." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
                 }
             }
@@ -148,13 +149,17 @@ namespace Ringbuch
             {
                 _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich");
                 _myDialog.ShowDialog();
-                if (_getDaten.AdminPW == _myDialog.text)
+                if (_getDaten.getPassword() == _myDialog.text)
                 {
                     return true;
                 }
                 else
                 {
-                    writeLog("Das Passwort wurde falsch eingegeben. Methode: " + MethodBase.GetCurrentMethod().ToString());
+                    if (!_myDialog.Abbrechen)
+                    {
+                        MessageBox.Show("Das Passwort ist falsch.", "Falsches Passwort");
+                        writeLog("Das Passwort wurde falsch eingegeben. Methode: " + MethodBase.GetCurrentMethod().ToString());
+                    }
                     return false;
                 }
             }
@@ -163,13 +168,13 @@ namespace Ringbuch
                 return true;
             }
         }
-        public bool adminPW()
+        public bool SetAdminMode()
         {
             if (!_isAdmin)
             {
                 _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich");
                 _myDialog.ShowDialog();
-                if (_getDaten.AdminPW == _myDialog.text)
+                if (_getDaten.getPassword() == _myDialog.text)
                 {
                     _isAdmin = true;
                     return _isAdmin;

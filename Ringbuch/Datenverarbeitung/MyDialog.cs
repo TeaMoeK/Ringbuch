@@ -116,6 +116,8 @@ namespace Ringbuch
         private void Exit(object sender, EventArgs e)
         {
             PasswortOK = false;
+            Abbrechen = true;
+            OK = false;
             this.Dispose();
         }
         private void keyDown(object sender, KeyEventArgs e)
@@ -185,6 +187,11 @@ namespace Ringbuch
             get; set;
         }
         public bool OK
+        {
+            get; set;
+        }
+
+        public bool Abbrechen
         {
             get; set;
         }
