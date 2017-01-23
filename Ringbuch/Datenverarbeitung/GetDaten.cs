@@ -14,22 +14,54 @@ namespace Ringbuch
     class GetDaten
     {
         private string _sqliteDatabase;
+        private string _adminPW = string.Empty;
+        private string _DatabasePW = string.Empty;
         private SQLiteConnection _con;
         private SQLiteDataReader _dataReader;
         private SQLiteCommand _command;
+
+        internal string AdminPW
+        {
+            get
+            {
+                return _adminPW;
+            }
+            private set
+            {
+                _adminPW = value;
+            }
+        }
+        internal string DatabasePW
+        {
+            get
+            {
+                return _DatabasePW;
+            }
+            private set
+            {
+                _DatabasePW = value;
+            }
+        }
 
         private void DoConnect()
         {
             try
             {
-                getDatabasePath();
+                getDatabasePathXML();
+                //getDatabasePWXML();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
                 //setPW();
-                _con.SetPassword("abc");
+                if (DatabasePW != string.Empty)
+                {
+                    string pw = AES.AES.DecryptStringFromBytes_Aes(DatabasePW, ArgsData.Aes_key, ArgsData.Aes_iv);
+                    _con.SetPassword(AES.AES.DecryptStringFromBytes_Aes(DatabasePW, ArgsData.Aes_key, ArgsData.Aes_iv));
+                    //_con.SetPassword("hallo");
+                }
+                //_con.SetPassword("hallo");
                 _con.Open();
                 _command = new SQLiteCommand(_con);
-                _command.CommandText = "";
+                _command.CommandText = "Select * From Personen";
                 _command.ExecuteNonQuery();
                 //clearPW();
             }
@@ -55,7 +87,11 @@ namespace Ringbuch
             _command = new SQLiteCommand(_con);
             _command.CommandText = "";
             _command.ExecuteNonQuery();
-            _con.ChangePassword("abc");
+            MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
+            myDialog.ShowDialog();
+            _con.ChangePassword(myDialog.decodedText);
+            SetDaten setDaten = new SetDaten();
+            setDaten.SetDatenbankPassword(myDialog.codedText);
             CloseConections();
             _con.Close();
             Environment.Exit(-1);
@@ -71,7 +107,9 @@ namespace Ringbuch
                 _command = new SQLiteCommand(_con);
                 _command.CommandText = "";
                 _command.ExecuteNonQuery();
-                _con.ChangePassword("abc");
+                MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
+                myDialog.ShowDialog();
+                _con.ChangePassword(myDialog.decodedText);
                 CloseConections();
                 _con.Close();
                 return true;
@@ -92,7 +130,7 @@ namespace Ringbuch
             Log.Instance.Write(logText, typeof(Program).ToString());
         }
 
-        private void getDatabasePath()
+        private void getDatabasePathXML()
         {
 
             if (File.Exists(Directory.GetCurrentDirectory() + "\\ringbuch.xml"))
@@ -105,8 +143,29 @@ namespace Ringbuch
             else
             {
                 createXMLFile();
-                getDatabasePath();
+                getDatabasePathXML();
                 //SetSQLitePassword();
+            }
+        }
+        private void getAdminPasswordXML()
+        {
+            if (File.Exists(Directory.GetCurrentDirectory() + "\\ringbuch.xml"))
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Directory.GetCurrentDirectory() + "\\ringbuch.xml");
+                XmlNode node = xml.DocumentElement.SelectSingleNode("/Datenbank/Password");
+                AdminPW = node.InnerText;
+            }
+        }
+
+        private void getDatabasePWXML()
+        {
+            if (File.Exists(Directory.GetCurrentDirectory() + "\\ringbuch.xml"))
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Directory.GetCurrentDirectory() + "\\ringbuch.xml");
+                XmlNode node = xml.DocumentElement.SelectSingleNode("/Datenbank/DatenbankPassword");
+                DatabasePW = node.InnerText;
             }
         }
         private void createXMLFile()
@@ -122,8 +181,7 @@ namespace Ringbuch
                 openFileDialog.Title = "Select Database";
                 openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
                 openFileDialog.ShowDialog();
-                MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Password eingeben.", true);
-                myDialog.ShowDialog();
+
 
                 XmlDocument doc = new XmlDocument();
                 XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
@@ -136,13 +194,28 @@ namespace Ringbuch
                 PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
                 DatenbankNode.AppendChild(PfadNode);
                 //  Element 'Password' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
+                MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Admin-Password eingeben.", true);
+                myDialog.ShowDialog();
+
                 XmlNode PasswordNode = doc.CreateElement("Password");
                 PasswordNode.AppendChild(doc.CreateTextNode(myDialog.codedText));
                 DatenbankNode.AppendChild(PasswordNode);
+                string adminPW = myDialog.codedText;
+                //  Element 'DatenbankPassword' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
+                //myDialog = null;
+                //myDialog = new MyDialog(true, "Datenbank-Password", "Bitte ein datenbank-Password eingeben.", true);
+                //myDialog.ShowDialog();
+
+                //XmlNode DBPasswordNode = doc.CreateElement("DatenbankPassword");
+                //DBPasswordNode.AppendChild(doc.CreateTextNode(myDialog.codedText));
+                //DatenbankNode.AppendChild(DBPasswordNode);
+                //string DatenbankPW = myDialog.codedText;
                 //  Xml-Datei speichern
                 doc.Save("Ringbuch.xml");
                 SetDaten setDaten = new SetDaten();
-                setDaten.SetPasswordToDatabase(myDialog.codedText);
+
+                setDaten.SetAdminPasswordToDatabase(adminPW);
+                //setDaten.SetDatenbankPassword(DatenbankPW);
 
                 _sqliteDatabase = openFileDialog.FileName;
                 writeLog("Es wurde eine neue XML-Datei angelegt. Pfad: " + openFileDialog.FileName.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());

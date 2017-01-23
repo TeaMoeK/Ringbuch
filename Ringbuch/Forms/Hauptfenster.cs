@@ -656,10 +656,12 @@ namespace Ringbuch
             if (isAdmin)
             {
                 this.Text += adminMode;
+                adminToolStripMenuItem.Checked = true;
             }
             else
             {
                 this.Text = this.Text.Replace(adminMode, "");
+                adminToolStripMenuItem.Checked = false;
             }
         }
 

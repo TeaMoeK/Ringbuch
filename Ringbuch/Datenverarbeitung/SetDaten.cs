@@ -22,6 +22,9 @@ namespace Ringbuch
         private bool _showMsgBoxes = true;
         private bool _isAdmin = false;
 
+        //private const string aes_key = "TimoistDerCoolsteDerCoolenDigger";  //32
+        //private const string aes_iv = "EineKetteVonkeys";   //16
+
         public SetDaten(bool showMsgBoxes)
         {
             _showMsgBoxes = showMsgBoxes;
@@ -40,12 +43,11 @@ namespace Ringbuch
                 getDatabasePath();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-                _con.SetPassword("abc");
+                _con.SetPassword(_getDaten.DatabasePW);
                 _con.Open();
                 _command = new SQLiteCommand(_con);
                 _command.CommandText = "";
                 _command.ExecuteNonQuery();
-                //clearPW();
             }
             catch (Exception ex)
             {
@@ -82,12 +84,12 @@ namespace Ringbuch
                 _myDialog.ShowDialog();
                 if (_myDialog.OK)
                 {
-                    SetPasswordToDatabase(_myDialog.codedText);
+                    SetAdminPasswordToDatabase(_myDialog.codedText);
                     writeLog("Das Passwort wurde geändert." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
                 }
             }
         }
-        public void SetPasswordToDatabase(string password)
+        public void SetAdminPasswordToDatabase(string password)
         {
             DoConnect();
             _command = new SQLiteCommand(_con);
@@ -109,6 +111,11 @@ namespace Ringbuch
                     XMLDateiBeschreiben("Datenbank", "Pfad", openFileDialog.FileName);
                 }
             }
+        }
+
+        public void SetDatenbankPassword(string codedPassword)
+        {
+            XMLDateiBeschreiben("Datenbank", "DatenbankPasswort", codedPassword);
         }
         private void XMLDateiBeschreiben(string node1, string node2, string text)
         {
@@ -139,9 +146,9 @@ namespace Ringbuch
 
             if (!_isAdmin)
             {
-                _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
+                _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich");
                 _myDialog.ShowDialog();
-                if (_myDialog.PasswortOK)
+                if (_getDaten.AdminPW == _myDialog.text)
                 {
                     return true;
                 }
@@ -160,9 +167,9 @@ namespace Ringbuch
         {
             if (!_isAdmin)
             {
-                _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich", false);
+                _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich");
                 _myDialog.ShowDialog();
-                if (_myDialog.PasswortOK)
+                if (_getDaten.AdminPW == _myDialog.text)
                 {
                     _isAdmin = true;
                     return _isAdmin;

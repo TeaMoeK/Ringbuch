@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datenverarbeitung\ArgsData.cs" />
     <Compile Include="Datenverarbeitung\CreateDatabase.cs" />
     <Compile Include="Forms\ErgebnisBearbeiten.cs">
       <SubType>Form</SubType>

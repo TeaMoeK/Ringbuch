@@ -9,6 +9,7 @@ namespace Ringbuch
         private string _message;
         private string _password = string.Empty;
 
+        private bool _adminPW;
         private bool _inputBox = false;
         private bool _passwordBox = false;
         private bool _setPassword = false;
@@ -33,6 +34,12 @@ namespace Ringbuch
         {
             myDialog(titel, message, true, passwordBox, setPassword);
         }
+
+        public MyDialog(bool passwordBox, string titel, string message)
+        {
+            _adminPW = true;
+            myDialog(titel, message, true, passwordBox, false);
+        }
         // Hier landen die Constructors
         private void myDialog(string titel, string message, bool inputBox, bool passwordBox, bool setPassword)
         {
@@ -53,14 +60,15 @@ namespace Ringbuch
         {
             if (_passwordBox)
             {
-                txtInputBox.PasswordChar = '*';                
+                txtInputBox.PasswordChar = '*';
             }
             if (_setPassword)
             {
                 txtConfirmPW.Visible = true;
                 lblConfirm.Visible = true;
                 txtConfirmPW.PasswordChar = '*';
-            }else
+            }
+            else
             {
                 txtConfirmPW.Visible = false;
                 lblConfirm.Visible = false;
@@ -78,6 +86,7 @@ namespace Ringbuch
                 {
                     if (txtInputBox.Text == txtConfirmPW.Text)
                     {
+                        decodedText = txtInputBox.Text;
                         codedText = encryptPW_AES(txtInputBox.Text);
                         OK = true;
                         this.Dispose();
@@ -118,15 +127,23 @@ namespace Ringbuch
         }
         private void checkPassword()
         {
-            GetDaten getDaten = new GetDaten();
-            if (text == decryptPW_AES(getDaten.getPassword()))
+            if (!_adminPW)
             {
-                PasswortOK = true;
+                GetDaten getDaten = new GetDaten();
+                if (text == decryptPW_AES(getDaten.getPassword()))
+                {
+                    PasswortOK = true;
+                }
+                else
+                {
+                    PasswortOK = false;
+                    MessageBox.Show("Das Passwort war falsch!", "Falsches Passwort");
+                }
             }
             else
             {
-                PasswortOK = false;
-                MessageBox.Show("Das Passwort war falsch!", "Falsches Passwort");
+                text = txtInputBox.Text;
+                PasswortOK = true;
             }
         }
         private string encryptPW_AES(string password)
@@ -151,10 +168,25 @@ namespace Ringbuch
             }
         }
         // Getter und Setter
-        public string text { get; set; }
-        public string codedText { get; set; }
-        public string decodedText { get; set; }
-        public bool PasswortOK { get; set; }
-        public bool OK { get; set; }
+        public string text
+        {
+            get; set;
+        }
+        public string codedText
+        {
+            get; set;
+        }
+        public string decodedText
+        {
+            get; set;
+        }
+        public bool PasswortOK
+        {
+            get; set;
+        }
+        public bool OK
+        {
+            get; set;
+        }
     }
 }
