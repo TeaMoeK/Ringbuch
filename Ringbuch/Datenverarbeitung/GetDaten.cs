@@ -1,4 +1,5 @@
 ﻿using Logging_APE;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -45,9 +46,18 @@ namespace Ringbuch
 
         private void DoConnect()
         {
+            getDatabasePathXML();
+            if (Environment.GetCommandLineArgs().Length > 1)
+            {
+                Read_args(Environment.GetCommandLineArgs());
+                string test = ArgsData.ClearDBPW;
+                if (ArgsData.ClearDBPW != string.Empty || ArgsData.ClearDBPW != null)
+                {
+                    clearPW(ArgsData.ClearDBPW);
+                }
+            }
             try
             {
-                getDatabasePathXML();
                 //getDatabasePWXML();
                 _con = new SQLiteConnection();
                 _con.ConnectionString = "Data Source=" + _sqliteDatabase;
@@ -63,7 +73,7 @@ namespace Ringbuch
                 _command = new SQLiteCommand(_con);
                 _command.CommandText = "Select * From Personen";
                 _command.ExecuteNonQuery();
-                //clearPW();
+                //clearPW("");
             }
             catch (Exception ex)
             {
@@ -73,12 +83,44 @@ namespace Ringbuch
             }
         }
 
-        private void clearPW()
+        private void clearPW(string pw)
         {
+            if (pw != string.Empty)
+            {
+                _con = new SQLiteConnection();
+                _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+                _con.SetPassword(pw);
+                _con.Open();
+                _con.ChangePassword("");
+                Environment.Exit(-1);
+            }
             _con.ChangePassword("");
             Environment.Exit(-1);
         }
+        private void Read_args(string[] args)
+        {
+            bool gefunden = false;
+            for (int i = 0; i < args.Length; i++)
+            {
+                switch (args[i].ToLower())
+                {
 
+                    case ArgsData.PARAM_CLEAR_DB_PW:
+                        if (i != args.Length - 1)
+                        {
+                            ArgsData.ClearDBPW = args[++i];
+                            gefunden = true;
+                        }
+                        break;
+                }
+            }
+            if (!gefunden)
+            {
+                writeLog("Keine gültigen Argumente gefunden." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+                MessageBox.Show("Keine gültigen Argumente gefunden.");
+                Environment.Exit(-1);
+            }
+        }
         private void setPW()
         {
             _con = new SQLiteConnection();

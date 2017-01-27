@@ -56,6 +56,32 @@ namespace Ringbuch
                 Environment.Exit(-1);
             }
         }
+        public void ClearDBPW(string pw)
+        {
+            try
+            {
+                getDatabasePath();
+                _con = new SQLiteConnection();
+                _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+                _con.SetPassword(pw);
+                _con.Open();
+                _command = new SQLiteCommand(_con);
+                _command.CommandText = "";
+                _command.ExecuteNonQuery();
+                clearPW();
+            }
+            catch (Exception ex)
+            {
+                writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+                MessageBox.Show(ex.Message);
+                Environment.Exit(-1);
+            }
+        }
+        private void clearPW()
+        {
+            _con.ChangePassword("");
+            Environment.Exit(-1);
+        }
         private void writeLog(string logText)
         {
             Log.Instance.FILENAME_SUFFIX = "Ringbuch";

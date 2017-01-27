@@ -67,6 +67,5 @@ namespace Ringbuch
         event EventHandler<InterfaceEventHandler> StatistikToolSetRequired;
         event EventHandler XMLDateiDatenbankBearbeitenRequired;
         event EventHandler XMLDateiPasswordBearbeitenRequired;
-
     }
 }

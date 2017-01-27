@@ -1,4 +1,5 @@
 ﻿using Logging_APE;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -634,8 +635,6 @@ namespace Ringbuch
         }
 
         public event EventHandler AdminPassword;
-
-
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InvokeAdminPassword();

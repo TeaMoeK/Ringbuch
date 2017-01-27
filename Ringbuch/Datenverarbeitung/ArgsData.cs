@@ -10,7 +10,9 @@ namespace Ringbuch
     {
         private static string _aes_key = "TimoistDerCoolsteDerCoolenDigger";  //32
         private static string _aes_iv = "EineKetteVonkeys";   //16
+        private static string _cleardbpw;
 
+        public const string PARAM_CLEAR_DB_PW = "-cleardbpw";
         internal static string Aes_key
         {
             get
@@ -24,6 +26,17 @@ namespace Ringbuch
             get
             {
                 return _aes_iv;
+            }
+        }
+        internal static string ClearDBPW
+        {
+            get
+            {
+                return _cleardbpw;
+            }
+            set
+            {
+                _cleardbpw = value;
             }
         }
     }
