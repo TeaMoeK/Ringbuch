@@ -530,7 +530,10 @@ namespace Ringbuch
         }
         private void dgvErgebnisse_KeyDown(object sender, KeyEventArgs e)
         {
-            InvokeErgebnisDeleteRequested();
+            if (e.KeyData == Keys.Delete)
+            {
+                InvokeErgebnisDeleteRequested();
+            }
         }
         private void InvokeErgebnisDeleteRequested()
         {

@@ -163,7 +163,7 @@ namespace Ringbuch
             DataRow row = dt.NewRow();
             row["ErgebnisID"] = _ergebnisID;
             row["namenID"] = _namenID;
-            row["Datum"] = dateDatum.Value.ToString("yyyy-MM-dd hh:mm");
+            row["Datum"] = dateDatum.Value.ToString("yyyy-MM-dd HH:mm");
             if (txtSatz1.Text != "")
             {
                 row["Satz 1"] = Convert.ToDouble(txtSatz1.Text.Replace('.', ','));

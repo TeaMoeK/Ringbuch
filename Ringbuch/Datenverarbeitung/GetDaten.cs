@@ -383,8 +383,14 @@ namespace Ringbuch
         {
             switch (SchiessKlasse)
             {
+                case "Schüler D":
+                    return 10;
+
+                case "Schüler C":
+                    return 20;
+
                 case "Schüler B":
-                    return 30;
+                    return 20;
 
                 case "Schüler A":
                     return 30;
@@ -814,13 +820,13 @@ namespace Ringbuch
                     Ergebniss = Ergebniss + Convert.ToDouble(_dataReader.GetValue(i));
                 }
                 //String datum3 = _dataReader.GetValue(2));
-                DateTime datum2 = DateTime.Parse(_dataReader.GetValue(2));
-                String datum = Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm tt");
+                
+                String datum = Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm");
                 
                 dt.Rows.Add(new object[]{
                     _dataReader.GetValue(0),
                     _dataReader.GetValue(1),
-                    Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy hh:mm"),
+                    Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm"),
                     _dataReader.GetValue(3),
                     _dataReader.GetValue(4),
                     _dataReader.GetValue(5),
