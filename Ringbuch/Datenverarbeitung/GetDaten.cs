@@ -92,6 +92,7 @@ namespace Ringbuch
                 _con.SetPassword(pw);
                 _con.Open();
                 _con.ChangePassword("");
+                MessageBox.Show("Password wurde entfernt.", "PW");
                 Environment.Exit(-1);
             }
             _con.ChangePassword("");
@@ -812,6 +813,10 @@ namespace Ringbuch
 
                     Ergebniss = Ergebniss + Convert.ToDouble(_dataReader.GetValue(i));
                 }
+                //String datum3 = _dataReader.GetValue(2));
+                DateTime datum2 = DateTime.Parse(_dataReader.GetValue(2));
+                String datum = Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm tt");
+                
                 dt.Rows.Add(new object[]{
                     _dataReader.GetValue(0),
                     _dataReader.GetValue(1),
