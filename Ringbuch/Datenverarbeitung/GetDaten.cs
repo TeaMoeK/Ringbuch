@@ -427,12 +427,14 @@ namespace Ringbuch
             DoConnect();
             _command = new SQLiteCommand(_con);
             _dataReader = CreateSelectStatement(
-                "Datum, \"Satz 1\", \"Satz 2\", \"Satz 3\", \"Satz 4\", Art, Info",
+                "Datum, \"Satz1\", \"Satz2\", \"Satz3\", \"Satz4\", SchiessArtenID, Info",
                 "Ergebnisse",
                 "NamenID = " + namenID + " AND rowid = " + ergebnisID, "");
             List<String> liste = new List<String>();
+            
             while (_dataReader.Read())
             {
+                //string test = getSchiessArt(Convert.ToInt32(_dataReader.GetValue(5)));
                 liste.Add(_dataReader.GetValue(0).ToString());
                 liste.Add(_dataReader.GetValue(1).ToString());
                 liste.Add(_dataReader.GetValue(2).ToString());
@@ -444,18 +446,44 @@ namespace Ringbuch
             CloseConections();
             return liste;
         }
-
-        public List<string> getSchiessArten()
+        private string getSchiessArt(int schiessArtenID)
         {
             DoConnect();
             _command = new SQLiteCommand(_con);
-            _dataReader = CreateSelectStatement("SchiessArten", "Verschiedenes");
+            SQLiteDataReader reader = CreateSelectStatement("SchiessArt", "SchiessArten", "rowid", schiessArtenID.ToString());
+            string rtn = string.Empty;
+            while (reader.Read())
+            {
+                rtn = reader.GetValue(0).ToString();
+            }
+            return rtn;
+        }
+        //public List<string> getSchiessArten()
+        //{
+        //    DoConnect();
+        //    _command = new SQLiteCommand(_con);
+        //    _dataReader = CreateSelectStatement("SchiessArten", "Verschiedenes");
+        //    List<string> liste = new List<string>();
+        //    while (_dataReader.Read())
+        //    {
+        //        liste = _dataReader.GetValue(0).ToString().Split(',').ToList();
+        //    }
+
+        //    CloseConections();
+        //    return liste;
+        //}
+
+        public List<string> getSchiessArten()
+        {
+
+            DoConnect();
+            _command = new SQLiteCommand(_con);
+            _dataReader = CreateSelectStatement("SchiessArt", "Schiessarten");
             List<string> liste = new List<string>();
             while (_dataReader.Read())
             {
-                liste = _dataReader.GetValue(0).ToString().Split(',').ToList();
+                liste.Add(_dataReader.GetValue(0).ToString());
             }
-
             CloseConections();
             return liste;
         }
@@ -820,9 +848,9 @@ namespace Ringbuch
                     Ergebniss = Ergebniss + Convert.ToDouble(_dataReader.GetValue(i));
                 }
                 //String datum3 = _dataReader.GetValue(2));
-                
+
                 String datum = Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm");
-                
+
                 dt.Rows.Add(new object[]{
                     _dataReader.GetValue(0),
                     _dataReader.GetValue(1),
