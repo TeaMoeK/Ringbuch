@@ -498,8 +498,8 @@ namespace Ringbuch
             _command = new SQLiteCommand(_con);
             DataTable dt = CreateDataTable("SchiessArten");
             dt.Columns.Add("Anzeige");
-            //_dataReader = CreateSelectStatement("rowid, *", "Material", "Gruppe = '" + gruppe + "' AND Bezeichnung != 'ignore'", "");
-            _dataReader = CreateSelectStatement("rowid, *", "SchiessArten", "IstArchiviert = 0", "");
+            //_dataReader = CreateSelectStatement("rowid, *", "Material", "Gruppe = 'Handschuhe' AND Bezeichnung != 'ignore'", "");
+            _dataReader = CreateSelectStatement("SchiessArten");
             int i = 0;
             string test = _dataReader.GetValue(0).ToString();
             while (_dataReader.Read())
