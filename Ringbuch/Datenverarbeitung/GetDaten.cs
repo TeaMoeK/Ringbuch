@@ -431,7 +431,7 @@ namespace Ringbuch
                 "Ergebnisse",
                 "NamenID = " + namenID + " AND rowid = " + ergebnisID, "");
             List<String> liste = new List<String>();
-            
+
             while (_dataReader.Read())
             {
                 //string test = getSchiessArt(Convert.ToInt32(_dataReader.GetValue(5)));
@@ -444,9 +444,12 @@ namespace Ringbuch
                 liste.Add(_dataReader.GetValue(6).ToString());
             }
             CloseConections();
+            string test = liste[5];
+            liste[5] = getSchiessArtByID(Convert.ToInt32(liste[5]));
+
             return liste;
         }
-        private string getSchiessArt(int schiessArtenID)
+        private string getSchiessArtByID(int schiessArtenID)
         {
             DoConnect();
             _command = new SQLiteCommand(_con);
@@ -478,14 +481,43 @@ namespace Ringbuch
 
             DoConnect();
             _command = new SQLiteCommand(_con);
-            _dataReader = CreateSelectStatement("SchiessArt", "Schiessarten");
+            //_dataReader = CreateSelectStatement("SchiessArt", "Schiessarten");
+            _dataReader = CreateSelectStatement("SchiessArten");
             List<string> liste = new List<string>();
             while (_dataReader.Read())
             {
-                liste.Add(_dataReader.GetValue(0).ToString());
+                liste.Add(_dataReader.GetValue(1).ToString());
             }
             CloseConections();
             return liste;
+        }
+
+        public DataTable getSchiessArtenDt()
+        {
+            DoConnect();
+            _command = new SQLiteCommand(_con);
+            DataTable dt = CreateDataTable("SchiessArten");
+            dt.Columns.Add("Anzeige");
+            //_dataReader = CreateSelectStatement("rowid, *", "Material", "Gruppe = '" + gruppe + "' AND Bezeichnung != 'ignore'", "");
+            _dataReader = CreateSelectStatement("rowid, *", "SchiessArten", "IstArchiviert = 0", "");
+            int i = 0;
+            string test = _dataReader.GetValue(0).ToString();
+            while (_dataReader.Read())
+            {
+                dt.Rows.Add(new object[]{
+                    _dataReader.GetValue(0),
+                    _dataReader.GetValue(1),
+                    _dataReader.GetValue(2),
+                    _dataReader.GetValue(3)
+                });
+                CreateBezeichnung(dt, i);
+                i++;
+            }
+            dt.Rows.Add(new object[]{
+                -1,
+            });
+            CloseConections();
+            return dt;
         }
 
         public List<String> getName(int namenID)

@@ -10,10 +10,12 @@ namespace Ringbuch
     {
         private int _namenID;
         private int _ergebnisID;
+        //  Für das Erstellen eines neuen Datensatzes
         public ErgebnisBearbeiten(int namenID)
         {            
             Create(namenID, -1);
         }
+        //  Für das Bearbeiten eines vorhandenen Datensatzes
         public ErgebnisBearbeiten(int namenID, int ergebnisID)
         {
             Create(namenID, ergebnisID);
