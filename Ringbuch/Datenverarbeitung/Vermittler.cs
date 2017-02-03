@@ -295,8 +295,8 @@ namespace Ringbuch
         }
         private void ErgebnisBearbeitenInterfaceArtRequest(object sender, EventArgs e)
         {
-            _getDaten.getSchiessArtenDt();
-            _ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArten());
+            _ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArtenDt());
+            //_ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArten());
         }
 
         /// <summary>

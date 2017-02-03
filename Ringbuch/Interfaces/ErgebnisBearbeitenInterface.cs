@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Ringbuch
 {
@@ -13,6 +14,7 @@ namespace Ringbuch
 
         event EventHandler ArtRequest;
         void SetSchiessArten(List<string> liste);
+        void SetSchiessArten(DataTable dt);
 
         event EventHandler<DataTableEventArgs> ErgebnisCreateRequired;
         void CreateOrUpdateConfirm(Boolean confirmed);

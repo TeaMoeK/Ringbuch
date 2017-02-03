@@ -102,6 +102,13 @@ namespace Ringbuch
                 comboArt.Items.Add(art);
             }
         }
+
+        public void SetSchiessArten(DataTable dt)
+        {
+            comboArt.DataSource = dt;
+            comboArt.DisplayMember = "SchiessArt";
+            comboArt.ValueMember = "rowid";
+        }
         private void ErgebnisBearbeiten_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -155,12 +162,12 @@ namespace Ringbuch
             dt.Columns.Add("ErgebnisID", typeof(Int16));
             dt.Columns.Add("namenID", typeof(Int16));
             dt.Columns.Add("Datum", typeof(String));
-            dt.Columns.Add("Satz 1", typeof(Double));
-            dt.Columns.Add("Satz 2", typeof(Double));
-            dt.Columns.Add("Satz 3", typeof(Double));
-            dt.Columns.Add("Satz 4", typeof(Double));
+            dt.Columns.Add("Satz1", typeof(Double));
+            dt.Columns.Add("Satz2", typeof(Double));
+            dt.Columns.Add("Satz3", typeof(Double));
+            dt.Columns.Add("Satz4", typeof(Double));
             dt.Columns.Add("Info", typeof(String));
-            dt.Columns.Add("Art", typeof(String));
+            dt.Columns.Add("SchiessArtenID", typeof(Int32));
 
             DataRow row = dt.NewRow();
             row["ErgebnisID"] = _ergebnisID;
@@ -168,13 +175,14 @@ namespace Ringbuch
             row["Datum"] = dateDatum.Value.ToString("yyyy-MM-dd HH:mm");
             if (txtSatz1.Text != "")
             {
-                row["Satz 1"] = Convert.ToDouble(txtSatz1.Text.Replace('.', ','));
+                row["Satz1"] = Convert.ToDouble(txtSatz1.Text.Replace('.', ','));
             }
-            row["Satz 2"] = Convert.ToDouble(txtSatz2.Text.Replace('.', ','));
-            row["Satz 3"] = Convert.ToDouble(txtSatz3.Text.Replace('.', ','));
-            row["Satz 4"] = Convert.ToDouble(txtSatz4.Text.Replace('.', ','));
+            row["Satz2"] = Convert.ToDouble(txtSatz2.Text.Replace('.', ','));
+            row["Satz3"] = Convert.ToDouble(txtSatz3.Text.Replace('.', ','));
+            row["Satz4"] = Convert.ToDouble(txtSatz4.Text.Replace('.', ','));
             row["Info"] = txtInfo.Text;
-            row["Art"] = comboArt.SelectedItem;
+            row["SchiessArtenID"] = comboArt.SelectedValue;
+            //row["Art"] = comboArt.SelectedItem;
 
             dt.Rows.Add(row);
             return dt;

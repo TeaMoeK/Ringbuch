@@ -307,6 +307,24 @@ namespace Ringbuch
         {
             string ret = "NULL";
             int alter = Convert.ToInt16(DateTime.Now.ToString("yyyy")) - getJahrgang(namenID);
+            if (1 == 1)
+            {
+                char sex = ' ';
+                if (alter > 20)
+                {
+                    sex = getGeschlecht(namenID);
+                    alter = -1;
+                }
+                int jahrgang = getJahrgang(namenID);
+                DoConnect();
+                _command = new SQLiteCommand(_con);
+                _command.CommandText = "SELECT SchiessKlassen.KlassenName, SchiessKlassen.AnzahlSchuss" +
+                    " FROM SchiessArten" +
+                    " INNER JOIN SchiessKlassen ON SchiessKlassen.SchiessArtenID = SchiessArten.rowid" +
+                    " WHERE SchiessKlassen.AlterVon = " + alter + " OR SchiessKlassen.AlterBis = " + alter +
+                    " AND SchiessKlassen.Geschlecht = '" + sex + "'";
+                _dataReader = _command.ExecuteReader();
+            }
             if (alter <= 12)
             {
                 ret = "Schüler B";
@@ -459,6 +477,7 @@ namespace Ringbuch
             {
                 rtn = reader.GetValue(0).ToString();
             }
+            reader.Close();
             return rtn;
         }
         //public List<string> getSchiessArten()
@@ -500,22 +519,15 @@ namespace Ringbuch
             dt.Columns.Add("Anzeige");
             //_dataReader = CreateSelectStatement("rowid, *", "Material", "Gruppe = 'Handschuhe' AND Bezeichnung != 'ignore'", "");
             _dataReader = CreateSelectStatement("SchiessArten");
-            int i = 0;
-            string test = _dataReader.GetValue(0).ToString();
+
             while (_dataReader.Read())
             {
                 dt.Rows.Add(new object[]{
                     _dataReader.GetValue(0),
                     _dataReader.GetValue(1),
-                    _dataReader.GetValue(2),
-                    _dataReader.GetValue(3)
+                    _dataReader.GetValue(2)
                 });
-                CreateBezeichnung(dt, i);
-                i++;
             }
-            dt.Rows.Add(new object[]{
-                -1,
-            });
             CloseConections();
             return dt;
         }
@@ -882,21 +894,34 @@ namespace Ringbuch
                 //String datum3 = _dataReader.GetValue(2));
 
                 String datum = Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm");
-
                 dt.Rows.Add(new object[]{
-                    _dataReader.GetValue(0),
-                    _dataReader.GetValue(1),
-                    Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm"),
-                    _dataReader.GetValue(3),
-                    _dataReader.GetValue(4),
-                    _dataReader.GetValue(5),
-                    _dataReader.GetValue(6),
-                    Ergebniss,
-                    _dataReader.GetValue(7),
-                    _dataReader.GetValue(8),
+                    _dataReader.GetValue(0),    //  rowid
+                    _dataReader.GetValue(1),    //  NamenID
+                    Convert.ToDateTime(_dataReader.GetValue(2)).ToString("dd.MM.yyyy HH:mm"),   //  Datum
+                    _dataReader.GetValue(3),    //  Satz1
+                    _dataReader.GetValue(4),    //  Satz2
+                    _dataReader.GetValue(5),    //  Satz3
+                    _dataReader.GetValue(6),    //  Satz4
+                    Ergebniss,  //  Ergebnis
+                    _dataReader.GetValue(7),    //  SchiessArtenID                    
+                    _dataReader.GetValue(8),    //  Info
                 });
             }
             CloseConections();
+            foreach (DataRow row in dt.Rows)
+            {
+                int i = 0;
+                foreach (var item in row.ItemArray)
+                {
+                    if (i == 8)
+                    {
+                        string test = getSchiessArtByID(Convert.ToInt32(item));
+                        row[8] = test;
+                        break;
+                    }
+                    i++;
+                }
+            }
             return dt;
         }
         public DataTable GetErgebnisse(int ID, string vonDatum)

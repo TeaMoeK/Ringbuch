@@ -337,11 +337,11 @@ namespace Ringbuch
                 _command.CommandText = CreateUpdateStatement(
                     "Ergebnisse",
                     "Datum = '" + dt.Rows[0]["Datum"] + "', " +
-                    "\"Satz 1\" = '" + dt.Rows[0]["Satz 1"] + "', " +
-                    "\"Satz 2\" = '" + dt.Rows[0]["Satz 2"] + "', " +
-                    "\"Satz 3\" = '" + dt.Rows[0]["Satz 3"] + "', " +
-                    "\"Satz 4\" = '" + dt.Rows[0]["Satz 4"] + "', " +
-                    "Art = '" + dt.Rows[0]["Art"] + "', " +
+                    "\"Satz1\" = '" + dt.Rows[0]["Satz1"] + "', " +
+                    "\"Satz2\" = '" + dt.Rows[0]["Satz2"] + "', " +
+                    "\"Satz3\" = '" + dt.Rows[0]["Satz3"] + "', " +
+                    "\"Satz4\" = '" + dt.Rows[0]["Satz4"] + "', " +
+                    "SchiessArtenID = '" + dt.Rows[0]["Art"] + "', " +
                     "Info = '" + dt.Rows[0]["Info"] + "'",
                     "rowid", dt.Rows[0]["ErgebnisID"].ToString());
                 _command.ExecuteNonQuery();
@@ -361,15 +361,15 @@ namespace Ringbuch
                 _command = new SQLiteCommand(_con);
                 _command.CommandText = CreateInsertIntoStatement(
                     "Ergebnisse",
-                    "NamenID, Datum, \"Satz 1\", \"Satz 2\", \"Satz 3\", \"Satz 4\", Art, Info",
+                    "NamenID, Datum, \"Satz1\", \"Satz2\", \"Satz3\", \"Satz4\", SchiessArtenID, Info",
                     "'" +
                     dt.Rows[0]["NamenID"] + "', '" +
                     dt.Rows[0]["Datum"] + "', '" +
-                    dt.Rows[0]["Satz 1"] + "', '" +
-                    dt.Rows[0]["Satz 2"] + "', '" +
-                    dt.Rows[0]["Satz 3"] + "', '" +
-                    dt.Rows[0]["Satz 4"] + "', '" +
-                    dt.Rows[0]["Art"] + "', '" +
+                    dt.Rows[0]["Satz1"] + "', '" +
+                    dt.Rows[0]["Satz2"] + "', '" +
+                    dt.Rows[0]["Satz3"] + "', '" +
+                    dt.Rows[0]["Satz4"] + "', '" +
+                    dt.Rows[0]["SchiessArtenID"] + "', '" +
                     dt.Rows[0]["Info"] + "'"
                     );
                 _command.ExecuteNonQuery();
@@ -384,10 +384,10 @@ namespace Ringbuch
         private Boolean CheckErgebnis(DataTable dt)
         {
             List<string> liste = new List<string>();
-            liste.Add("Satz 1");
-            liste.Add("Satz 2");
-            liste.Add("Satz 3");
-            liste.Add("Satz 4");
+            liste.Add("Satz1");
+            liste.Add("Satz2");
+            liste.Add("Satz3");
+            liste.Add("Satz4");
             string errorMessage = "";
             foreach (string satz in liste)
             {

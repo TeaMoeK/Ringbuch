@@ -201,6 +201,7 @@ namespace Ringbuch
             dgvErgebnisse.Columns[0].Visible = false;
             dgvErgebnisse.Columns[1].Visible = false;
             dgvErgebnisse.Columns["IstArchiviert"].Visible = false;
+            dgvErgebnisse.Columns["SchiessArtenID"].HeaderText = "Art";
             dgvErgebnisse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             for (int i = 2; i <= 9; i++)
             {
