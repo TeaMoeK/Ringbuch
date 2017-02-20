@@ -828,7 +828,8 @@ namespace Ringbuch
                     _dataReader.GetValue(11),
                     _dataReader.GetValue(12),
                     _dataReader.GetValue(13),
-                    _dataReader.GetValue(14)
+                    _dataReader.GetValue(14),
+                    _dataReader.GetValue(15)
                 });
       }
       CloseConections();
