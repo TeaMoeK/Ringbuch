@@ -40,8 +40,15 @@ namespace Ringbuch
       _guiInterface.XMLDateiPasswordBearbeitenRequired += GuiInterfaceXMLDateiPasswordBearbeitenRequired;
       _guiInterface.AdminPassword += GuiInterfaceAdminPassword;
       _guiInterface.ErgebnisDeleteRequested += GuiInterfaceErgebnisDeleteRequested;
+      _guiInterface.CreateNewDatabase += GuiInterfaceCreateNewDatabase;
 
     }
+
+    private void GuiInterfaceCreateNewDatabase(object sender, EventArgs e)
+    {
+      throw new NotImplementedException();
+    }
+
     private void GuiInterfaceErgebnisDeleteRequested(object sender, IDEventArgs e)
     {
       _setDaten.DeleteErgebnis(e.ErgebnisID);

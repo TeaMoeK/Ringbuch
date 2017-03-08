@@ -102,6 +102,12 @@ namespace Ringbuch
         MessageBox.Show("Es ist ein Fehler mit der xml-Datei aufgetreten!");
       }
     }
+    public void CreateNewDatabase()
+    {
+      FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+      folderBrowser.ShowDialog();
+
+    }
     public void SetPassword()
     {
       if (PasswortAbfrage())

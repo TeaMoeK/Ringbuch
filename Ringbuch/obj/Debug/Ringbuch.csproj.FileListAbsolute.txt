@@ -55,7 +55,6 @@ J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.csprojResolveAssemblyReference.cache
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.ErgebnisBearbeiten.resources
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.Hauptfenster.resources
-J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.Installer.resources
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.ProfilBearbeiten.resources
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.MyDialog.resources
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.MaterialBearbeiten.resources

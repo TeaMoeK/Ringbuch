@@ -233,9 +233,15 @@ namespace Ringbuch
         XmlNode DatenbankNode = doc.CreateElement("Datenbank");
         doc.AppendChild(DatenbankNode);
         //  Element 'Pfad' erstellen, mit dem Pfad füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
+        if (openFileDialog.FileName.Length > 0)
+        {
         XmlNode PfadNode = doc.CreateElement("Pfad");
         PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
         DatenbankNode.AppendChild(PfadNode);
+        }else
+        {
+          //  Neue, leere Datenbank erzeugen
+        }
         //  Element 'Password' erstellen, mit dem Passwort füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
         MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Admin-Password eingeben.", true);
         myDialog.ShowDialog();
@@ -762,7 +768,8 @@ namespace Ringbuch
           "rowid = " + MaterialIDList[0] + " OR" +
           " rowid = " + MaterialIDList[1] + " OR" +
           " rowid = " + MaterialIDList[2] + " OR" +
-          " rowid = " + MaterialIDList[3], "");
+          " rowid = " + MaterialIDList[3] + " OR" +
+          " rowid = " + MaterialIDList[4], "");
       while (_dataReader.Read())
       {
         dt.Rows.Add(new object[]{
@@ -829,7 +836,8 @@ namespace Ringbuch
                     _dataReader.GetValue(12),
                     _dataReader.GetValue(13),
                     _dataReader.GetValue(14),
-                    _dataReader.GetValue(15)
+                    _dataReader.GetValue(15),
+                    _dataReader.GetValue(16)
                 });
       }
       CloseConections();

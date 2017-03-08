@@ -34,6 +34,10 @@ namespace Ringbuch
       toolTip.ReshowDelay = 500;
       toolTip.ShowAlways = true;
     }
+    enum IDs
+    {
+      Kleinkaliber = 9, Luftgewehr = 10, Handschuh = 11, Jacke = 12, Pistole = 16
+    };
     private void Init()
     {
       InvokeNamesRequested();
@@ -153,10 +157,20 @@ namespace Ringbuch
     private void MaterialRequest(DataGridViewRow selectedRow)
     {
       List<int> MaterialIDListe = new List<int>();
-      for (int i = 9; i <= 12; i++)
+
+      Array EnumValues = Enum.GetValues(typeof(IDs));
+
+      foreach (IDs ID in EnumValues)
       {
-        MaterialIDListe.Add(Convert.ToInt16(selectedRow.Cells[i].Value));
+        int id = (int)ID;
+        var test = Convert.ToInt16(selectedRow.Cells[id].Value);
+        MaterialIDListe.Add(Convert.ToInt16(selectedRow.Cells[id].Value));
       }
+      // Altes Verfahren
+      //for (int i = 9; i <= 12; i++)
+      //{
+      //  MaterialIDListe.Add(Convert.ToInt16(selectedRow.Cells[i].Value));
+      //}
       InvokeMaterialRequested(MaterialIDListe);
     }
 
@@ -175,9 +189,9 @@ namespace Ringbuch
     public void SetNamen(DataTable dt)
     {
       dgvNamen.DataSource = dt;
-      for (int i = 0; i < 16; i++)
+      for (int i = 0; i < 17; i++)
       {
-        if (i < 2 || i > 4 || i == 13)
+        if (i < 2 || i > 4)
         {
           dgvNamen.Columns[i].Visible = false;
         }
@@ -267,7 +281,7 @@ namespace Ringbuch
         DataGridViewRow row = dgvMaterial.Rows[0];
 
 
-        int height = row.Height * 5;
+        int height = row.Height * 6;
         for (int i = 1; i <= 4; i++)
         {
           DataGridViewColumn column = dgvMaterial.Columns[i];
@@ -641,6 +655,7 @@ namespace Ringbuch
     }
 
     public event EventHandler AdminPassword;
+
     private void adminToolStripMenuItem_Click(object sender, EventArgs e)
     {
       InvokeAdminPassword();
@@ -670,10 +685,19 @@ namespace Ringbuch
       }
     }
 
+    public event EventHandler CreateNewDatabase;
+
+    private void InvokeCreateNewDatabase()
+    {
+      EventHandler handler = CreateNewDatabase;
+      if (handler != null)
+      {
+        CreateNewDatabase(this, new EventArgs());
+      }
+    }
     private void installerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Installer install = new Installer();
-      install.ShowDialog();
+
     }
   }
 }
