@@ -173,7 +173,7 @@ namespace DatabaseUpdate
     }
     enum SchiessArten
     {
-      Freihand = 1, Auflage = 2, Liegend = 3, Sitzend = 4, Knieeden = 5, Test = 6
+      Freihand = 1, Auflage = 2, Liegend = 3, Sitzend = 4, Knieeden = 5
     }
 
     public DataTable CreateDataTable(string dbTableName)
