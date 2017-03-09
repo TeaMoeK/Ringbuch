@@ -10,6 +10,7 @@ namespace DatabaseUpdate
   {
     static void Main(string[] args)
     {
+      ArgsController.Start();
     }
   }
 }
