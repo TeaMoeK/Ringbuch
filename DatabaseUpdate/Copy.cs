@@ -31,7 +31,7 @@ namespace DatabaseUpdate
       try
       {
         _conSource = new SQLiteConnection();
-        _conSource.ConnectionString = "Data Source=" + sqliteDatabase;
+        _conSource.ConnectionString = @"Data Source=" + sqliteDatabase;
         _conSource.SetPassword("");
         _conSource.Open();
         _commandSource = new SQLiteCommand(_conSource);
@@ -52,9 +52,9 @@ namespace DatabaseUpdate
       try
       {
         _conTarget = new SQLiteConnection();
-        _conTarget.ConnectionString = "Data Target=" + sqliteDatabase;
+        _conTarget.ConnectionString = @"Data Source=" + sqliteDatabase;
         _conTarget.SetPassword("");
-        //_conTarget.Open();
+        _conTarget.Open();
         _commandTarget = new SQLiteCommand(_conTarget);
         _commandTarget.CommandText = "";
         _commandTarget.ExecuteNonQuery();
