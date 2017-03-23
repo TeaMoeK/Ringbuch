@@ -73,7 +73,13 @@ namespace DatabaseUpdate
     }
     private void Data_Exchange()
     {
-      Ergebnisse_uebertragen();
+      //Ergebnisse_uebertragen();
+      //Personen_uebertragen();
+      //Material_uebertragen();
+      Verschiedenes_uebertragen();
+
+      Console.WriteLine("Der Vorgang wurde abgeschlossen...");
+      Console.ReadKey();
     }
     private void Ergebnisse_uebertragen()
     {
@@ -81,7 +87,7 @@ namespace DatabaseUpdate
       DataTable dt = CreateDataTable("Ergebnisse");
       _dataReaderSource = CreateSelect("Ergebnisse");
 
-      int i = 1;
+      //int i = 1;
       while (_dataReaderSource.Read())
       {
         dt.Rows.Add(new object[]{
@@ -158,6 +164,149 @@ namespace DatabaseUpdate
       Console.ReadKey();
     }
 
+    private void Personen_uebertragen()
+    {
+      DoConnectSource();
+      DataTable dt = CreateDataTable("Personen");
+      _dataReaderSource = CreateSelect("Personen");
+
+      while (_dataReaderSource.Read())
+      {
+        dt.Rows.Add(new object[]{
+                    _dataReaderSource.GetValue(0),    //  AdressID
+                    _dataReaderSource.GetValue(1),    //  Vorname
+                    _dataReaderSource.GetValue(2),    //  Zweitname
+                    _dataReaderSource.GetValue(3),    //  Nachname
+                    _dataReaderSource.GetValue(4),    //  Geburtstag
+                    _dataReaderSource.GetValue(5),    //  Geschlecht
+                    _dataReaderSource.GetValue(6),    //  DarfKK
+                    _dataReaderSource.GetValue(7),    //  DarfLG                  
+                    _dataReaderSource.GetValue(8),    //  KleinkaliberID
+                    _dataReaderSource.GetValue(9),    //  LuftgewehrID
+                    _dataReaderSource.GetValue(10),   //  handschuhID
+                    _dataReaderSource.GetValue(11),   //  JackeID
+                    _dataReaderSource.GetValue(12),   //  Info
+                    _dataReaderSource.GetValue(13),   //  IstKoenig
+                    _dataReaderSource.GetValue(14)    //  IstArchiviert
+                });
+      }
+
+      string insert = string.Empty;
+      foreach (DataRow row in dt.Rows)
+      {
+        for (int z = 0; z < row.ItemArray.Count(); z++)
+        {
+          {
+            if (row[z].ToString().Length == 0)
+            {
+              insert += "' ',";
+            }
+            else
+            {
+              if (row[z].ToString().ToLower() == "true")
+              {
+                insert += "1,";
+              }
+              else if (row[z].ToString().ToLower() == "false")
+              {
+                insert += "0,";
+              }
+              else
+              {
+                insert += "'" + row[z].ToString() + "',";
+              }
+
+            }
+
+          }
+        }
+        insert += "'-1'";
+        CreateInsert("Personen", insert);
+        Console.WriteLine(insert);
+        insert = string.Empty;
+      }
+    }
+    private void Material_uebertragen()
+    {
+      DoConnectSource();
+      DataTable dt = CreateDataTable("Material");
+      _dataReaderSource = CreateSelect("Material");
+
+      while (_dataReaderSource.Read())
+      {
+        dt.Rows.Add(new object[]{
+                    _dataReaderSource.GetValue(0),    //  Gruppe
+                    _dataReaderSource.GetValue(1),    //  Bezeichnung
+                    _dataReaderSource.GetValue(2),    //  Langtext
+                    _dataReaderSource.GetValue(3)     //  Groesse
+
+                });
+      }
+
+      string insert = string.Empty;
+      foreach (DataRow row in dt.Rows)
+      {
+        for (int z = 0; z < row.ItemArray.Count(); z++)
+        {
+          {
+            if (row[z].ToString().Length == 0)
+            {
+              insert += "' ',";
+            }
+            else
+            {
+              insert += "'" + row[z].ToString() + "',";
+            }
+
+          }
+        }
+        if (insert[insert.Length - 1] == ',')
+        {
+          insert = insert.Remove(insert.Length - 1);
+        }
+        CreateInsert("Material", insert);
+        Console.WriteLine(insert);
+        insert = string.Empty;
+      }
+    }
+
+    private void Verschiedenes_uebertragen()
+    {
+      DoConnectSource();
+      DataTable dt = CreateDataTable("Verschiedenes");
+      _dataReaderSource = CreateSelect("Verschiedenes");
+
+      while (_dataReaderSource.Read())
+      {
+        dt.Rows.Add(new object[]{
+                    _dataReaderSource.GetValue(0),    //  Schuetzenfest
+                    _dataReaderSource.GetValue(1),    //  SchiessArten
+                    _dataReaderSource.GetValue(2),    //  Password
+                    _dataReaderSource.GetValue(3)     //  AdminPW
+
+                });
+      }
+
+      string insert = string.Empty;
+      foreach (DataRow row in dt.Rows)
+      {
+        for (int z = 0; z < row.ItemArray.Count(); z++)
+        {
+          insert = "'" + row[0].ToString() + "','" + row[2].ToString() + "'";
+          CreateInsert("Verschiedenes", insert);
+          insert = row[1].ToString();
+          string[] liste = insert.Split(',');
+        }
+        if (insert[insert.Length - 1] == ',')
+        {
+          insert = insert.Remove(insert.Length - 1);
+        }
+        CreateInsert("Verschiedenes", insert);
+        Console.WriteLine(insert);
+        insert = string.Empty;
+      }
+    }
+    //  Datum muss geparsed werden und das Format 'jjjj-mm-dd HH:mm:ss'
     private void CreateInsert(string tabelle, string values)
     {
       DoConnectTarget();
