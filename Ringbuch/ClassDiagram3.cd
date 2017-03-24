@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="Ringbuch.SetDaten" Collapsed="true">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BKAwCAGAgBEACANIQgAEACBCKAAQUIQAAAACgBAAiAk=</HashCode>
+      <FileName>Datenverarbeitung\SetDaten.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ringbuch.GetDaten" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IGAQFAABMIAgAABKLABMBcFCCSAGIJAAIASMEhEAAAA=</HashCode>
+      <FileName>Datenverarbeitung\GetDaten.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ringbuch.Vermittler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MCIAAhAAQiGCIBAASKchEMAiwKCUQCAAJAASAUVAGAA=</HashCode>
+      <FileName>Datenverarbeitung\Vermittler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.21" Collapsed="true" />
+  </Class>
+  <Class Name="Ringbuch.Hauptfenster" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="3.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Ringbuch.Hauptfenster.IDs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Forms\Hauptfenster.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>a8HGBiUIbmOARpAGEqDaBMDWLwsFJYQQ4PcDUJEShBI=</HashCode>
+      <FileName>Forms\Hauptfenster.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.231" />
+  </Class>
+  <Class Name="Ringbuch.ArgsData">
+    <Position X="3.5" Y="2.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAEEAAAAAAAAAACAAAAAACQAAAAQAACACAAAAA=</HashCode>
+      <FileName>Datenverarbeitung\ArgsData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Ringbuch.GuiInterface" Collapsed="true">
+    <Position X="1.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEABAUAIAAAAJAEAiAIAAAEIQABAQQAIAEAEAAAgAA=</HashCode>
+      <FileName>Interfaces\GuiInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
+using System.Globalization;
 
 namespace DatabaseUpdate
 {
@@ -279,7 +280,7 @@ namespace DatabaseUpdate
       while (_dataReaderSource.Read())
       {
         dt.Rows.Add(new object[]{
-                    _dataReaderSource.GetValue(0),    //  Schuetzenfest
+                    _dataReaderSource.GetValue(0),    //  Schuetzenfest (Datum)
                     _dataReaderSource.GetValue(1),    //  SchiessArten
                     _dataReaderSource.GetValue(2),    //  Password
                     _dataReaderSource.GetValue(3)     //  AdminPW
@@ -288,23 +289,27 @@ namespace DatabaseUpdate
       }
 
       string insert = string.Empty;
+      dt.Rows[0][0] = Date(dt.Rows[0][0].ToString());
       foreach (DataRow row in dt.Rows)
       {
-        for (int z = 0; z < row.ItemArray.Count(); z++)
-        {
-          insert = "'" + row[0].ToString() + "','" + row[2].ToString() + "'";
-          CreateInsert("Verschiedenes", insert);
-          insert = row[1].ToString();
-          string[] liste = insert.Split(',');
-        }
-        if (insert[insert.Length - 1] == ',')
-        {
-          insert = insert.Remove(insert.Length - 1);
-        }
+        insert = "'" + row[0].ToString() + "','" + row[2].ToString() + "'";
         CreateInsert("Verschiedenes", insert);
         Console.WriteLine(insert);
-        insert = string.Empty;
+        insert = row[1].ToString();
+        string[] liste = insert.Split(',');
+        foreach (string schiessArt in liste)
+        {
+          insert = "'" + schiessArt + "', 0";
+          CreateInsert("SchiessArten", insert);
+          Console.WriteLine(insert);
+        }
       }
+    }
+
+    private string Date(string dateString)
+    {
+      DateTime dt = DateTime.Parse(dateString);
+      return dt.ToString("yyyy-MM-dd HH:mm:ss");
     }
     //  Datum muss geparsed werden und das Format 'jjjj-mm-dd HH:mm:ss'
     private void CreateInsert(string tabelle, string values)
