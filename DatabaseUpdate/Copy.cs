@@ -74,6 +74,7 @@ namespace DatabaseUpdate
     }
     private void Data_Exchange()
     {
+      Console.WriteLine("Starte den Kopiervorgang...");
       Ergebnisse_uebertragen();
       Personen_uebertragen();
       Material_uebertragen();
@@ -86,6 +87,7 @@ namespace DatabaseUpdate
 
     private void Ergebnisse_uebertragen()
     {
+      Console.WriteLine("Ergebnisse ewrden übertragen...");
       DoConnectSource();
       DataTable dt = CreateDataTable("Ergebnisse");
       _dataReaderSource = CreateSelect("Ergebnisse");
@@ -164,11 +166,12 @@ namespace DatabaseUpdate
         Console.WriteLine(insert);
         insert = string.Empty;
       }
-      Console.ReadKey();
+      Console.WriteLine("Ergebnisse übertragen abgeschlossen.");
     }
 
     private void Personen_uebertragen()
     {
+      Console.WriteLine("Personen werden übertragen...");
       DoConnectSource();
       DataTable dt = CreateDataTable("Personen");
       _dataReaderSource = CreateSelect("Personen");
@@ -228,9 +231,11 @@ namespace DatabaseUpdate
         Console.WriteLine(insert);
         insert = string.Empty;
       }
+      Console.WriteLine("Personen übertragen abgeschlossen.");
     }
     private void Material_uebertragen()
     {
+      Console.WriteLine("Material wird übertragen...");
       DoConnectSource();
       DataTable dt = CreateDataTable("Material");
       _dataReaderSource = CreateSelect("Material");
@@ -271,10 +276,12 @@ namespace DatabaseUpdate
         Console.WriteLine(insert);
         insert = string.Empty;
       }
+      Console.WriteLine("Material wurde übertragen.");
     }
 
     private void Verschiedenes_uebertragen()
     {
+      Console.WriteLine("Verschiedenes wird übertragen...");
       DoConnectSource();
       DataTable dt = CreateDataTable("Verschiedenes");
       _dataReaderSource = CreateSelect("Verschiedenes");
@@ -306,9 +313,11 @@ namespace DatabaseUpdate
           Console.WriteLine(insert);
         }
       }
+      Console.WriteLine("Verschiedenes wurde übertragen.");
     }
     private void Adressen_uebertragen()
     {
+      Console.WriteLine("Adressen werden übertragen...");
       DoConnectSource();
       DataTable dt = CreateDataTable("Adressen");
       _dataReaderSource = CreateSelect("Adressen");
@@ -331,6 +340,7 @@ namespace DatabaseUpdate
         CreateInsert("Adressen", insert);
         Console.WriteLine(insert);
       }
+      Console.WriteLine("Adressen wurden übertragen.");
     }
     private string Date(string dateString)
     {
@@ -358,11 +368,9 @@ namespace DatabaseUpdate
 
     public DataTable CreateDataTable(string dbTableName)
     {
-      //DoConnect(true);
       DataTable dt = new DataTable();
       _commandSource = new SQLiteCommand(_conSource);
       _commandSource.CommandText = "PRAGMA table_info(" + dbTableName + ")";
-      //SQLiteDataAdapter adapter = new SQLiteDataAdapter(_command);
       _dataReaderSource = _commandSource.ExecuteReader();
       int i = 0;
 
