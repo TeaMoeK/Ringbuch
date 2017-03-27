@@ -74,14 +74,16 @@ namespace DatabaseUpdate
     }
     private void Data_Exchange()
     {
-      //Ergebnisse_uebertragen();
-      //Personen_uebertragen();
-      //Material_uebertragen();
+      Ergebnisse_uebertragen();
+      Personen_uebertragen();
+      Material_uebertragen();
       Verschiedenes_uebertragen();
+      Adressen_uebertragen();
 
       Console.WriteLine("Der Vorgang wurde abgeschlossen...");
       Console.ReadKey();
     }
+
     private void Ergebnisse_uebertragen()
     {
       DoConnectSource();
@@ -305,7 +307,31 @@ namespace DatabaseUpdate
         }
       }
     }
+    private void Adressen_uebertragen()
+    {
+      DoConnectSource();
+      DataTable dt = CreateDataTable("Adressen");
+      _dataReaderSource = CreateSelect("Adressen");
 
+      while (_dataReaderSource.Read())
+      {
+        dt.Rows.Add(new object[]{
+                    _dataReaderSource.GetValue(0),    //  Strasse
+                    _dataReaderSource.GetValue(1),    //  Stadt
+                    _dataReaderSource.GetValue(2),    //  Land
+                    _dataReaderSource.GetValue(3)     //  PLZ
+
+                });
+      }
+
+      string insert = string.Empty;
+      foreach (DataRow row in dt.Rows)
+      {
+        insert = "'" + row[0].ToString() + "','" + row[1].ToString() + "', '" + row[2].ToString() + "','" + row[3].ToString() + "'";
+        CreateInsert("Adressen", insert);
+        Console.WriteLine(insert);
+      }
+    }
     private string Date(string dateString)
     {
       DateTime dt = DateTime.Parse(dateString);
