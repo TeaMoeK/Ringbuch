@@ -226,59 +226,97 @@ namespace Ringbuch
         _dataReader.Close();
       }
     }
-    public void SetSchiessartenDelete(string schiessart)
+    public void SetSchiessartenDelete(int schiessartID)
     {
       if (PasswortAbfrage())
       {
-        if (MessageBox.Show("Soll der Eintrag '" + schiessart + "' wirklich gelöscht werden?", "Schiessart löschen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        if (MessageBox.Show("Soll der Eintrag wirklich gelöscht werden?", "Schiessart löschen", MessageBoxButtons.YesNo) == DialogResult.Yes)
         {
-          List<string> alteScheissarten = _getDaten.getSchiessArten();
-          alteScheissarten.Remove(schiessart);
-
-          string schiessarten = "";
-
-          foreach (string item in alteScheissarten)
+          DoConnect();
+          _command = new SQLiteCommand(_con);
+          _command.CommandText = CreateSelectStatement("Ergebnisse", "SchiessArtenID", schiessartID.ToString());
+          _dataReader = _command.ExecuteReader();
+          if (!_dataReader.HasRows)
           {
-            schiessarten += item.Replace(" ", "") + ",";
+            MessageBox.Show("Es wurden Abhängigkeiten gefunden. Der Eintrag kann nicht archiviert werden.");
+            writeLog("Es wurden Abhängigkeiten gefunden. Die SchiessArt mit der ID " + schiessartID + " kann nicht archiviert werden.");
           }
-          schiessarten = schiessarten.Remove(schiessarten.Length - 1, 1);
-          schiessartenUpdate(schiessarten, true);
-          writeLog("Die Schießart " + schiessart + " wurde gelöscht.");
+          else
+          {
+            _command = new SQLiteCommand(_con);
+            _command.CommandText = CreateArchivStatement("SchiessArten", schiessartID.ToString());
+            _dataReader = _command.ExecuteReader();
+            if (!StatementSuccessful(_dataReader, true))
+            {
+              writeLog("Die SchiessArt mit der ID " + schiessartID + " konnte nicht archiviert werden.");
+            }
+            else
+            {
+              writeLog("Die Schießart mit der ID " + schiessartID + " wurde archiviert.");
+            }
+          }
         }
       }
     }
+    //  Alte Methode
+    //public void SetSchiessartenNeu(string schiessart)
+    //{
+    //  List<string> neueSchiessarten = schiessart.Split(',').ToList();
+    //  List<string> alteScheissarten = _getDaten.getSchiessArten();
+    //  List<string> newList = new List<string>(neueSchiessarten.Count + alteScheissarten.Count);
+    //  newList.AddRange(neueSchiessarten);
+    //  newList.AddRange(alteScheissarten);
+
+    //  string schiessarten = "";
+
+    //  foreach (string item in newList)
+    //  {
+    //    if (item.Trim() != "")
+    //    {
+    //      schiessarten += item.Replace(" ", "") + ",";
+    //    }
+    //  }
+    //  schiessarten = schiessarten.Remove(schiessarten.Length - 1, 1);
+    //  schiessartenUpdate(schiessarten, false);
+    //}
+
     public void SetSchiessartenNeu(string schiessart)
     {
       List<string> neueSchiessarten = schiessart.Split(',').ToList();
-      List<string> alteScheissarten = _getDaten.getSchiessArten();
-      List<string> newList = new List<string>(neueSchiessarten.Count + alteScheissarten.Count);
-      newList.AddRange(neueSchiessarten);
-      newList.AddRange(alteScheissarten);
 
-      string schiessarten = "";
-
-      foreach (string item in newList)
+      foreach (string item in neueSchiessarten)
       {
-        if (item.Trim() != "")
-        {
-          schiessarten += item.Replace(" ", "") + ",";
-        }
+        schiessartenInsert(item);
       }
-      schiessarten = schiessarten.Remove(schiessarten.Length - 1, 1);
-      schiessartenUpdate(schiessarten, false);
-
     }
-    private void schiessartenUpdate(string schiessarten, bool delete)
+
+    private void schiessartenInsert(string schiessart)
     {
       DoConnect();
       _command = new SQLiteCommand(_con);
-      _command.CommandText = CreateUpdateStatement("Verschiedenes", "SchiessArten", schiessarten);
+      _command.CommandText = CreateInsertIntoStatement("SchiessArten", "SchiessArt, IstArchiviert", schiessart + ", 0");
       _dataReader = _command.ExecuteReader();
-      if (!StatementSuccessful(_dataReader, delete))
+      if (!StatementSuccessful(_dataReader, false))
       {
         writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
       }
       CloseConnections();
+    }
+    private void schiessartenDelete(string schiessart)
+    {
+      DoConnect();
+      _command = new SQLiteCommand(_con);
+      _command.CommandText = CreateDeleteStatement("", -1);
+      _dataReader = _command.ExecuteReader();
+      if (!StatementSuccessful(_dataReader, true))
+      {
+        writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+      }
+      CloseConnections();
+    }
+    private void schiessartenUpdate(string schiessarten, bool delete)
+    {
+      throw new NotImplementedException();
     }
 
     public void SetSchFest(DateTime dt)
@@ -776,6 +814,14 @@ namespace Ringbuch
       {
         return "DELETE FROM " + dbTable + " WHERE rowid = " + dbRowid;
       }
+    }
+    private string CreateSelectStatement(string dbTable, string dbColumn, string dbValue)
+    {
+      return "SELECT * FROM " + dbTable + " WHERE " + dbColumn + " = '" + dbValue + "'";
+    }
+    private string CreateArchivStatement(string dbTable, string dbRowid)
+    {
+      return "UPDATE " + dbTable + " SET 'IstArchiviert' = 1 WHERE rowid = " + dbRowid;
     }
   }
 }

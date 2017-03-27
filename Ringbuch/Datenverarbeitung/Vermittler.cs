@@ -284,9 +284,9 @@ namespace Ringbuch
       _ergebnisBearbeitenInterface.SchiessartDeleteRequested += ErgebnisBearbeitenInterfaceSchiessartDeleteRequested;
     }
     //  Schiessart  >>>>
-    private void ErgebnisBearbeitenInterfaceSchiessartDeleteRequested(object sender, StringEventArgs e)
+    private void ErgebnisBearbeitenInterfaceSchiessartDeleteRequested(object sender, IDEventArgs e)
     {
-      _setDaten.SetSchiessartenDelete(e.value);
+      _setDaten.SetSchiessartenDelete(e.SchiessartID);
     }
     private void ErgebnisBearbeitenInterfaceSchiessartCreateRequired(object sender, StringEventArgs e)
     {

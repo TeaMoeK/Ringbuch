@@ -10,6 +10,7 @@
     private int _JackeID;
     private int _ergebnisID;
     private int _materialID;
+    private int _schiessartID;
     /// <summary>
     /// IDEventArgs
     /// </summary>
@@ -42,6 +43,9 @@
           break;
         case "material":
           _materialID = ID;
+          break;
+        case "schiessart":
+          _schiessartID = ID;
           break;
       }
     }
@@ -105,6 +109,13 @@
       get
       {
         return _materialID;
+      }
+    }
+    public int SchiessartID
+    {
+      get
+      {
+        return _schiessartID;
       }
     }
   }
