@@ -109,6 +109,7 @@ namespace DatabaseUpdate
       }
 
       string insert = string.Empty;
+      int currentRow = 0;
       foreach (DataRow row in dt.Rows)
       {
         for (int z = 0; z < row.ItemArray.Count(); z++)
@@ -149,6 +150,10 @@ namespace DatabaseUpdate
               z++;
             }
           }
+          else if (z == 1)
+          {
+            insert += "'" + Date(dt.Rows[currentRow][z].ToString()) + "',";
+          }
           else
           {
             if (row[z].ToString().Length == 0)
@@ -165,6 +170,7 @@ namespace DatabaseUpdate
         CreateInsert("Ergebnisse", insert);
         Console.WriteLine(insert);
         insert = string.Empty;
+        currentRow++;
       }
       Console.WriteLine("Ergebnisse übertragen abgeschlossen.");
     }
@@ -198,6 +204,7 @@ namespace DatabaseUpdate
       }
 
       string insert = string.Empty;
+      int currentRow = 0;
       foreach (DataRow row in dt.Rows)
       {
         for (int z = 0; z < row.ItemArray.Count(); z++)
@@ -217,6 +224,10 @@ namespace DatabaseUpdate
               {
                 insert += "0,";
               }
+              else if (z == 4)
+              {
+                insert += "'" + Date(dt.Rows[currentRow][z].ToString()) + "',";
+              }
               else
               {
                 insert += "'" + row[z].ToString() + "',";
@@ -230,6 +241,7 @@ namespace DatabaseUpdate
         CreateInsert("Personen", insert);
         Console.WriteLine(insert);
         insert = string.Empty;
+        currentRow++;
       }
       Console.WriteLine("Personen übertragen abgeschlossen.");
     }
