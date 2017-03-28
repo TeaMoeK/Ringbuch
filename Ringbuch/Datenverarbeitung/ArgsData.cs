@@ -11,10 +11,9 @@ namespace Ringbuch
         private static string _aes_key = "TimoistDerCoolsteDerCoolenDigger";  //32
         private static string _aes_iv = "EineKetteVonkeys";   //16
         private static string _cleardbpw;
-        private static string _updateDatabase;  //Noch inactiv
 
         public const string PARAM_CLEAR_DB_PW = "-cleardbpw";
-        public const string PARAM_UPDATE_DATABASE = "-updatedatabase";  //Noch inactiv
+
         internal static string Aes_key
         {
             get

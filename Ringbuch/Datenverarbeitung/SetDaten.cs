@@ -172,11 +172,6 @@ namespace Ringbuch
     /// <returns></returns>
     private Boolean PasswortAbfrage()
     {
-      //if (Debugger.IsAttached && !_isAdmin)
-      //{
-      //    MessageBox.Show("Ist Admin: " + _isAdmin);
-      //}
-
       if (!_isAdmin)
       {
         _myDialog = new MyDialog(true, "Password", "Für diese Aktion ist ein Passwort erforderlich");
@@ -236,7 +231,7 @@ namespace Ringbuch
           _command = new SQLiteCommand(_con);
           _command.CommandText = CreateSelectStatement("Ergebnisse", "SchiessArtenID", schiessartID.ToString());
           _dataReader = _command.ExecuteReader();
-          if (!_dataReader.HasRows)
+          if (_dataReader.HasRows)
           {
             MessageBox.Show("Es wurden Abhängigkeiten gefunden. Der Eintrag kann nicht archiviert werden.");
             writeLog("Es wurden Abhängigkeiten gefunden. Die SchiessArt mit der ID " + schiessartID + " kann nicht archiviert werden.");
@@ -286,7 +281,7 @@ namespace Ringbuch
 
       foreach (string item in neueSchiessarten)
       {
-        schiessartenInsert(item);
+        schiessartenInsert(item.Trim());
       }
     }
 
@@ -294,7 +289,7 @@ namespace Ringbuch
     {
       DoConnect();
       _command = new SQLiteCommand(_con);
-      _command.CommandText = CreateInsertIntoStatement("SchiessArten", "SchiessArt, IstArchiviert", schiessart + ", 0");
+      _command.CommandText = CreateInsertIntoStatement("SchiessArten", "SchiessArt, IstArchiviert", "'" + schiessart + "', 0");
       _dataReader = _command.ExecuteReader();
       if (!StatementSuccessful(_dataReader, false))
       {
@@ -302,19 +297,20 @@ namespace Ringbuch
       }
       CloseConnections();
     }
-    private void schiessartenDelete(string schiessart)
-    {
-      DoConnect();
-      _command = new SQLiteCommand(_con);
-      _command.CommandText = CreateDeleteStatement("", -1);
-      _dataReader = _command.ExecuteReader();
-      if (!StatementSuccessful(_dataReader, true))
-      {
-        writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-      }
-      CloseConnections();
-    }
-    private void schiessartenUpdate(string schiessarten, bool delete)
+    //  Alte Delete Methode
+    //private void schiessartenDelete(string schiessart)
+    //{
+    //  DoConnect();
+    //  _command = new SQLiteCommand(_con);
+    //  _command.CommandText = CreateDeleteStatement("", -1);
+    //  _dataReader = _command.ExecuteReader();
+    //  if (!StatementSuccessful(_dataReader, true))
+    //  {
+    //    writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+    //  }
+    //  CloseConnections();
+    //}
+    private void schiessartenUpdate(int schiessartenID)
     {
       throw new NotImplementedException();
     }

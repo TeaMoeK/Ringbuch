@@ -305,7 +305,7 @@ namespace Ringbuch
     {
       if (_dataReader != null)
       {
-        _dataReader.Close();
+        _dataReader.Close();        
       }
     }
 
@@ -458,7 +458,6 @@ namespace Ringbuch
 
       while (_dataReader.Read())
       {
-        //string test = getSchiessArt(Convert.ToInt32(_dataReader.GetValue(5)));
         liste.Add(_dataReader.GetValue(0).ToString());
         liste.Add(_dataReader.GetValue(1).ToString());
         liste.Add(_dataReader.GetValue(2).ToString());
@@ -523,7 +522,6 @@ namespace Ringbuch
       _command = new SQLiteCommand(_con);
       DataTable dt = CreateDataTable("SchiessArten");
       dt.Columns.Add("Anzeige");
-      //_dataReader = CreateSelectStatement("rowid, *", "Material", "Gruppe = 'Handschuhe' AND Bezeichnung != 'ignore'", "");
       _dataReader = CreateSelectStatement("SchiessArten");
 
       while (_dataReader.Read())
@@ -975,7 +973,7 @@ namespace Ringbuch
     /// <returns></returns>
     private SQLiteDataReader CreateSelectStatement(string dbTableName)
     {
-      if (dbTableName.ToLower() == "personen" || dbTableName.ToLower() == "ergebnisse")
+      if (dbTableName.ToLower() == "personen" || dbTableName.ToLower() == "ergebnisse" || dbTableName.ToLower() == "schiessarten")
       {
         _command.CommandText = "SELECT rowid, * FROM " + dbTableName + " WHERE IstArchiviert = 0";
       }

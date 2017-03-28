@@ -293,7 +293,12 @@ namespace Ringbuch
       _setDaten.SetSchiessartenNeu(e.value);
     }
     //  Schiessart  <<<<
-    //  Create, Update, Delete  >>>>
+    //  Get, Create, Update, Delete  >>>>
+    private void ErgebnisBearbeitenInterfaceArtRequest(object sender, EventArgs e)
+    {
+      _ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArtenDt());
+      //_ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArten());
+    }
     private void ErgebnisBearbeitenInterfaceErgebnisDeleteRequested(object sender, IDEventArgs e)
     {
       _setDaten.DeleteErgebnis(e.ErgebnisID);
@@ -316,11 +321,7 @@ namespace Ringbuch
     {
       _ergebnisBearbeitenInterface.SetName(_getDaten.getName(e.NamenID));
     }
-    private void ErgebnisBearbeitenInterfaceArtRequest(object sender, EventArgs e)
-    {
-      _ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArtenDt());
-      //_ergebnisBearbeitenInterface.SetSchiessArten(_getDaten.getSchiessArten());
-    }
+
 
     /// <summary>
     /// Material Bearbeiten

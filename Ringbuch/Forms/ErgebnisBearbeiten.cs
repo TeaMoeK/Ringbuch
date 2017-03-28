@@ -189,7 +189,7 @@ namespace Ringbuch
     }
     private void schiessartenLoad()
     {
-      comboArt.Items.Clear();
+      //comboArt.Items.Clear();
       InvokeArtRequested();
     }
     private void schiessartDelete(object sender, EventArgs e)
