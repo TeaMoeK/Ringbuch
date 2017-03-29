@@ -38,16 +38,17 @@ namespace Ringbuch
     }
     private void DoConnect()
     {
+
       try
       {
         getDatabasePath();
         _con = new SQLiteConnection();
         _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-        _con.SetPassword(_getDaten.DatabasePW);
+        _con.SetPassword(_getDaten.DatabasePW);        
         _con.Open();
-        _command = new SQLiteCommand(_con);
-        _command.CommandText = "";
-        _command.ExecuteNonQuery();
+        //_command = new SQLiteCommand(_con);
+        //_command.CommandText = "SELECT * FROM Personen";
+        //_command.ExecuteNonQuery();
       }
       catch (Exception ex)
       {
@@ -218,7 +219,9 @@ namespace Ringbuch
     {
       if (_dataReader != null)
       {
-        _dataReader.Close();
+        _command.Dispose();
+        _con.Close();
+        //_dataReader.Close();
       }
     }
     public void SetSchiessartenDelete(int schiessartID)
@@ -251,6 +254,7 @@ namespace Ringbuch
             }
           }
         }
+        CloseConnections();
       }
     }
     //  Alte Methode
@@ -384,27 +388,29 @@ namespace Ringbuch
             "SchiessArtenID = '" + dt.Rows[0]["SchiessArtenID"] + "', " +
             "Info = '" + dt.Rows[0]["Info"] + "'",
             "rowid", dt.Rows[0]["ErgebnisID"].ToString());
-
         try
-        {
+        {          
           _dataReader = _command.ExecuteReader();
+          if (!StatementSuccessful(_dataReader, false))
+          {
+            writeLog("Das Update des Ergebnisses mit der ID: " + dt.Rows[0]["ErgebnisID"].ToString() + " war nicht erfolgreicht.");
+            CloseConnections();
+            return false;
+          }
+          else
+          {
+            writeLog("Das Ergebnisses mit der ID: " + dt.Rows[0]["ErgebnisID"].ToString() + " wurde bearbeitet.");
+            CloseConnections();
+            return true;
+          }
         }
         catch (Exception ex)
         {
           MessageBox.Show("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten.");
           writeLog("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten: " + ex.Message.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
+          CloseConnections();
+          return false;
         }
-
-        if (!StatementSuccessful(_dataReader, false))
-        {
-          writeLog("Das Update des Ergebnisses mit der ID: " + dt.Rows[0]["ErgebnisID"].ToString() + " war nicht erfolgreicht.");
-        }
-        else
-        {
-          writeLog("Das Ergebnisses mit der ID: " + dt.Rows[0]["ErgebnisID"].ToString() + " wurde bearbeitet.");
-        }
-        CloseConnections();
-        return true;
       }
       else
       {
@@ -488,6 +494,7 @@ namespace Ringbuch
         }
         if (CheckGeburtstag(Convert.ToDateTime(dt.Rows[0]["Geburtstag"].ToString()), MethodInfo.GetCurrentMethod().Name))
         {
+          CloseConnections();
           DoConnect();
           _command = new SQLiteCommand(_con);
           _command.CommandText = CreateUpdateStatement(
@@ -508,24 +515,25 @@ namespace Ringbuch
               "Info = \"" + dt.Rows[0]["Info"] + "\"",
               "rowid",
               dt.Rows[0]["rowid"].ToString());
+
           try
           {
             _dataReader = _command.ExecuteReader();
+            CloseConnections();
+            if (!StatementSuccessful(_dataReader, false))
+            {
+              writeLog("Der Eintrag konnte nicht geändert werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
+              return false;
+            }
+            writeLog("Das Profil mit der ID" + dt.Rows[0]["rowid"] + " wurde bearbeitet");
+            return true;
           }
           catch (Exception ex)
           {
             MessageBox.Show("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten.");
             writeLog("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten: " + ex.Message.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
+            CloseConnections();
           }
-
-          CloseConnections();
-          if (!StatementSuccessful(_dataReader, false))
-          {
-            writeLog("Der Eintrag konnte nicht geändert werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
-            return false;
-          }
-          writeLog("Das Profil mit der ID" + dt.Rows[0]["rowid"] + " wurde bearbeitet");
-          return true;
         }
       }
       return false;

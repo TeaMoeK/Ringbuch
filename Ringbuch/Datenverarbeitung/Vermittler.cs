@@ -370,6 +370,10 @@ namespace Ringbuch
         case "Luftgewehr":
           _materialBearbeitenInterface.SetLGAll(_getDaten.getMaterialByGruppe(e.value));
           break;
+
+        case "Pistole":
+          _materialBearbeitenInterface.SetPistoleAll(_getDaten.getMaterialByGruppe(e.value));
+          break;
       }
     }
 

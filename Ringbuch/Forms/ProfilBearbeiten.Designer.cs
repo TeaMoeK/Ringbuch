@@ -54,11 +54,11 @@
       this.chkDarfLG = new System.Windows.Forms.CheckBox();
       this.chkDarfKK = new System.Windows.Forms.CheckBox();
       this.chkIstKoenig = new System.Windows.Forms.CheckBox();
-      this.txtAdresse = new System.Windows.Forms.TextBox();
-      this.btnAdresseBearbeiten = new System.Windows.Forms.Button();
+      this.btnAdresseAnzeigen = new System.Windows.Forms.Button();
       this.groupAdresse = new System.Windows.Forms.GroupBox();
       this.label11 = new System.Windows.Forms.Label();
       this.comboPistole = new System.Windows.Forms.ComboBox();
+      this.btnAdresseBearbeiten = new System.Windows.Forms.Button();
       this.groupAdresse.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -153,7 +153,7 @@
       // 
       this.comboHandschuhe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboHandschuhe.FormattingEnabled = true;
-      this.comboHandschuhe.Location = new System.Drawing.Point(350, 25);
+      this.comboHandschuhe.Location = new System.Drawing.Point(297, 182);
       this.comboHandschuhe.Name = "comboHandschuhe";
       this.comboHandschuhe.Size = new System.Drawing.Size(121, 21);
       this.comboHandschuhe.TabIndex = 6;
@@ -162,7 +162,7 @@
       // 
       this.comboJacken.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboJacken.FormattingEnabled = true;
-      this.comboJacken.Location = new System.Drawing.Point(223, 24);
+      this.comboJacken.Location = new System.Drawing.Point(297, 142);
       this.comboJacken.Name = "comboJacken";
       this.comboJacken.Size = new System.Drawing.Size(121, 21);
       this.comboJacken.TabIndex = 7;
@@ -171,7 +171,7 @@
       // 
       this.comboKK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboKK.FormattingEnabled = true;
-      this.comboKK.Location = new System.Drawing.Point(223, 64);
+      this.comboKK.Location = new System.Drawing.Point(297, 24);
       this.comboKK.Name = "comboKK";
       this.comboKK.Size = new System.Drawing.Size(121, 21);
       this.comboKK.TabIndex = 8;
@@ -180,7 +180,7 @@
       // 
       this.comboLG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboLG.FormattingEnabled = true;
-      this.comboLG.Location = new System.Drawing.Point(350, 64);
+      this.comboLG.Location = new System.Drawing.Point(297, 63);
       this.comboLG.Name = "comboLG";
       this.comboLG.Size = new System.Drawing.Size(121, 21);
       this.comboLG.TabIndex = 9;
@@ -188,7 +188,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(347, 9);
+      this.label6.Location = new System.Drawing.Point(299, 166);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(62, 13);
       this.label6.TabIndex = 23;
@@ -197,7 +197,7 @@
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(220, 8);
+      this.label7.Location = new System.Drawing.Point(299, 126);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(36, 13);
       this.label7.TabIndex = 24;
@@ -206,7 +206,7 @@
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(221, 49);
+      this.label8.Location = new System.Drawing.Point(295, 9);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(61, 13);
       this.label8.TabIndex = 25;
@@ -215,7 +215,7 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(348, 49);
+      this.label9.Location = new System.Drawing.Point(295, 48);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(60, 13);
       this.label9.TabIndex = 26;
@@ -223,7 +223,7 @@
       // 
       // btnOK
       // 
-      this.btnOK.Location = new System.Drawing.Point(12, 322);
+      this.btnOK.Location = new System.Drawing.Point(12, 252);
       this.btnOK.Name = "btnOK";
       this.btnOK.Size = new System.Drawing.Size(75, 23);
       this.btnOK.TabIndex = 14;
@@ -233,7 +233,7 @@
       // 
       // btnCancel
       // 
-      this.btnCancel.Location = new System.Drawing.Point(93, 322);
+      this.btnCancel.Location = new System.Drawing.Point(93, 252);
       this.btnCancel.Name = "btnCancel";
       this.btnCancel.Size = new System.Drawing.Size(75, 23);
       this.btnCancel.TabIndex = 15;
@@ -243,7 +243,7 @@
       // 
       // btnDelete
       // 
-      this.btnDelete.Location = new System.Drawing.Point(174, 322);
+      this.btnDelete.Location = new System.Drawing.Point(174, 252);
       this.btnDelete.Name = "btnDelete";
       this.btnDelete.Size = new System.Drawing.Size(75, 23);
       this.btnDelete.TabIndex = 16;
@@ -256,7 +256,7 @@
       this.txtInfo.Location = new System.Drawing.Point(15, 182);
       this.txtInfo.Multiline = true;
       this.txtInfo.Name = "txtInfo";
-      this.txtInfo.Size = new System.Drawing.Size(234, 49);
+      this.txtInfo.Size = new System.Drawing.Size(206, 49);
       this.txtInfo.TabIndex = 4;
       // 
       // label10
@@ -271,7 +271,7 @@
       // chkDarfLG
       // 
       this.chkDarfLG.AutoSize = true;
-      this.chkDarfLG.Location = new System.Drawing.Point(351, 91);
+      this.chkDarfLG.Location = new System.Drawing.Point(228, 66);
       this.chkDarfLG.Name = "chkDarfLG";
       this.chkDarfLG.Size = new System.Drawing.Size(63, 17);
       this.chkDarfLG.TabIndex = 10;
@@ -281,7 +281,7 @@
       // chkDarfKK
       // 
       this.chkDarfKK.AutoSize = true;
-      this.chkDarfKK.Location = new System.Drawing.Point(223, 91);
+      this.chkDarfKK.Location = new System.Drawing.Point(228, 26);
       this.chkDarfKK.Name = "chkDarfKK";
       this.chkDarfKK.Size = new System.Drawing.Size(63, 17);
       this.chkDarfKK.TabIndex = 11;
@@ -291,37 +291,31 @@
       // chkIstKoenig
       // 
       this.chkIstKoenig.AutoSize = true;
-      this.chkIstKoenig.Location = new System.Drawing.Point(255, 214);
+      this.chkIstKoenig.Location = new System.Drawing.Point(121, 106);
       this.chkIstKoenig.Name = "chkIstKoenig";
       this.chkIstKoenig.Size = new System.Drawing.Size(53, 17);
       this.chkIstKoenig.TabIndex = 12;
       this.chkIstKoenig.Text = "König";
       this.chkIstKoenig.UseVisualStyleBackColor = true;
       // 
-      // txtAdresse
+      // btnAdresseAnzeigen
       // 
-      this.txtAdresse.Location = new System.Drawing.Point(6, 19);
-      this.txtAdresse.Name = "txtAdresse";
-      this.txtAdresse.ReadOnly = true;
-      this.txtAdresse.Size = new System.Drawing.Size(378, 20);
-      this.txtAdresse.TabIndex = 0;
-      // 
-      // btnAdresseBearbeiten
-      // 
-      this.btnAdresseBearbeiten.Location = new System.Drawing.Point(6, 45);
-      this.btnAdresseBearbeiten.Name = "btnAdresseBearbeiten";
-      this.btnAdresseBearbeiten.Size = new System.Drawing.Size(75, 23);
-      this.btnAdresseBearbeiten.TabIndex = 1;
-      this.btnAdresseBearbeiten.Text = "Bearbeiten";
-      this.btnAdresseBearbeiten.UseVisualStyleBackColor = true;
+      this.btnAdresseAnzeigen.Enabled = false;
+      this.btnAdresseAnzeigen.Location = new System.Drawing.Point(6, 19);
+      this.btnAdresseAnzeigen.Name = "btnAdresseAnzeigen";
+      this.btnAdresseAnzeigen.Size = new System.Drawing.Size(75, 23);
+      this.btnAdresseAnzeigen.TabIndex = 1;
+      this.btnAdresseAnzeigen.Text = "Anzeigen";
+      this.btnAdresseAnzeigen.UseVisualStyleBackColor = true;
+      this.btnAdresseAnzeigen.Click += new System.EventHandler(this.btnAdresseAnzeigen_Click);
       // 
       // groupAdresse
       // 
       this.groupAdresse.Controls.Add(this.btnAdresseBearbeiten);
-      this.groupAdresse.Controls.Add(this.txtAdresse);
-      this.groupAdresse.Location = new System.Drawing.Point(15, 237);
+      this.groupAdresse.Controls.Add(this.btnAdresseAnzeigen);
+      this.groupAdresse.Location = new System.Drawing.Point(255, 232);
       this.groupAdresse.Name = "groupAdresse";
-      this.groupAdresse.Size = new System.Drawing.Size(390, 79);
+      this.groupAdresse.Size = new System.Drawing.Size(172, 48);
       this.groupAdresse.TabIndex = 13;
       this.groupAdresse.TabStop = false;
       this.groupAdresse.Text = "Adresse";
@@ -329,7 +323,7 @@
       // label11
       // 
       this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(286, 112);
+      this.label11.Location = new System.Drawing.Point(295, 87);
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(38, 13);
       this.label11.TabIndex = 28;
@@ -339,16 +333,26 @@
       // 
       this.comboPistole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboPistole.FormattingEnabled = true;
-      this.comboPistole.Location = new System.Drawing.Point(288, 127);
+      this.comboPistole.Location = new System.Drawing.Point(297, 102);
       this.comboPistole.Name = "comboPistole";
       this.comboPistole.Size = new System.Drawing.Size(121, 21);
       this.comboPistole.TabIndex = 27;
+      // 
+      // btnAdresseBearbeiten
+      // 
+      this.btnAdresseBearbeiten.Enabled = false;
+      this.btnAdresseBearbeiten.Location = new System.Drawing.Point(91, 19);
+      this.btnAdresseBearbeiten.Name = "btnAdresseBearbeiten";
+      this.btnAdresseBearbeiten.Size = new System.Drawing.Size(75, 23);
+      this.btnAdresseBearbeiten.TabIndex = 2;
+      this.btnAdresseBearbeiten.Text = "Bearbeiten";
+      this.btnAdresseBearbeiten.UseVisualStyleBackColor = true;
       // 
       // ProfilBearbeiten
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(483, 360);
+      this.ClientSize = new System.Drawing.Size(439, 292);
       this.Controls.Add(this.label11);
       this.Controls.Add(this.comboPistole);
       this.Controls.Add(this.groupAdresse);
@@ -385,7 +389,6 @@
       this.Text = "ProfilBearbeiten";
       this.Load += new System.EventHandler(this.ProfilBearbeiten_Load);
       this.groupAdresse.ResumeLayout(false);
-      this.groupAdresse.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -419,10 +422,10 @@
         private System.Windows.Forms.CheckBox chkDarfLG;
         private System.Windows.Forms.CheckBox chkDarfKK;
         private System.Windows.Forms.CheckBox chkIstKoenig;
-        private System.Windows.Forms.TextBox txtAdresse;
-        private System.Windows.Forms.Button btnAdresseBearbeiten;
+        private System.Windows.Forms.Button btnAdresseAnzeigen;
         private System.Windows.Forms.GroupBox groupAdresse;
     private System.Windows.Forms.Label label11;
     private System.Windows.Forms.ComboBox comboPistole;
+    private System.Windows.Forms.Button btnAdresseBearbeiten;
   }
 }

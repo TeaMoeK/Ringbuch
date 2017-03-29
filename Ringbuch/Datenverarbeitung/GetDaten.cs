@@ -21,6 +21,7 @@ namespace Ringbuch
     private SQLiteDataReader _dataReader;
     private SQLiteCommand _command;
 
+
     internal string AdminPW
     {
       get
@@ -71,8 +72,8 @@ namespace Ringbuch
         //_con.SetPassword("hallo");
         _con.Open();
         _command = new SQLiteCommand(_con);
-        _command.CommandText = "Select * From Personen";
-        _command.ExecuteNonQuery();
+        //_command.CommandText = "Select * From Personen";
+        //_command.ExecuteNonQuery();
         //clearPW("");
       }
       catch (Exception ex)
@@ -235,10 +236,11 @@ namespace Ringbuch
         //  Element 'Pfad' erstellen, mit dem Pfad füllen und als 'Unterknoten' dem Node 'Datenbank' hinzufügen
         if (openFileDialog.FileName.Length > 0)
         {
-        XmlNode PfadNode = doc.CreateElement("Pfad");
-        PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
-        DatenbankNode.AppendChild(PfadNode);
-        }else
+          XmlNode PfadNode = doc.CreateElement("Pfad");
+          PfadNode.AppendChild(doc.CreateTextNode(openFileDialog.FileName));
+          DatenbankNode.AppendChild(PfadNode);
+        }
+        else
         {
           //  Neue, leere Datenbank erzeugen
         }
@@ -305,7 +307,8 @@ namespace Ringbuch
     {
       if (_dataReader != null)
       {
-        _dataReader.Close();        
+        _dataReader.Close();
+        _con.Clone();
       }
     }
 
@@ -577,7 +580,6 @@ namespace Ringbuch
     }
     public List<string> getMaterialGruppen()
     {
-
       DoConnect();
       _command = new SQLiteCommand(_con);
       DataTable dt = new DataTable();

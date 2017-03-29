@@ -10,6 +10,7 @@ namespace Ringbuch
     private int _namenID = -1;
     private DataTable _dt;
     private bool _datenOK = false;
+    private string _adresse = string.Empty;
     public ProfilBearbeiten(int namenID)
     {
       _namenID = namenID;
@@ -132,7 +133,7 @@ namespace Ringbuch
 
     public void SetAdresse(string adresse)
     {
-      txtAdresse.Text = adresse;
+      _adresse = adresse;
     }
     public event EventHandler<StringEventArgs> MaterialByGruppeRequested;
     private void InvokeMaterialByGruppeRequested(string gruppe)
@@ -349,6 +350,11 @@ namespace Ringbuch
     private void ProfilBearbeiten_Load(object sender, EventArgs e)
     {
       this.FormBorderStyle = FormBorderStyle.FixedDialog;
+    }
+
+    private void btnAdresseAnzeigen_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }
