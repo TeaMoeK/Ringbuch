@@ -46,9 +46,9 @@ namespace Ringbuch
         _con.ConnectionString = "Data Source=" + _sqliteDatabase;
         _con.SetPassword(_getDaten.DatabasePW);        
         _con.Open();
-        //_command = new SQLiteCommand(_con);
-        //_command.CommandText = "SELECT * FROM Personen";
-        //_command.ExecuteNonQuery();
+        _command = new SQLiteCommand(_con);
+        _command.CommandText = "SELECT * FROM Personen";
+        _command.ExecuteNonQuery();
       }
       catch (Exception ex)
       {
