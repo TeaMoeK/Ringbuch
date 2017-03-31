@@ -38,24 +38,27 @@ namespace Ringbuch
     }
     private void DoConnect()
     {
-
-      try
+      if (_con == null)
       {
-        getDatabasePath();
-        _con = new SQLiteConnection();
-        _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-        _con.SetPassword(_getDaten.DatabasePW);        
-        _con.Open();
-        _command = new SQLiteCommand(_con);
-        _command.CommandText = "SELECT * FROM Personen";
-        _command.ExecuteNonQuery();
+        _con = SqliteCon.Con;
       }
-      catch (Exception ex)
-      {
-        writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-        MessageBox.Show(ex.Message);
-        Environment.Exit(-1);
-      }
+      //try
+      //{
+      //  getDatabasePath();
+      //  _con = new SQLiteConnection();
+      //  _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+      //  _con.SetPassword(_getDaten.DatabasePW);        
+      //  _con.Open();
+      //  _command = new SQLiteCommand(_con);
+      //  _command.CommandText = "SELECT * FROM Personen";
+      //  _command.ExecuteNonQuery();
+      //}
+      //catch (Exception ex)
+      //{
+      //  writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+      //  MessageBox.Show(ex.Message);
+      //  Environment.Exit(-1);
+      //}
     }
     public void ClearDBPW(string pw)
     {
@@ -130,7 +133,7 @@ namespace Ringbuch
       _command.CommandText = CreateUpdateStatement("Verschiedenes", "Password", password);
       _dataReader = _command.ExecuteReader();
       StatementSuccessful(_dataReader, false);
-      CloseConnections();
+
     }
     public void SetDatabase()
     {
@@ -215,15 +218,6 @@ namespace Ringbuch
         return _isAdmin;
       }
     }
-    private void CloseConnections()
-    {
-      if (_dataReader != null)
-      {
-        _command.Dispose();
-        _con.Close();
-        //_dataReader.Close();
-      }
-    }
     public void SetSchiessartenDelete(int schiessartID)
     {
       if (PasswortAbfrage())
@@ -254,7 +248,7 @@ namespace Ringbuch
             }
           }
         }
-        CloseConnections();
+
       }
     }
     //  Alte Methode
@@ -299,7 +293,7 @@ namespace Ringbuch
       {
         writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
       }
-      CloseConnections();
+
     }
     //  Alte Delete Methode
     //private void schiessartenDelete(string schiessart)
@@ -312,7 +306,7 @@ namespace Ringbuch
     //  {
     //    writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + " Methode: " + MethodBase.GetCurrentMethod().ToString());
     //  }
-    //  CloseConnections();
+    //  
     //}
     private void schiessartenUpdate(int schiessartenID)
     {
@@ -346,7 +340,7 @@ namespace Ringbuch
         {
           writeLog("Das Datum des Schützenfestes wurde auf den " + dt.ToString("yyy-MM-dd") + " gesetzt.");
         }
-        CloseConnections();
+
       }
     }
     public void DeleteErgebnis(int id)
@@ -368,7 +362,7 @@ namespace Ringbuch
           {
             writeLog("Das Ergebnisses mit der ID: " + id + " wurde gelöscht.");
           }
-          CloseConnections();
+
         }
       }
     }
@@ -389,18 +383,18 @@ namespace Ringbuch
             "Info = '" + dt.Rows[0]["Info"] + "'",
             "rowid", dt.Rows[0]["ErgebnisID"].ToString());
         try
-        {          
+        {
           _dataReader = _command.ExecuteReader();
           if (!StatementSuccessful(_dataReader, false))
           {
             writeLog("Das Update des Ergebnisses mit der ID: " + dt.Rows[0]["ErgebnisID"].ToString() + " war nicht erfolgreicht.");
-            CloseConnections();
+
             return false;
           }
           else
           {
             writeLog("Das Ergebnisses mit der ID: " + dt.Rows[0]["ErgebnisID"].ToString() + " wurde bearbeitet.");
-            CloseConnections();
+
             return true;
           }
         }
@@ -408,7 +402,7 @@ namespace Ringbuch
         {
           MessageBox.Show("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten.");
           writeLog("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten: " + ex.Message.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
-          CloseConnections();
+
           return false;
         }
       }
@@ -437,7 +431,7 @@ namespace Ringbuch
             dt.Rows[0]["Info"] + "'"
             );
         _command.ExecuteNonQuery();
-        CloseConnections();
+
         return true;
       }
       else
@@ -494,7 +488,7 @@ namespace Ringbuch
         }
         if (CheckGeburtstag(Convert.ToDateTime(dt.Rows[0]["Geburtstag"].ToString()), MethodInfo.GetCurrentMethod().Name))
         {
-          CloseConnections();
+
           DoConnect();
           _command = new SQLiteCommand(_con);
           _command.CommandText = CreateUpdateStatement(
@@ -519,7 +513,7 @@ namespace Ringbuch
           try
           {
             _dataReader = _command.ExecuteReader();
-            CloseConnections();
+
             if (!StatementSuccessful(_dataReader, false))
             {
               writeLog("Der Eintrag konnte nicht geändert werden. Methode: " + MethodBase.GetCurrentMethod().ToString());
@@ -532,7 +526,7 @@ namespace Ringbuch
           {
             MessageBox.Show("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten.");
             writeLog("Es ist ein Fehler beim Beschreiben der Datenbank aufgetreten: " + ex.Message.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
-            CloseConnections();
+
           }
         }
       }
@@ -567,7 +561,7 @@ namespace Ringbuch
               "'0'"   //  IstArchiviert
               );
           _dataReader = _command.ExecuteReader();
-          CloseConnections();
+
           if (!StatementSuccessful(_dataReader, false))
           {
             writeLog("Statement war nicht erfolgreich. Methode: SetProfilNeu(DataTable dt) Statement: " + _command.CommandText.ToString());
@@ -621,7 +615,7 @@ namespace Ringbuch
           {
             writeLog("Das Profil mit der ID:" + ID + " wurde archiviert");
           }
-          CloseConnections();
+
         }
       }
     }
@@ -705,7 +699,7 @@ namespace Ringbuch
           {
             writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
           }
-          CloseConnections();
+
         }
         else
         {
@@ -734,7 +728,7 @@ namespace Ringbuch
           {
             writeLog("Statement war nicht erfolgreich. Statement: " + _command.CommandText.ToString() + "Methode: " + MethodBase.GetCurrentMethod().ToString());
           }
-          CloseConnections();
+
         }
       }
     }
@@ -758,7 +752,7 @@ namespace Ringbuch
             {
               writeLog("Es wurde ein Materialeintrag gelöscht." + Environment.NewLine + "Statement: " + _command.CommandText.ToString());
             }
-            CloseConnections();
+
           }
           else
           {

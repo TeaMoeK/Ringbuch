@@ -47,40 +47,50 @@ namespace Ringbuch
 
     private void DoConnect()
     {
-      getDatabasePathXML();
-      if (Environment.GetCommandLineArgs().Length > 1)
+      if (1 == 2)
       {
-        Read_args(Environment.GetCommandLineArgs());
-        string test = ArgsData.ClearDBPW;
-        if (ArgsData.ClearDBPW != string.Empty || ArgsData.ClearDBPW != null)
-        {
-          clearPW(ArgsData.ClearDBPW);
-        }
+        //getDatabasePathXML();
+        //if (Environment.GetCommandLineArgs().Length > 1)
+        //{
+        //  Read_args(Environment.GetCommandLineArgs());
+        //  string test = ArgsData.ClearDBPW;
+        //  if (ArgsData.ClearDBPW != string.Empty || ArgsData.ClearDBPW != null)
+        //  {
+        //    clearPW(ArgsData.ClearDBPW);
+        //  }
+        //}
+        //try
+        //{
+        //  //getDatabasePWXML();
+        //  _con = new SQLiteConnection();
+        //  _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+        //  //setPW();
+        //  if (DatabasePW != string.Empty)
+        //  {
+        //    string pw = AES.AES.DecryptStringFromBytes_Aes(DatabasePW, ArgsData.Aes_key, ArgsData.Aes_iv);
+        //    _con.SetPassword(AES.AES.DecryptStringFromBytes_Aes(DatabasePW, ArgsData.Aes_key, ArgsData.Aes_iv));
+        //    //_con.SetPassword("hallo");
+        //  }
+        //  //_con.SetPassword("hallo");
+        //  _con.Open();
+        //  _command = new SQLiteCommand(_con);
+        //  //_command.CommandText = "Select * From Personen";
+        //  //_command.ExecuteNonQuery();
+        //  //clearPW("");
+        //}
+        //catch (Exception ex)
+        //{
+        //  writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+        //  MessageBox.Show(ex.Message);
+        //  Environment.Exit(-1);
+        //}
       }
-      try
+      else
       {
-        //getDatabasePWXML();
-        _con = new SQLiteConnection();
-        _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-        //setPW();
-        if (DatabasePW != string.Empty)
+        if (_con == null)
         {
-          string pw = AES.AES.DecryptStringFromBytes_Aes(DatabasePW, ArgsData.Aes_key, ArgsData.Aes_iv);
-          _con.SetPassword(AES.AES.DecryptStringFromBytes_Aes(DatabasePW, ArgsData.Aes_key, ArgsData.Aes_iv));
-          //_con.SetPassword("hallo");
+          _con = SqliteCon.Con;
         }
-        //_con.SetPassword("hallo");
-        _con.Open();
-        _command = new SQLiteCommand(_con);
-        //_command.CommandText = "Select * From Personen";
-        //_command.ExecuteNonQuery();
-        //clearPW("");
-      }
-      catch (Exception ex)
-      {
-        writeLog("SQL-Verbindung ist fehlgeschlagen. Exception: " + ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-        MessageBox.Show(ex.Message);
-        Environment.Exit(-1);
       }
     }
 
@@ -136,7 +146,7 @@ namespace Ringbuch
       _con.ChangePassword(myDialog.decodedText);
       SetDaten setDaten = new SetDaten();
       setDaten.SetDatenbankPassword(myDialog.codedText);
-      CloseConections();
+      CloseDataReader();
       _con.Close();
       Environment.Exit(-1);
     }
@@ -154,7 +164,7 @@ namespace Ringbuch
         MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
         myDialog.ShowDialog();
         _con.ChangePassword(myDialog.decodedText);
-        CloseConections();
+        CloseDataReader();
         _con.Close();
         return true;
       }
@@ -162,7 +172,7 @@ namespace Ringbuch
       {
         writeLog(ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
         MessageBox.Show(ex.Message);
-        CloseConections();
+        CloseDataReader();
         _con.Close();
         return false;
       }
@@ -287,7 +297,7 @@ namespace Ringbuch
       {
         password = _dataReader.GetValue(0).ToString();
       }
-      CloseConections();
+      CloseDataReader();
       return AES.AES.DecryptStringFromBytes_Aes(password, ArgsData.Aes_key, ArgsData.Aes_iv);
     }
     //public string getAdminPW()
@@ -303,12 +313,11 @@ namespace Ringbuch
     //    CloseConections();
     //    return password;
     //}
-    private void CloseConections()
+    private void CloseDataReader()
     {
       if (_dataReader != null)
       {
         _dataReader.Close();
-        _con.Clone();
       }
     }
 
@@ -331,7 +340,7 @@ namespace Ringbuch
             " FROM SchiessArten" +
             " INNER JOIN SchiessKlassen ON SchiessKlassen.SchiessArtenID = SchiessArten.rowid" +
             " WHERE SchiessKlassen.AlterVon = " + alter + " OR SchiessKlassen.AlterBis = " + alter +
-            " AND SchiessKlassen.Geschlecht = '" + sex + "'";
+            " AND SchiessKlassen.Geschlecht = '" + sex + "'";        
         _dataReader = _command.ExecuteReader();
       }
       if (alter <= 12)
@@ -370,6 +379,7 @@ namespace Ringbuch
           ret = "Herren/Damen";
         }
       }
+      CloseDataReader();
       return ret;
     }
 
@@ -469,7 +479,7 @@ namespace Ringbuch
         liste.Add(_dataReader.GetValue(5).ToString());
         liste.Add(_dataReader.GetValue(6).ToString());
       }
-      CloseConections();
+      CloseDataReader();
       string test = liste[5];
       liste[5] = getSchiessArtByID(Convert.ToInt32(liste[5]));
 
@@ -515,7 +525,7 @@ namespace Ringbuch
       {
         liste.Add(_dataReader.GetValue(1).ToString());
       }
-      CloseConections();
+      CloseDataReader();
       return liste;
     }
 
@@ -535,7 +545,7 @@ namespace Ringbuch
                     _dataReader.GetValue(2)
                 });
       }
-      CloseConections();
+      CloseDataReader();
       return dt;
     }
 
@@ -551,7 +561,7 @@ namespace Ringbuch
         liste.Add(_dataReader.GetValue(1).ToString());
         liste.Add(_dataReader.GetValue(2).ToString());
       }
-      CloseConections();
+      CloseDataReader();
       return liste;
     }
 
@@ -573,7 +583,7 @@ namespace Ringbuch
         {
           ID = _dataReader.GetInt16(0);
         }
-        CloseConections();
+        CloseDataReader();
         return ID;
       }
       return -1;
@@ -590,7 +600,7 @@ namespace Ringbuch
         listeMaterialGruppen.Add(_dataReader.GetValue(0).ToString());
       }
 
-      CloseConections();
+      CloseDataReader();
       return listeMaterialGruppen;
     }
     public DataTable getMaterialByGruppe(string gruppe)
@@ -616,7 +626,7 @@ namespace Ringbuch
       dt.Rows.Add(new object[]{
                 -1,
             });
-      CloseConections();
+      CloseDataReader();
       return dt;
     }
 
@@ -668,7 +678,7 @@ namespace Ringbuch
                     _dataReader.GetValue(14)
                 });
       }
-      CloseConections();
+      CloseDataReader();
       return dt;
     }
 
@@ -688,7 +698,7 @@ namespace Ringbuch
             _dataReader.GetValue(2) + ", " +
             _dataReader.GetValue(3);
       }
-      CloseConections();
+      CloseDataReader();
       return adresse;
     }
 
@@ -755,7 +765,7 @@ namespace Ringbuch
           listAlter.Add((zeroTime + timeSpan).Year - 1);
         }
       }
-      CloseConections();
+      CloseDataReader();
       return listAlter;
     }
 
@@ -780,7 +790,7 @@ namespace Ringbuch
                     _dataReader.GetValue(4)
                 });
       }
-      CloseConections();
+      CloseDataReader();
       return dt;
     }
 
@@ -791,7 +801,7 @@ namespace Ringbuch
       DataTable dt = CreateDataTable("Material");
       _dataReader = CreateSelectStatement("Material", "NamenID", ID.ToString());
 
-      CloseConections();
+      CloseDataReader();
       return null;
     }
 
@@ -807,7 +817,7 @@ namespace Ringbuch
       {
         DatumSchFest = _dataReader.GetValue(0).ToString();
       }
-      CloseConections();
+      CloseDataReader();
       return DatumSchFest;
     }
 
@@ -840,7 +850,7 @@ namespace Ringbuch
                     _dataReader.GetValue(16)
                 });
       }
-      CloseConections();
+      CloseDataReader();
       return dt;
     }
 
@@ -920,7 +930,7 @@ namespace Ringbuch
                     _dataReader.GetValue(8),    //  Info
                 });
       }
-      CloseConections();
+      CloseDataReader();
       foreach (DataRow row in dt.Rows)
       {
         int i = 0;
@@ -964,7 +974,7 @@ namespace Ringbuch
         }
         i++;
       }
-      CloseConections();
+      CloseDataReader();
       return dt;
     }
 

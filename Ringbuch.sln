@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ringbuch", "Ringbuch\Ringbu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseUpdate", "DatabaseUpdate\DatabaseUpdate.csproj", "{B23E3777-588F-454E-A19C-22AD327C0236}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject2", "ModelingProject2\ModelingProject2.modelproj", "{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{B23E3777-588F-454E-A19C-22AD327C0236}.DFSOrdner|Any CPU.Build.0 = Debug|Any CPU
 		{B23E3777-588F-454E-A19C-22AD327C0236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B23E3777-588F-454E-A19C-22AD327C0236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}.DFSOrdner|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}.DFSOrdner|Any CPU.Build.0 = Debug|Any CPU
+		{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF96671-706D-4E5E-A436-38A3AB1CE5BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

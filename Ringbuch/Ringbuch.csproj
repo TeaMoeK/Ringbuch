@@ -85,7 +85,10 @@
   <ItemGroup>
     <Compile Include="Datenverarbeitung\ArgsData.cs" />
     <Compile Include="Datenverarbeitung\CreateDatabase.cs" />
+    <Compile Include="Datenverarbeitung\Material\Material.cs" />
+    <Compile Include="Datenverarbeitung\Material\MaterialFactory.cs" />
     <Compile Include="Datenverarbeitung\NewDatabase.cs" />
+    <Compile Include="Datenverarbeitung\SqliteCon.cs" />
     <Compile Include="Forms\ErgebnisBearbeiten.cs">
       <SubType>Form</SubType>
     </Compile>

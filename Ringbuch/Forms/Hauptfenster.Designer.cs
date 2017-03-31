@@ -65,6 +65,7 @@
       this.label2 = new System.Windows.Forms.Label();
       this.txtInfotext = new System.Windows.Forms.TextBox();
       this.lblVersion = new System.Windows.Forms.Label();
+      this.buttonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dgvErgebnisse)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dgvAlter)).BeginInit();
@@ -339,7 +340,8 @@
       // debugToolStripMenuItem
       // 
       this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.installerToolStripMenuItem});
+            this.installerToolStripMenuItem,
+            this.buttonToolStripMenuItem});
       this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
       this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
       this.debugToolStripMenuItem.Text = "Debug";
@@ -348,7 +350,7 @@
       // installerToolStripMenuItem
       // 
       this.installerToolStripMenuItem.Name = "installerToolStripMenuItem";
-      this.installerToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+      this.installerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.installerToolStripMenuItem.Text = "Installer";
       this.installerToolStripMenuItem.Click += new System.EventHandler(this.installerToolStripMenuItem_Click);
       // 
@@ -438,6 +440,13 @@
       this.lblVersion.TabIndex = 8;
       this.lblVersion.Text = "label2";
       // 
+      // buttonToolStripMenuItem
+      // 
+      this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
+      this.buttonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.buttonToolStripMenuItem.Text = "Button";
+      this.buttonToolStripMenuItem.Click += new System.EventHandler(this.buttonToolStripMenuItem_Click);
+      // 
       // Hauptfenster
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,6 +519,7 @@
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem löschenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installerToolStripMenuItem;
-    }
+    private System.Windows.Forms.ToolStripMenuItem buttonToolStripMenuItem;
+  }
 }
 
