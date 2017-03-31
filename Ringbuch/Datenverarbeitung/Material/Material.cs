@@ -20,6 +20,9 @@ namespace Ringbuch
       this.langtext = langtext;
       this.groesse = groesse;
     }
+    public Material(List<string> listeMitMaterial)
+    {
+    }
     public int ID
     {
       get

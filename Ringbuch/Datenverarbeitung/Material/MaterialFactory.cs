@@ -20,13 +20,16 @@ namespace Ringbuch
       dr = com.ExecuteReader();
 
       List<Material> material = new List<Material>();
-
+      List<string> matListe = new List<string>();
       //material.Add(new Material(-1, "gruppe", "bez","lang","gr"));
       NameValueCollection test = dr.GetValues();
       string[] namen = test.AllKeys;
       while (dr.Read())
       {
-
+        for (int i = 0; i < dr.FieldCount; i++)
+        {
+          matListe.Add(dr.GetValue(i).ToString());
+        }
         material.Add(new Material(Convert.ToInt32(dr.GetValue(0)), dr.GetValue(1).ToString(), dr.GetValue(2).ToString(), dr.GetValue(3).ToString(), dr.GetValue(4).ToString()));
       }
 
