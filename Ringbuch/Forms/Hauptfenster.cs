@@ -703,7 +703,7 @@ namespace Ringbuch
     private void buttonToolStripMenuItem_Click(object sender, EventArgs e)
     {
       MaterialFactory MF = new MaterialFactory();
-      MF.getMaterial("", -1);
+      List<Material> material = MF.getMaterial();
     }
   }
 }

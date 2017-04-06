@@ -90,93 +90,94 @@ namespace Ringbuch
         if (_con == null)
         {
           _con = SqliteCon.Con;
+          _sqliteDatabase = _con.DataSource.ToString();
         }
       }
     }
 
-    private void clearPW(string pw)
-    {
-      if (pw != string.Empty)
-      {
-        _con = new SQLiteConnection();
-        _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-        _con.SetPassword(pw);
-        _con.Open();
-        _con.ChangePassword("");
-        MessageBox.Show("Password wurde entfernt.", "PW");
-        Environment.Exit(-1);
-      }
-      _con.ChangePassword("");
-      Environment.Exit(-1);
-    }
-    private void Read_args(string[] args)
-    {
-      bool gefunden = false;
-      for (int i = 0; i < args.Length; i++)
-      {
-        switch (args[i].ToLower())
-        {
+    //private void clearPW(string pw)
+    //{
+    //  if (pw != string.Empty)
+    //  {
+    //    _con = new SQLiteConnection();
+    //    _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+    //    _con.SetPassword(pw);
+    //    _con.Open();
+    //    _con.ChangePassword("");
+    //    MessageBox.Show("Password wurde entfernt.", "PW");
+    //    Environment.Exit(-1);
+    //  }
+    //  _con.ChangePassword("");
+    //  Environment.Exit(-1);
+    //}
+    //private void Read_args(string[] args)
+    //{
+    //  bool gefunden = false;
+    //  for (int i = 0; i < args.Length; i++)
+    //  {
+    //    switch (args[i].ToLower())
+    //    {
 
-          case ArgsData.PARAM_CLEAR_DB_PW:
-            if (i != args.Length - 1)
-            {
-              ArgsData.ClearDBPW = args[++i];
-              gefunden = true;
-            }
-            break;
-        }
-      }
-      if (!gefunden)
-      {
-        writeLog("Keine gültigen Argumente gefunden." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-        MessageBox.Show("Keine gültigen Argumente gefunden.");
-        Environment.Exit(-1);
-      }
-    }
-    private void setPW()
-    {
-      _con = new SQLiteConnection();
-      _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-      _con.Open();
-      _command = new SQLiteCommand(_con);
-      _command.CommandText = "";
-      _command.ExecuteNonQuery();
-      MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
-      myDialog.ShowDialog();
-      _con.ChangePassword(myDialog.decodedText);
-      SetDaten setDaten = new SetDaten();
-      setDaten.SetDatenbankPassword(myDialog.codedText);
-      CloseDataReader();
-      _con.Close();
-      Environment.Exit(-1);
-    }
+    //      case ArgsData.PARAM_CLEAR_DB_PW:
+    //        if (i != args.Length - 1)
+    //        {
+    //          ArgsData.ClearDBPW = args[++i];
+    //          gefunden = true;
+    //        }
+    //        break;
+    //    }
+    //  }
+    //  if (!gefunden)
+    //  {
+    //    writeLog("Keine gültigen Argumente gefunden." + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+    //    MessageBox.Show("Keine gültigen Argumente gefunden.");
+    //    Environment.Exit(-1);
+    //  }
+    //}
+    //private void setPW()
+    //{
+    //  _con = new SQLiteConnection();
+    //  _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+    //  _con.Open();
+    //  _command = new SQLiteCommand(_con);
+    //  _command.CommandText = "";
+    //  _command.ExecuteNonQuery();
+    //  MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
+    //  myDialog.ShowDialog();
+    //  _con.ChangePassword(myDialog.decodedText);
+    //  SetDaten setDaten = new SetDaten();
+    //  setDaten.SetDatenbankPassword(myDialog.codedText);
+    //  CloseDataReader();
+    //  _con.Close();
+    //  Environment.Exit(-1);
+    //}
 
-    private bool SetSQLitePassword()
-    {
-      try
-      {
-        _con = new SQLiteConnection();
-        _con.ConnectionString = "Data Source=" + _sqliteDatabase;
-        _con.Open();
-        _command = new SQLiteCommand(_con);
-        _command.CommandText = "";
-        _command.ExecuteNonQuery();
-        MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
-        myDialog.ShowDialog();
-        _con.ChangePassword(myDialog.decodedText);
-        CloseDataReader();
-        _con.Close();
-        return true;
-      }
-      catch (Exception ex)
-      {
-        writeLog(ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
-        MessageBox.Show(ex.Message);
-        CloseDataReader();
-        _con.Close();
-        return false;
-      }
-    }
+    //private bool SetSQLitePassword()
+    //{
+    //  try
+    //  {
+    //    _con = new SQLiteConnection();
+    //    _con.ConnectionString = "Data Source=" + _sqliteDatabase;
+    //    _con.Open();
+    //    _command = new SQLiteCommand(_con);
+    //    _command.CommandText = "";
+    //    _command.ExecuteNonQuery();
+    //    MyDialog myDialog = new MyDialog(true, "Password", "Bitte ein Datenbank-Password eingeben.", true);
+    //    myDialog.ShowDialog();
+    //    _con.ChangePassword(myDialog.decodedText);
+    //    CloseDataReader();
+    //    _con.Close();
+    //    return true;
+    //  }
+    //  catch (Exception ex)
+    //  {
+    //    writeLog(ex.Message + " Methode: " + MethodBase.GetCurrentMethod().ToString());
+    //    MessageBox.Show(ex.Message);
+    //    CloseDataReader();
+    //    _con.Close();
+    //    return false;
+    //  }
+    //}
 
     private void writeLog(string logText)
     {
