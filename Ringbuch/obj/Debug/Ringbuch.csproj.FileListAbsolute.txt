@@ -52,7 +52,6 @@ J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\EntityFramework.xml
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\EntityFramework.SqlServer.xml
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\bin\Debug\System.Data.SQLite.xml
-J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.csprojResolveAssemblyReference.cache
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.ErgebnisBearbeiten.resources
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.Hauptfenster.resources
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.ProfilBearbeiten.resources
@@ -63,3 +62,4 @@ J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.csproj.GenerateResource.Cache
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.exe
 J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.pdb
+J:\Eigene Dateien\Documents\Visual Studio 2015\Projects\Ringbuch\trunk\Ringbuch\obj\Debug\Ringbuch.csprojResolveAssemblyReference.cache
