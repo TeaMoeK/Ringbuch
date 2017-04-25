@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Ringbuch
@@ -258,6 +259,7 @@ namespace Ringbuch
         }
       }
     }
+
     private void InsertZero(object sender, EventArgs e)
     {
       if ((sender as TextBox).Name.ToLower().Contains("txtsatz") && (sender as TextBox).Text == "")
