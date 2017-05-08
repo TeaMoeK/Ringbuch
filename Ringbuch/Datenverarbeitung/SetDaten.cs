@@ -275,11 +275,14 @@ namespace Ringbuch
 
     public void SetSchiessartenNeu(string schiessart)
     {
-      List<string> neueSchiessarten = schiessart.Split(',').ToList();
-
-      foreach (string item in neueSchiessarten)
+      if (PasswortAbfrage())
       {
-        schiessartenInsert(item.Trim());
+        List<string> neueSchiessarten = schiessart.Split(',').ToList();
+
+        foreach (string item in neueSchiessarten)
+        {
+          schiessartenInsert(item.Trim());
+        }
       }
     }
 
@@ -315,32 +318,34 @@ namespace Ringbuch
 
     public void SetSchFest(DateTime dt)
     {
-      bool setDate = true;
-      TimeSpan timeSpan = DateTime.Now - dt;
-
-      if (timeSpan.Days > 0)
+      if (PasswortAbfrage())
       {
-        if (MessageBox.Show("Das Datum liegt in der Vergangenheit.", "Schützenfest", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Cancel)
-        {
-          setDate = false;
-        }
-      }
+        bool setDate = true;
+        TimeSpan timeSpan = DateTime.Now - dt;
 
-      if (setDate)
-      {
-        DoConnect();
-        _command = new SQLiteCommand(_con);
-        _command.CommandText = CreateUpdateStatement("Verschiedenes", "Schuetzenfest", dt.ToString("yyyy-MM-dd"));
-        _dataReader = _command.ExecuteReader();
-        if (!StatementSuccessful(_dataReader, false))
+        if (timeSpan.Days > 0)
         {
-          writeLog("Der Versuch, das Datum des Schützenfestes zu ändern, ist fehlgeschlagen. " + _command.CommandText);
-        }
-        else
-        {
-          writeLog("Das Datum des Schützenfestes wurde auf den " + dt.ToString("yyy-MM-dd") + " gesetzt.");
+          if (MessageBox.Show("Das Datum liegt in der Vergangenheit.", "Schützenfest", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.Cancel)
+          {
+            setDate = false;
+          }
         }
 
+        if (setDate)
+        {
+          DoConnect();
+          _command = new SQLiteCommand(_con);
+          _command.CommandText = CreateUpdateStatement("Verschiedenes", "Schuetzenfest", dt.ToString("yyyy-MM-dd"));
+          _dataReader = _command.ExecuteReader();
+          if (!StatementSuccessful(_dataReader, false))
+          {
+            writeLog("Der Versuch, das Datum des Schützenfestes zu ändern, ist fehlgeschlagen. " + _command.CommandText);
+          }
+          else
+          {
+            writeLog("Das Datum des Schützenfestes wurde auf den " + dt.ToString("yyy-MM-dd") + " gesetzt.");
+          }
+        }
       }
     }
     public void DeleteErgebnis(int id)
@@ -705,7 +710,7 @@ namespace Ringbuch
         {
           MessageBox.Show(
               "Die Bezeichnung ist ungültig!" + Environment.NewLine +
-              "Die darf nicht 'N/A' oder leer sein.", "Material");
+              "Sie darf nicht 'N/A' oder leer sein.", "Material");
         }
       }
     }
