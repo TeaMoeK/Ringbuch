@@ -140,13 +140,13 @@ namespace DatabaseUpdate
             }
             if (!artGefunden)
             {
-              insert += "1";
+              insert += "1,";
               string infotext = string.Empty;
               if (row[z + 1].ToString().Length != 0)
               {
                 infotext = " Infotext: " + row[z + 1].ToString();
               }
-              insert += "'SchnittstellenInfo: Schiessart konnte nicht erkannt werden: " + row[z].ToString() + ". Es wurde 'Freihand' als Default-Wert eingetragen!" + infotext;
+              insert += "'SchnittstellenInfo: Schiessart konnte nicht erkannt werden: " + row[z].ToString() + ". Es wurde Freihand als Default-Wert eingetragen!" + infotext + "',";
               z++;
             }
           }
@@ -303,9 +303,7 @@ namespace DatabaseUpdate
         dt.Rows.Add(new object[]{
                     _dataReaderSource.GetValue(0),    //  Schuetzenfest (Datum)
                     _dataReaderSource.GetValue(1),    //  SchiessArten
-                    _dataReaderSource.GetValue(2),    //  Password
-                    _dataReaderSource.GetValue(3)     //  AdminPW
-
+                    _dataReaderSource.GetValue(2)     //  Password
                 });
       }
 
@@ -370,8 +368,9 @@ namespace DatabaseUpdate
     private SQLiteDataReader CreateSelect(string tabelle)
     {
       _commandSource.CommandText = "SELECT * FROM " + tabelle;
-
-      return _commandSource.ExecuteReader();
+      SQLiteDataReader r = _commandSource.ExecuteReader();
+      return r;
+      //return _commandSource.ExecuteReader();
     }
     enum SchiessArten
     {
